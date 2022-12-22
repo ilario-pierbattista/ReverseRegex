@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  test:
 
     name: Tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-latest
