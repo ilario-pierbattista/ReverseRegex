@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.3.1] - 2023-04-21
+### Changed
 - Allow doctrine/lexer ^2
+- Substitute patchwork/utf with symfony/polyfill-mbstring
 
 ## [0.3.0] - 2023-04-21
 ### Changed
