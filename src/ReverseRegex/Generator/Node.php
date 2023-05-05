@@ -190,7 +190,7 @@ class Node implements ArrayAccess, Countable, Iterator
     {
         return $this->attrs->offsetExists($key);
     }
-
+    #[\ReturnTypeWillChange]
     public function offsetUnset($key)
     {
         $this->attrs->offsetUnset($key);
