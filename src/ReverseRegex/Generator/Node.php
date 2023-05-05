@@ -2,6 +2,7 @@
 namespace ReverseRegex\Generator;
 
 use \ArrayObject;
+use \Closure;
 use \SplObjectStorage;
 use \ArrayAccess;
 use \Countable;
@@ -125,7 +126,7 @@ class Node implements ArrayAccess, Countable, Iterator
      *  Apply a closure to all relations
      *
      *  @access public
-     *  @param Closer the function to apply
+     *  @param Closure $function the function to apply
      */
     public function map(Closure $function)
     {
@@ -133,52 +134,58 @@ class Node implements ArrayAccess, Countable, Iterator
             $function($node);
         }
     }
-    
+
     //------------------------------------------------------------------
     # Countable
-    
+
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->links);
     }
-    
+
     //------------------------------------------------------------------
     # Iterator
 
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->links->current();
     }
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->links->key();
     }
+    #[\ReturnTypeWillChange]
     public function next()
     {
-        return $this->links->next();
+        $this->links->next();
     }
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
-        return $this->links->rewind();
+        $this->links->rewind();
     }
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->links->valid();
     }
-    
+
     //------------------------------------------------------------------
     # ArrayAccess Implementation
-
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return $this->attrs->offsetGet($key);
     }
-
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
     {
         $this->attrs->offsetSet($key, $value);
     }
-
+    #[\ReturnTypeWillChange]
     public function offsetExists($key)
     {
         return $this->attrs->offsetExists($key);
@@ -186,7 +193,7 @@ class Node implements ArrayAccess, Countable, Iterator
 
     public function offsetUnset($key)
     {
-        return $this->attrs->offsetUnset($key);
+        $this->attrs->offsetUnset($key);
     }
 }
 
