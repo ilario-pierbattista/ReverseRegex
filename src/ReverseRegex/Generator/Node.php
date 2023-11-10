@@ -146,11 +146,13 @@ class Node implements ArrayAccess, Countable, Iterator
     //------------------------------------------------------------------
     # Iterator
 
-    public function current(): mixed
+    #[\ReturnTypeWillChange]
+    public function current()
     {
         return $this->links->current();
     }
-    public function key(): mixed
+    #[\ReturnTypeWillChange]
+    public function key()
     {
         return $this->links->key();
     }
@@ -170,7 +172,8 @@ class Node implements ArrayAccess, Countable, Iterator
     //------------------------------------------------------------------
     # ArrayAccess Implementation
 
-    public function offsetGet($key): mixed
+    #[\ReturnTypeWillChange]
+    public function offsetGet($key)
     {
         return $this->attrs->offsetGet($key);
     }
