@@ -32,6 +32,12 @@
       "PHPStats": "src/"
     }
   },
+  "scripts": {
+    "test": [
+      "composer install",
+      "vendor/bin/phpunit"
+    ]
+  },
   "conflict": {
     "icomefromthenet/reverse-regex": "*"
   }
