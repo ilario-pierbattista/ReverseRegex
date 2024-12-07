@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See https://github.com/icomefromthenet/ReverseRegex
 
+[0.5.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.4.0..0.5.0
 [0.4.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.3.1..0.4.0
 [0.3.1]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.3.0..0.3.1
 [0.3.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/v0.2.0.0..0.3.0
