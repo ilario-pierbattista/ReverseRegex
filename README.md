@@ -7,7 +7,7 @@ ReverseRegex
 
 Use Regular Expressions to generate text strings can be used in the following situations:
 
-1. Wrting test data for web forms.
+1. Writing test data for web forms.
 2. Writing test data for databases.
 3. Generating test data for regular expressions. 
 

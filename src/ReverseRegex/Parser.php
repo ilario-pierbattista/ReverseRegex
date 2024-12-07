@@ -41,7 +41,7 @@ class Parser
       *  @access public
       *  @param Lexer $lexer
       */
-    public function __construct(Lexer $lexer, Scope $result, Scope $head = null)
+    public function __construct(Lexer $lexer, Scope $result, ?Scope $head = null)
     {
         $this->lexer  = $lexer;
         $this->result = $result;
