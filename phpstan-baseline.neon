@@ -1,0 +1,607 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to method add\(\) on an unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Call to method count\(\) on an unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 3
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Call to method getAt\(\) on an unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Call to method set\(\) on an unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Method ReverseRegex\\Generator\\LiteralScope\:\:getLiterals\(\) has invalid return type ReverseRegex\\Generator\\Doctrine\\Common\\Collections\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Method ReverseRegex\\Generator\\LiteralScope\:\:getLiterals\(\) should return ReverseRegex\\Generator\\Doctrine\\Common\\Collections\\ArrayCollection but returns ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Property ReverseRegex\\Generator\\LiteralScope\:\:\$literals \(ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\) does not accept ReverseRegex\\ArrayCollection\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Property ReverseRegex\\Generator\\LiteralScope\:\:\$literals has unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
+
+		-
+			message: '#^Call to function is_scalar\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: src/ReverseRegex/Generator/Node.php
+
+		-
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
+			count: 1
+			path: src/ReverseRegex/Generator/Node.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between null and \*NEVER\* will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: src/ReverseRegex/Generator/Node.php
+
+		-
+			message: '#^Call to function is_int\(\) with int will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: src/ReverseRegex/Generator/Scope.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between true and false will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 2
+			path: src/ReverseRegex/Generator/Scope.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 4
+			path: src/ReverseRegex/Lexer.php
+
+		-
+			message: '#^Call to method attach\(\) on an unknown class ReverseRegex\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 6
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Call to method parse\(\) on an unknown class ReverseRegex\\ReverseRegex\\Parser\\StrategyInterface\.$#'
+			identifier: class.notFound
+			count: 4
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Call to method useAlternatingStrategy\(\) on an unknown class ReverseRegex\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\:\:createSubParser\(\) has invalid return type ReverseRegex\\ReverseRegex\\Parser\\StrategyInterface\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$head \(ReverseRegex\\ReverseRegex\\Generator\\Scope\) does not accept ReverseRegex\\Generator\\Scope\.$#'
+			identifier: assign.propertyType
+			count: 3
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$head has unknown class ReverseRegex\\ReverseRegex\\Generator\\Scope as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$left \(ReverseRegex\\ReverseRegex\\Generator\\Scope\) does not accept ReverseRegex\\Generator\\LiteralScope\.$#'
+			identifier: assign.propertyType
+			count: 4
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$left \(ReverseRegex\\ReverseRegex\\Generator\\Scope\) does not accept ReverseRegex\\Generator\\Scope\|null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$left has unknown class ReverseRegex\\ReverseRegex\\Generator\\Scope as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$result \(ReverseRegex\\ReverseRegex\\Generator\\Scope\) does not accept ReverseRegex\\Generator\\Scope\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Property ReverseRegex\\Parser\:\:\$result has unknown class ReverseRegex\\ReverseRegex\\Generator\\Scope as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 1
+			path: src/ReverseRegex/Parser.php
+
+		-
+			message: '#^Call to an undefined method ReverseRegex\\Generator\\Scope\:\:getLiterals\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Call to an undefined method ReverseRegex\\Generator\\Scope\:\:setLiteral\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\CharacterClass\:\:parse\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\CharacterClass\:\:parse\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$head with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 2
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$lexer with type ReverseRegex\\Parser\\ReverseRegex\\Lexer is not subtype of native type ReverseRegex\\Lexer\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$set with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 2
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\CharacterClass\:\:normalize\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\CharacterClass\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\CharacterClass\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\CharacterClass\:\:normalize\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\CharacterClass\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/CharacterClass.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:parse\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyClosure\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyClosure\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyPlus\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyPlus\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyQuestion\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyQuestion\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyStar\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Quantifier\:\:quantifyStar\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$head with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 5
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$lexer with type ReverseRegex\\Parser\\ReverseRegex\\Lexer is not subtype of native type ReverseRegex\\Lexer\.$#'
+			identifier: parameter.phpDocType
+			count: 5
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$result with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 4
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$set with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Quantifier\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Quantifier\:\:quantifyClosure\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Quantifier\:\:quantifyPlus\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Quantifier\:\:quantifyQuestion\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Quantifier\:\:quantifyStar\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Quantifier\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Quantifier\:\:quantifyClosure\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Quantifier\:\:quantifyPlus\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Quantifier\:\:quantifyQuestion\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Quantifier\:\:quantifyStar\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$result of method ReverseRegex\\Parser\\Quantifier\:\:quantifyClosure\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$result of method ReverseRegex\\Parser\\Quantifier\:\:quantifyPlus\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$result of method ReverseRegex\\Parser\\Quantifier\:\:quantifyQuestion\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$result of method ReverseRegex\\Parser\\Quantifier\:\:quantifyStar\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\Quantifier\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Quantifier.php
+
+		-
+			message: '#^Call to an undefined method ReverseRegex\\Generator\\Scope\:\:addLiteral\(\)\.$#'
+			identifier: method.notFound
+			count: 21
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Short\:\:parse\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Short\:\:parse\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$head with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$lexer with type ReverseRegex\\Parser\\ReverseRegex\\Lexer is not subtype of native type ReverseRegex\\Lexer\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$set with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Short\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Short\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\Short\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Short.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\StrategyInterface\:\:parse\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$head with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$lexer with type ReverseRegex\\Parser\\ReverseRegex\\Lexer is not subtype of native type ReverseRegex\\Lexer\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$set with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\StrategyInterface\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\StrategyInterface\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\StrategyInterface\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/StrategyInterface.php
+
+		-
+			message: '#^Call to an undefined method ReverseRegex\\Generator\\Scope\:\:addLiteral\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Unicode\:\:parse\(\) has invalid return type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Method ReverseRegex\\Parser\\Unicode\:\:parse\(\) should return ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope but returns ReverseRegex\\Generator\\Scope\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$head with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\LiteralScope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$lexer with type ReverseRegex\\Parser\\ReverseRegex\\Lexer is not subtype of native type ReverseRegex\\Lexer\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^PHPDoc tag @param for parameter \$set with type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope is not subtype of native type ReverseRegex\\Generator\\Scope\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Parameter \$head of method ReverseRegex\\Parser\\Unicode\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\LiteralScope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Parameter \$lexer of method ReverseRegex\\Parser\\Unicode\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Lexer\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Parameter \$set of method ReverseRegex\\Parser\\Unicode\:\:parse\(\) has invalid type ReverseRegex\\Parser\\ReverseRegex\\Generator\\Scope\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Result of \|\| is always true\.$#'
+			identifier: booleanOr.alwaysTrue
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between ''\{'' and ''\}'' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 2
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between ''\{'' and ''\{'' will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 4
+			path: src/ReverseRegex/Parser/Unicode.php
+
+		-
+			message: '#^Method ReverseRegex\\Random\\GeneratorFactory\:\:create\(\) has invalid return type ReverseRegex\\Random\\ReverseRegex\\RandomInterface\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Random/GeneratorFactory.php
+
+		-
+			message: '#^PHPDoc tag @param has invalid value \(string the random generator type name\)\: Unexpected token "the", expected variable at offset 76 on line 4$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: src/ReverseRegex/Random/GeneratorFactory.php
+
+		-
+			message: '#^PHPDoc tag @throws with type ReverseRegex\\Random\\PHPStats\\Exception is not subtype of Throwable$#'
+			identifier: throws.notThrowable
+			count: 1
+			path: src/ReverseRegex/Random/GeneratorFactory.php
+
+		-
+			message: '#^Property ReverseRegex\\Random\\MersenneRandom\:\:\$max \(int\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Random/MersenneRandom.php
+
+		-
+			message: '#^Property ReverseRegex\\Random\\MersenneRandom\:\:\$min \(int\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Random/MersenneRandom.php
+
+		-
+			message: '#^Property ReverseRegex\\Random\\MersenneRandom\:\:\$ps \(int\) does not accept null\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/ReverseRegex/Random/MersenneRandom.php

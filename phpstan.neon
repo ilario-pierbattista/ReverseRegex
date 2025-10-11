@@ -1,0 +1,11 @@
+parameters:
+    level: 5
+    phpVersion: 80100 # PHP 8.1.0 - minimum supported version
+    paths:
+        - src
+    excludePaths:
+        - src/ReverseRegex/Test
+        - src/PHPStats/Generator
+
+includes:
+    - phpstan-baseline.neon

@@ -7,15 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- [Facile.it coding standard](https://github.com/facile-it/facile-coding-standard) configuration
-- Composer scripts for code style checking and fixing (`composer cs-check`, `composer cs-fix`)
-- Automatic code formatting for all PHP files in `src/` and `examples/` directories
-- GitHub Actions workflow for code style checking (PHP 8.1)
-
-### Changed
-- Adopted Facile.it coding standards (based on PSR-12 with additional rules)
-- Updated code formatting for improved consistency and readability
-- Replaced custom PHP CS Fixer configuration with industry-standard Facile.it ruleset
+- Code quality tools: Facile.it coding standard and PHPStan 2 (level 5)
+- Composer scripts: `cs-check`, `cs-fix`, `phpstan`, `phpstan-baseline`
+- GitHub Actions workflows for code style and static analysis (PHP 8.1-8.4)
+- PHPStan baseline for incremental code quality improvements
 
 ### Removed
 - Support for PHP 7.4 and 8.0 (minimum required version is now PHP 8.1)
