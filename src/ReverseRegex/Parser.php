@@ -5,6 +5,7 @@ namespace ReverseRegex;
 use ReverseRegex\Exception as ParserException;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
+use ReverseRegex\Parser\StrategyInterface;
 
 /**
  *  Parser to convert regex into Group.
@@ -21,17 +22,17 @@ class Parser
     protected $lexer;
 
     /**
-     * @var ReverseRegex\Generator\Scope
+     * @var Scope
      */
     protected $result;
 
     /**
-     * @var ReverseRegex\Generator\Scope the current head
+     * @var Scope the current head
      */
     protected $head;
 
     /**
-     * @var ReverseRegex\Generator\Scope Last attached scope
+     * @var Scope Last attached scope
      */
     protected $left;
 
@@ -213,7 +214,7 @@ class Parser
      *
      * @param string $name the short name
      *
-     * @return ReverseRegex\Parser\StrategyInterface
+     * @return StrategyInterface
      */
     public static function createSubParser($name)
     {

@@ -17,11 +17,7 @@ class Short implements StrategyInterface
     /**
      *  Parse the current token for Short Codes `.` `\d`  `\w`.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $set
-     * @param ReverseRegex\Lexer $lexer
-     *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {
