@@ -1,181 +1,163 @@
 <?php
+
 namespace ReverseRegex\Test;
 
 use ReverseRegex\Exception as RegexException;
+use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Random\MersenneRandom;
-use ReverseRegex\Generator\LiteralScope;
 
 class ScopeTest extends Basic
 {
-    
-    public function testScopeImplementsRepeatInterface()
+    public function testScopeImplementsRepeatInterface(): void
     {
         $scope = new Scope('scope1');
-        $this->assertInstanceOf('ReverseRegex\Generator\RepeatInterface',$scope);
-    }
-    
-    public function testScopeImplementsContextInterface()
-    {
-        $scope = new Scope('scope1');
-        $this->assertInstanceOf('ReverseRegex\Generator\ContextInterface',$scope);
-    }
-    
-    public function testScopeExtendsNode()
-    {
-        $scope = new Scope('scope1');
-        $this->assertInstanceOf('ReverseRegex\Generator\Node',$scope);
-    }
-    
-    public function testScopeImplementsAlternateInterface()
-    {
-        $scope = new Scope('scope1');
-        $this->assertInstanceOf('ReverseRegex\Generator\AlternateInterface',$scope);
+        $this->assertInstanceOf(\ReverseRegex\Generator\RepeatInterface::class, $scope);
     }
 
+    public function testScopeImplementsContextInterface(): void
+    {
+        $scope = new Scope('scope1');
+        $this->assertInstanceOf(\ReverseRegex\Generator\ContextInterface::class, $scope);
+    }
 
-    public function testAlternateInterface()
+    public function testScopeExtendsNode(): void
+    {
+        $scope = new Scope('scope1');
+        $this->assertInstanceOf(\ReverseRegex\Generator\Node::class, $scope);
+    }
+
+    public function testScopeImplementsAlternateInterface(): void
+    {
+        $scope = new Scope('scope1');
+        $this->assertInstanceOf(\ReverseRegex\Generator\AlternateInterface::class, $scope);
+    }
+
+    public function testAlternateInterface(): void
     {
         $scope = new Scope('scope1');
         $this->assertFalse($scope->usingAlternatingStrategy());
-        
+
         $scope->useAlternatingStrategy(true);
         $this->assertTrue($scope->usingAlternatingStrategy());
     }
-    
-        
-    public function testRepeatInterface()
+
+    public function testRepeatInterface(): void
     {
-        $scope  = new Scope('scope1');
-        
+        $scope = new Scope('scope1');
+
         $scope->setMaxOccurances(10);
         $scope->setMinOccurances(5);
 
-        $this->assertEquals(10,$scope->getMaxOccurances());
-        $this->assertEquals(5,$scope->getMinOccurances());
-        $this->assertEquals(5,$scope->getOccuranceRange());
+        $this->assertEquals(10, $scope->getMaxOccurances());
+        $this->assertEquals(5, $scope->getMinOccurances());
+        $this->assertEquals(5, $scope->getOccuranceRange());
     }
-    
-    
-    public function testAttachChild()
+
+    public function testAttachChild(): void
     {
-       $scope  = new Scope('scope1');
-       $scope2  = new Scope('scope2');
-       
-       $scope->attach($scope2)->rewind();
-       $this->assertEquals($scope2,$scope->current());
+        $scope = new Scope('scope1');
+        $scope2 = new Scope('scope2');
+
+        $scope->attach($scope2)->rewind();
+        $this->assertEquals($scope2, $scope->current());
     }
-    
-    
-    public function testRepeatQuota()
+
+    public function testRepeatQuota(): void
     {
         $gen = new MersenneRandom(703);
-        
+
         $scope = new Scope('scope1');
         $scope->setMinOccurances(1);
         $scope->setMaxOccurances(6);
-        
-        $this->assertEquals(3,$scope->calculateRepeatQuota($gen));
-        
+
+        $this->assertEquals(3, $scope->calculateRepeatQuota($gen));
     }
-    
- 
-    public function testGenerateErrorNotChildren()
+
+    public function testGenerateErrorNotChildren(): void
     {
         $gen = new MersenneRandom(700);
-        
+
         $scope = new Scope('scope1');
         $scope->setMinOccurances(1);
         $scope->setMaxOccurances(6);
-        
+
         $result = '';
 
-        $this->expectException(RegexException::class);        
-        $this->expectExceptionMessage("No child scopes to call must be atleast 1");
+        $this->expectException(RegexException::class);
+        $this->expectExceptionMessage('No child scopes to call must be atleast 1');
 
-        
-        $scope->generate($result,$gen);
-        
+        $scope->generate($result, $gen);
     }
-    
-    
-    public function testGenerate()
+
+    public function testGenerate(): void
     {
-        
         $gen = new MersenneRandom(700);
         $result = '';
-        
+
         $scope = new Scope('scope1');
         $scope->setMinOccurances(6);
         $scope->setMaxOccurances(6);
-        
-        $child = $this->getMockBuilder('ReverseRegex\Generator\Scope')->setMethods(['generate'])->getMock();
-        
+
+        $child = $this->getMockBuilder(\ReverseRegex\Generator\Scope::class)->setMethods(['generate'])->getMock();
+
         $child->expects($this->exactly(6))
             ->method('generate')
-            ->with($this->isType('string'),$this->equalTo($gen))
-            ->will($this->returnCallback(function(&$sResult){
+            ->with($this->isType('string'), $this->equalTo($gen))
+            ->willReturnCallback(function (&$sResult) {
                 return $sResult .= 'a';
-                
-            }));
-        
+            });
+
         $scope->attach($child);
-        
-        $result = $scope->generate($result,$gen);
-        
-        $this->assertEquals('aaaaaa',$result);
-        
+
+        $result = $scope->generate($result, $gen);
+
+        $this->assertEquals('aaaaaa', $result);
     }
-    
-    public function testGetNode()
+
+    public function testGetNode(): void
     {
         $scope = new Scope('scope1');
-        
-     
-        
-        for($i = 1; $i <= 6; $i++) {
-            $scope->attach(new Scope('label_'.$i));    
+
+        for ($i = 1; $i <= 6; ++$i) {
+            $scope->attach(new Scope('label_' . $i));
         }
-        
+
         $other_scope = $scope->get(6);
-        $this->assertInstanceOf('ReverseRegex\Generator\Scope',$other_scope);
-        $this->assertEquals('label_6',$other_scope->getLabel());
-        
+        $this->assertInstanceOf(\ReverseRegex\Generator\Scope::class, $other_scope);
+        $this->assertEquals('label_6', $other_scope->getLabel());
+
         $other_scope = $scope->get(1);
-        $this->assertInstanceOf('ReverseRegex\Generator\Scope',$other_scope);
-        $this->assertEquals('label_1',$other_scope->getLabel());
-        
-        
+        $this->assertInstanceOf(\ReverseRegex\Generator\Scope::class, $other_scope);
+        $this->assertEquals('label_1', $other_scope->getLabel());
+
         $other_scope = $scope->get(3);
-        $this->assertInstanceOf('ReverseRegex\Generator\Scope',$other_scope);
-        $this->assertEquals('label_3',$other_scope->getLabel());
-        
+        $this->assertInstanceOf(\ReverseRegex\Generator\Scope::class, $other_scope);
+        $this->assertEquals('label_3', $other_scope->getLabel());
+
         $other_scope = $scope->get(0);
-        $this->assertEquals(null,$other_scope);
+        $this->assertNull($other_scope);
     }
-    
-    
-    public function testGenerateWithAlternatingStrategy()
+
+    public function testGenerateWithAlternatingStrategy(): void
     {
-        $scope  = new Scope('scope1');
-        $gen    = new MersenneRandom(700);
+        $scope = new Scope('scope1');
+        $gen = new MersenneRandom(700);
         $result = '';
-        
+
         $scope->setMinOccurances(7);
         $scope->setMaxOccurances(7);
-        
-        for($i = 1; $i <= 6; $i++) {
-            $lit = new LiteralScope('label_'.$i);
+
+        for ($i = 1; $i <= 6; ++$i) {
+            $lit = new LiteralScope('label_' . $i);
             $lit->addLiteral($i);
             $scope->attach($lit);
             $lit = null;
         }
-        
+
         $scope->useAlternatingStrategy();
-        $scope->generate($result,$gen);
-        $this->assertMatchesRegularExpression('/[1-6]{7}/',$result);
-        
+        $scope->generate($result, $gen);
+        $this->assertMatchesRegularExpression('/[1-6]{7}/', $result);
     }
-    
 }
-/* End of File */
+// End of File
