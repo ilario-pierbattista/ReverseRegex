@@ -18,10 +18,6 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     * @param Scope $head
-     * @param Scope $set
-     * @param Lexer $lexer
-     *
      * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
@@ -49,10 +45,6 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for + quantifiers.
      *
-     * @param Scope $head
-     * @param Scope $result
-     * @param Lexer $lexer
-     *
      * @return Scope a new head
      */
     public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer)
@@ -68,10 +60,6 @@ class Quantifier implements StrategyInterface
 
     /**
      *  Parse the current token for * quantifiers.
-     *
-     * @param Scope $head
-     * @param Scope $result
-     * @param Lexer $lexer
      *
      * @return Scope a new head
      */
@@ -89,10 +77,6 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for ? quantifiers.
      *
-     * @param Scope $head
-     * @param Scope $result
-     * @param Lexer $lexer
-     *
      * @return Scope a new head
      */
     public function quantifyQuestion(Scope $head, Scope $result, Lexer $lexer)
@@ -108,10 +92,6 @@ class Quantifier implements StrategyInterface
 
     /**
      *  Parse the current token for closers : {###} { ## } {##,##}.
-     *
-     * @param Scope $head
-     * @param Scope $result
-     * @param Lexer $lexer
      *
      * @return Scope a new head
      */

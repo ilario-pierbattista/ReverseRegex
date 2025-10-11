@@ -18,8 +18,6 @@ class CharacterClass implements StrategyInterface
     /**
      *  Will return a normalized ie unicode sequences been evaluated.
      *
-     * @param Scope $head
-     * @param Scope $set
      * @param Lexer $lexer the lexer to normalize
      *
      * @return string a normalized character class string
@@ -60,10 +58,6 @@ class CharacterClass implements StrategyInterface
 
     /**
      *  Parse the current token for new Quantifiers.
-     *
-     * @param Scope $head
-     * @param Scope $set
-     * @param Lexer $lexer
      *
      * @return Scope a new head
      */

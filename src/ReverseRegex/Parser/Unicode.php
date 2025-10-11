@@ -18,10 +18,6 @@ class Unicode implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     * @param Scope $head
-     * @param Scope $set
-     * @param Lexer $lexer
-     *
      * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)

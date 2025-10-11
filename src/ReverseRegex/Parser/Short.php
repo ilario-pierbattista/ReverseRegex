@@ -17,10 +17,6 @@ class Short implements StrategyInterface
     /**
      *  Parse the current token for Short Codes `.` `\d`  `\w`.
      *
-     * @param Scope $head
-     * @param Scope $set
-     * @param Lexer $lexer
-     *
      * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
