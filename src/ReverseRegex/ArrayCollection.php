@@ -13,14 +13,10 @@ class ArrayCollection extends BaseCollection
      */
     public function sort()
     {
-        $values = $this
+        $values = $this->toArray();
+        ksort($values);
 
-            -> toArray();
-        ksort(
-            $values
-        );
-
-                    $this->clear();
+        $this->clear();
 
         foreach ($values as $index => $value) {
             $this->set($index, $value);
