@@ -16,7 +16,7 @@ use ReverseRegex\Exception as GeneratorException;
 class LiteralScope extends Scope
 {
     /**
-     * @var ReverseRegex\ArrayCollection container for literals values
+     * @var ArrayCollection container for literals values
      */
     protected $literals;
 
@@ -56,7 +56,7 @@ class LiteralScope extends Scope
     /**
      *  Return the literal ArrayCollection.
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLiterals()
     {

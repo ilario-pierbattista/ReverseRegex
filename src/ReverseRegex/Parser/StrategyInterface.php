@@ -17,11 +17,11 @@ interface StrategyInterface
     /**
      *  Parse the current token and return a new head.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $set
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $set
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer);
 }

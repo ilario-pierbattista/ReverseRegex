@@ -18,8 +18,8 @@ class CharacterClass implements StrategyInterface
     /**
      *  Will return a normalized ie unicode sequences been evaluated.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $set
+     * @param Scope $head
+     * @param Scope $set
      * @param Lexer $lexer the lexer to normalize
      *
      * @return string a normalized character class string
@@ -61,11 +61,11 @@ class CharacterClass implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $set
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $set
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {

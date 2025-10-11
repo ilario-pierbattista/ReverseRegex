@@ -18,11 +18,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $set
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $set
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {
@@ -49,11 +49,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for + quantifiers.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $result
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $result
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer)
     {
@@ -69,11 +69,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for * quantifiers.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $result
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $result
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function quantifyStar(Scope $head, Scope $result, Lexer $lexer)
     {
@@ -89,11 +89,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for ? quantifiers.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $result
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $result
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function quantifyQuestion(Scope $head, Scope $result, Lexer $lexer)
     {
@@ -109,11 +109,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for closers : {###} { ## } {##,##}.
      *
-     * @param ReverseRegex\Generator\Scope $head
-     * @param ReverseRegex\Generator\Scope $result
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $result
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function quantifyClosure(Scope $head, Scope $result, Lexer $lexer)
     {

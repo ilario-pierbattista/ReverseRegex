@@ -18,11 +18,11 @@ class Unicode implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     * @param ReverseRegex\Generator\LiteralScope $head
-     * @param ReverseRegex\Generator\Scope $set
-     * @param ReverseRegex\Lexer $lexer
+     * @param Scope $head
+     * @param Scope $set
+     * @param Lexer $lexer
      *
-     * @return ReverseRegex\Generator\Scope a new head
+     * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {

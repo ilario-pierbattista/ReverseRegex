@@ -6,6 +6,7 @@ parameters:
     excludePaths:
         - src/ReverseRegex/Test
         - src/PHPStats/Generator
+    reportUnmatchedIgnoredErrors: false
 
 includes:
     - phpstan-baseline.neon

@@ -43,9 +43,9 @@ class GeneratorFactory
      *
      *  @param string the random generator type name
      *
-     * @throws PHPStats\Exception
+     * @throws ReverseRegexException
      *
-     * @return ReverseRegex\RandomInterface
+     * @return GeneratorInterface
      */
     public function create($type, $seed = null)
     {
