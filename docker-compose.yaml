@@ -1,27 +1,15 @@
 services:
-  php74: &common
+  php81: &common
     build: &build
       dockerfile: php.Dockerfile
       context: .docker
       args:
-        - BASE=php:7.4-cli-alpine
+        - BASE=php:8.1-cli-alpine
     tty: true
     volumes:
       - .:/usr/app
     user: "1000:1000"
     working_dir: /usr/app
-  php80:
-    <<: *common
-    build:
-      <<: *build
-      args:
-        - BASE=php:8.0-cli-alpine
-  php81:
-    <<: *common
-    build:
-      <<: *build
-      args:
-        - BASE=php:8.1-cli-alpine
   php82:
     <<: *common
     build:

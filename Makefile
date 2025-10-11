@@ -1,11 +1,3 @@
-.PHONY: run-php-7.4
-run-php-7.4:
-	docker compose run --remove-orphans php74 sh
-
-.PHONY: run-php-8.0
-run-php-8.0:
-	docker compose run --remove-orphans php80 sh
-
 .PHONY: run-php-8.1
 run-php-8.1:
 	docker compose run --remove-orphans php81 sh
