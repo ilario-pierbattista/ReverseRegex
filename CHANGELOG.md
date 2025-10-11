@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Facile.it coding standard](https://github.com/facile-it/facile-coding-standard) configuration
 - Composer scripts for code style checking and fixing (`composer cs-check`, `composer cs-fix`)
 - Automatic code formatting for all PHP files in `src/` and `examples/` directories
-- GitHub Actions workflow for static analysis
+- GitHub Actions workflow for code style checking (PHP 7.4)
 
 ### Changed
 - Adopted Facile.it coding standards (based on PSR-12 with additional rules)

@@ -1,4 +1,4 @@
-name: Static Analysis
+name: Code Style
 
 on:
   push:
@@ -10,13 +10,10 @@ permissions:
   contents: read
 
 jobs:
-  static-analysis:
+  code-style:
 
-    name: Static Analysis (PHP ${{ matrix.php }})
+    name: Code Style (PHP 7.4)
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]
 
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +21,7 @@ jobs:
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: "7.4"
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -34,9 +31,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-7.4-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-php-
+            ${{ runner.os }}-php-7.4-
 
       - name: Install dependencies
         run: composer install
