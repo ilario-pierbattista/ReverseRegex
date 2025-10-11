@@ -1,8 +1,5 @@
-version: "3.8"
-
 services:
   php74: &common
-    image: reverse-regex:php-7.2
     build: &build
       dockerfile: php.Dockerfile
       context: .docker
@@ -15,35 +12,30 @@ services:
     working_dir: /usr/app
   php80:
     <<: *common
-    image: reverse-regex:php-8.0
     build:
       <<: *build
       args:
         - BASE=php:8.0-cli-alpine
   php81:
     <<: *common
-    image: reverse-regex:php-8.1
     build:
       <<: *build
       args:
         - BASE=php:8.1-cli-alpine
   php82:
     <<: *common
-    image: reverse-regex:php-8.2
     build:
       <<: *build
       args:
         - BASE=php:8.2-cli-alpine
   php83:
     <<: *common
-    image: reverse-regex:php-8.3
     build:
       <<: *build
       args:
         - BASE=php:8.3-cli-alpine
   php84:
     <<: *common
-    image: reverse-regex:php-8.4
     build:
       <<: *build
       args:
