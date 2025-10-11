@@ -18,6 +18,11 @@ parameters:
 			count: 1
 			path: src/ReverseRegex/Generator/LiteralScope.php
 
+		-
+			message: '#^Call to method set\(\) on an unknown class ReverseRegex\\Generator\\ReverseRegex\\ArrayCollection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/ReverseRegex/Generator/LiteralScope.php
 
 		-
 			message: '#^Method ReverseRegex\\Generator\\LiteralScope\:\:getLiterals\(\) has invalid return type ReverseRegex\\Generator\\Doctrine\\Common\\Collections\\ArrayCollection\.$#'
