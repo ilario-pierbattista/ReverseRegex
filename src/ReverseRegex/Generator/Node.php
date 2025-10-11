@@ -1,42 +1,42 @@
 <?php
+
 namespace ReverseRegex\Generator;
 
-use \ArrayObject;
-use \Closure;
-use \SplObjectStorage;
-use \ArrayAccess;
-use \Countable;
-use \Iterator;
+use ArrayAccess;
+use ArrayObject;
+use Closure;
+use Countable;
+use Iterator;
+use SplObjectStorage;
 
 /**
-  *  Base to all Generator Scopes 
-  *
-  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
-  *  @since 0.0.1
-  */
+ *  Base to all Generator Scopes.
+ *
+ *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *  @since 0.0.1
+ */
 class Node implements ArrayAccess, Countable, Iterator
 {
     /**
-      *  @var string name of the node 
-      */
+     *  @var string name of the node
+     */
     protected $label;
-    
+
     /**
-      *  @var ArrayObject container for node metadata 
-      */
+     *  @var ArrayObject container for node metadata
+     */
     protected $attrs;
-    
+
     /**
-      *  @var SplObjectStorage container for node relationships 
-      */
+     *  @var SplObjectStorage container for node relationships
+     */
     protected $links;
 
     /**
-      *  Class Constructor
-      *
-      *  @access public
-      *  @param string $label
-      */
+     *  Class Constructor.
+     *
+     *  @param string $label
+     */
     public function __construct($label = 'node')
     {
         $this->attrs = new ArrayObject();
@@ -46,22 +46,20 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 
     /**
-      *  Fetch the nodes label
-      *
-      *  @access public
-      *  @return string the nodes label
-      */
+     *  Fetch the nodes label.
+     *
+     *  @return string the nodes label
+     */
     public function getLabel()
     {
         return $this->label;
     }
 
     /**
-      *  Sets the node label
-      *
-      *  @access public
-      *  @param string $label the nodes label
-      */
+     *  Sets the node label.
+     *
+     *  @param string $label the nodes label
+     */
     public function setLabel($label)
     {
         if (!(is_scalar($label) || is_null($label))) {
@@ -71,15 +69,13 @@ class Node implements ArrayAccess, Countable, Iterator
         $this->label = $label;
     }
 
-
     /**
-      *  Attach a node
-      *
-      *  @access public
-      *  @param Node $node the node to attach
-      *  @return Node
-      */
-    public function &attach(Node $node)
+     *  Attach a node.
+     *
+     *  @param Node $node the node to attach
+     *  @return Node
+     */
+    public function &attach(self $node)
     {
         $this->links->attach($node);
 
@@ -87,13 +83,12 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 
     /**
-      *  Detach a node
-      *
-      *  @access public
-      *  @return Node
-      *  @param Node $node the node to remove
-      */
-    public function &detach(Node $node)
+     *  Detach a node.
+     *
+     *  @return Node
+     *  @param Node $node the node to remove
+     */
+    public function &detach(self $node)
     {
         foreach ($this->links as $linked_node) {
             if ($linked_node == $node) {
@@ -105,13 +100,12 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 
     /**
-      *  Search for node in its relations
-      *
-      *  @access public
-      *  @return boolean true if found
-      *  @param Node $node the node to search for
-      */
-    public function contains(Node $node)
+     *  Search for node in its relations.
+     *
+     *  @return bool true if found
+     *  @param Node $node the node to search for
+     */
+    public function contains(self $node)
     {
         foreach ($this->links as $linked_node) {
             if ($linked_node == $node) {
@@ -121,11 +115,10 @@ class Node implements ArrayAccess, Countable, Iterator
 
         return false;
     }
-  
-   /**
-     *  Apply a closure to all relations
+
+    /**
+     *  Apply a closure to all relations.
      *
-     *  @access public
      *  @param Closure $function the function to apply
      */
     public function map(Closure $function)
@@ -136,7 +129,7 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 
     //------------------------------------------------------------------
-    # Countable
+    // Countable
 
     public function count(): int
     {
@@ -144,33 +137,37 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 
     //------------------------------------------------------------------
-    # Iterator
+    // Iterator
 
     #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->links->current();
     }
+
     #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->links->key();
     }
+
     public function next(): void
     {
         $this->links->next();
     }
+
     public function rewind(): void
     {
         $this->links->rewind();
     }
+
     public function valid(): bool
     {
         return $this->links->valid();
     }
 
     //------------------------------------------------------------------
-    # ArrayAccess Implementation
+    // ArrayAccess Implementation
 
     #[\ReturnTypeWillChange]
     public function offsetGet($key)
@@ -194,4 +191,4 @@ class Node implements ArrayAccess, Countable, Iterator
     }
 }
 
-/* End of Class */
+// End of Class
