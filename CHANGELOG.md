@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- PHP CS Fixer configuration with PSR-12 coding standards
+- Composer scripts for code style checking and fixing (`composer cs-check`, `composer cs-fix`)
+- Automatic code formatting for all PHP files in `src/` and `examples/` directories
+
+### Changed
+- Applied PSR-12 coding standards to all PHP files
+- Updated code formatting for improved consistency and readability
 ## [0.5.0] - 2024-12-07
 ### Added
 - Compatibility with PHP 8.2, 8.3, 8.4
