@@ -10,12 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Facile.it coding standard](https://github.com/facile-it/facile-coding-standard) configuration
 - Composer scripts for code style checking and fixing (`composer cs-check`, `composer cs-fix`)
 - Automatic code formatting for all PHP files in `src/` and `examples/` directories
-- GitHub Actions workflow for code style checking (PHP 7.4)
+- GitHub Actions workflow for code style checking (PHP 8.1)
 
 ### Changed
 - Adopted Facile.it coding standards (based on PSR-12 with additional rules)
 - Updated code formatting for improved consistency and readability
 - Replaced custom PHP CS Fixer configuration with industry-standard Facile.it ruleset
+
+### Removed
+- Support for PHP 7.4 and 8.0 (minimum required version is now PHP 8.1)
 ## [0.5.0] - 2024-12-07
 ### Added
 - Compatibility with PHP 8.2, 8.3, 8.4
