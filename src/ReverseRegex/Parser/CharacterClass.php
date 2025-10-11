@@ -117,8 +117,6 @@ class CharacterClass implements StrategyInterface
 
     /**
      *  Fill a range given starting and ending character.
-     *
-     * @return void
      */
     public function fillRange(Scope $head, $start, $end): void
     {

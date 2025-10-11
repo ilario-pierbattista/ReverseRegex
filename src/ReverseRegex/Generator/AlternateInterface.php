@@ -13,8 +13,6 @@ interface AlternateInterface
 {
     /**
      *  Tell the scope to select childing use alternating strategy.
-     *
-     * @return void
      */
     public function useAlternatingStrategy(): void;
 

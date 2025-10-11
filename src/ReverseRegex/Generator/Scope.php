@@ -169,8 +169,6 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
 
     /**
      *  Tell the scope to select childing use alternating strategy.
-     *
-     * @return void
      */
     public function useAlternatingStrategy(): void
     {
