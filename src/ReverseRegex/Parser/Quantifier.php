@@ -10,6 +10,7 @@ use ReverseRegex\Lexer;
  *  Parse a group quantifer e.g (abghb){1,5} , (abghb){5} , (abghb)* , (abghb)? , (abghb)+.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class Quantifier implements StrategyInterface
@@ -17,10 +18,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $set
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $set
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {
@@ -38,7 +40,7 @@ class Quantifier implements StrategyInterface
                 $head = $this->quantifyClosure($head, $set, $lexer);
                 break;
             default:
-                //do nothing no token matches found
+                // do nothing no token matches found
         }
 
         return $head;
@@ -47,15 +49,16 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for + quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $result
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $result
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer)
     {
         $min = 1;
-        $max = PHP_INT_MAX;
+        $max = \PHP_INT_MAX;
 
         $head->setMaxOccurances($max);
         $head->setMinOccurances($min);
@@ -66,15 +69,16 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for * quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $result
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $result
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function quantifyStar(Scope $head, Scope $result, Lexer $lexer)
     {
         $min = 0;
-        $max = PHP_INT_MAX;
+        $max = \PHP_INT_MAX;
 
         $head->setMaxOccurances($max);
         $head->setMinOccurances($min);
@@ -85,10 +89,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for ? quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $result
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $result
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function quantifyQuestion(Scope $head, Scope $result, Lexer $lexer)
     {
@@ -104,10 +109,11 @@ class Quantifier implements StrategyInterface
     /**
      *  Parse the current token for closers : {###} { ## } {##,##}.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $result
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $result
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function quantifyClosure(Scope $head, Scope $result, Lexer $lexer)
     {
@@ -117,7 +123,7 @@ class Quantifier implements StrategyInterface
 
         // move to the first token inside the quantifer.
         // parse for the minimum , move lookahead until read end of the closure or the `,`
-        while ($lexer->moveNext() === true && !$lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE) && $lexer->lookahead['value'] !== ',') {
+        while ($lexer->moveNext() === true && ! $lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE) && $lexer->lookahead['value'] !== ',') {
             if ($lexer->isNextToken(Lexer::T_QUANTIFIER_OPEN)) {
                 throw new ParserException('Nesting Quantifiers is not allowed');
             }
@@ -133,7 +139,7 @@ class Quantifier implements StrategyInterface
 
             // move to the first token after the `,` character
             // grab the remaining numbers
-            while ($lexer->moveNext() && !$lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE)) {
+            while ($lexer->moveNext() && ! $lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE)) {
                 if ($lexer->isNextToken(Lexer::T_QUANTIFIER_OPEN)) {
                     throw new ParserException('Nesting Quantifiers is not allowed');
                 }
@@ -154,7 +160,7 @@ class Quantifier implements StrategyInterface
 
         // check if the last matched token was the closing bracket
         // not going to stop errors like {#####,###{[a-z]} {#####{[a-z]}
-        if (!$lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE)) {
+        if (! $lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE)) {
             throw new ParserException('Closing quantifier token `}` not found');
         }
 
@@ -164,8 +170,9 @@ class Quantifier implements StrategyInterface
     /**
      *  Convert a collection of Lexer::T_LITERAL_NUMERIC tokens into integer.
      *
-     *  @return int the size
-     *  @param array $tokens collection of tokens from lexer
+     * @param array $tokens collection of tokens from lexer
+     *
+     * @return int the size
      */
     protected function convertInteger(array $tokens)
     {
@@ -180,7 +187,7 @@ class Quantifier implements StrategyInterface
             throw new ParserException('Quantifier expects and integer compitable string');
         }
 
-        return intval($number_string);
+        return (int) $number_string;
     }
 }
 // End of File

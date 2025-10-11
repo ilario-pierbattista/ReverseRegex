@@ -16,17 +16,17 @@ namespace ReverseRegex\Random;
 class SrandRandom implements GeneratorInterface
 {
     /**
-     *  @var int the seed to use on each pass
+     * @var int the seed to use on each pass
      */
     protected $seed;
 
     /**
-     *  @var int the max
+     * @var int the max
      */
     protected $max;
 
     /**
-     *  @var int the min
+     * @var int the min
      */
     protected $min;
 
@@ -45,12 +45,12 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Return the maxium random number.
      *
-     *  @return float
+     * @return float
      */
     public function max($value = null)
     {
         if ($value === null && $this->max === null) {
-            $max = getrandmax();
+            $max = mt_getrandmax();
         } elseif ($value === null) {
             $max = $this->max;
         } else {
@@ -76,8 +76,8 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Generate a value between $min - $max.
      *
-     *  @param int $max
-     *  @param int $max
+     * @param int $max
+     * @param int $max
      */
     public function generate($min = 0, $max = null)
     {
@@ -89,18 +89,18 @@ class SrandRandom implements GeneratorInterface
             $min = $this->min;
         }
 
-        return rand($min, $max);
+        return mt_rand($min, $max);
     }
 
     /**
      *  Set the seed to use.
      *
-     *  @param $seed integer the seed to use
+     * @param $seed integer the seed to use
      */
     public function seed($seed = null)
     {
         $this->seed = $seed;
-        srand($this->seed);
+        mt_srand($this->seed);
 
         return $this;
     }

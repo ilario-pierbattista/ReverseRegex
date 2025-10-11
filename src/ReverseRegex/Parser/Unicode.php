@@ -10,6 +10,7 @@ use ReverseRegex\Lexer;
  *  Parse a unicode sequence e.g  \x54 \X{4444}.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class Unicode implements StrategyInterface
@@ -17,10 +18,11 @@ class Unicode implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\LiteralScope $head
-     *  @param ReverseRegex\Generator\Scope $set
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\LiteralScope $head
+     * @param ReverseRegex\Generator\Scope $set
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {
@@ -55,7 +57,7 @@ class Unicode implements StrategyInterface
                     }
 
                     if ($lexer->lookahead['value'] !== ' ' && ctype_xdigit($lexer->lookahead['value']) === false) {
-                        throw new ParserException(sprintf('Character %s is not a hexdeciaml digit', $lexer->lookahead['value']));
+                        throw new ParserException(\sprintf('Character %s is not a hexdeciaml digit', $lexer->lookahead['value']));
                     }
 
                     $tokens[] = $lexer->lookahead['value'];
@@ -65,7 +67,7 @@ class Unicode implements StrategyInterface
                     throw new ParserException('Closing quantifier token `}` not found');
                 }
 
-                if (count($tokens) === 0) {
+                if (\count($tokens) === 0) {
                     throw new ParserException('No hex number found inside the range');
                 }
 
@@ -85,7 +87,7 @@ class Unicode implements StrategyInterface
                 $count = 2;
                 while ($count > 0 && $lexer->moveNext()) {
                     $tokens[] = $lexer->lookahead['value'];
-                    $count--;
+                    --$count;
                 }
 
                 $value = trim(implode('', $tokens));

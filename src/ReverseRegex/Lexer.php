@@ -9,6 +9,7 @@ use ReverseRegex\Exception as LexerException;
  *  Lexer to split expression syntax.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class Lexer extends AbstractLexer
@@ -17,7 +18,7 @@ class Lexer extends AbstractLexer
     // Char Constants
 
     /**
-     *  @integer an escape character
+     * @integer an escape character
      */
     public const T_ESCAPE_CHAR = -1;
 
@@ -113,12 +114,15 @@ class Lexer extends AbstractLexer
      *  One Word boundry.
      */
     public const T_SHORT_W = 100;
+
     public const T_SHORT_NOT_W = 101;
 
     public const T_SHORT_D = 102;
+
     public const T_SHORT_NOT_D = 103;
 
     public const T_SHORT_S = 104;
+
     public const T_SHORT_NOT_S = 105;
 
     /**
@@ -140,7 +144,7 @@ class Lexer extends AbstractLexer
     // Lexer Modes
 
     /**
-     *  @var bool The lexer has detected escape character
+     * @var bool The lexer has detected escape character
      */
     protected $escape_mode = false;
 
@@ -150,12 +154,12 @@ class Lexer extends AbstractLexer
     protected $set_mode = false;
 
     /**
-     *  @var int the number of groups open
+     * @var int the number of groups open
      */
     protected $group_set = 0;
 
     /**
-     *  @var number of characters parsed inside the set
+     * @var number of characters parsed inside the set
      */
     protected $set_internal_counter = 0;
 
@@ -173,7 +177,7 @@ class Lexer extends AbstractLexer
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getCatchablePatterns()
     {
@@ -183,7 +187,7 @@ class Lexer extends AbstractLexer
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getNonCatchablePatterns()
     {
@@ -191,7 +195,7 @@ class Lexer extends AbstractLexer
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getType(&$value)
     {
@@ -203,7 +207,7 @@ class Lexer extends AbstractLexer
                 $type = self::T_ESCAPE_CHAR;
 
                 if ($this->set_mode === true) {
-                    $this->set_internal_counter++;
+                    ++$this->set_internal_counter;
                 }
 
                 break;
@@ -211,11 +215,11 @@ class Lexer extends AbstractLexer
                 // Groups
             case $value === '(' && $this->escape_mode === false && $this->set_mode === false:
                 $type = self::T_GROUP_OPEN;
-                $this->group_set++;
+                ++$this->group_set;
                 break;
             case $value === ')' && $this->escape_mode === false && $this->set_mode === false:
                 $type = self::T_GROUP_CLOSE;
-                $this->group_set--;
+                --$this->group_set;
                 break;
 
                 // Charset
@@ -288,7 +292,7 @@ class Lexer extends AbstractLexer
                 $this->escape_mode = false;
 
                 if ($this->set_mode === true) {
-                    $this->set_internal_counter++;
+                    ++$this->set_internal_counter;
                 }
 
                 break;
@@ -297,7 +301,7 @@ class Lexer extends AbstractLexer
                 $this->escape_mode = false;
 
                 if ($this->set_mode === true) {
-                    $this->set_internal_counter++;
+                    ++$this->set_internal_counter;
                 }
 
                 break;
@@ -306,7 +310,7 @@ class Lexer extends AbstractLexer
                 $this->escape_mode = false;
 
                 if ($this->set_mode === true) {
-                    $this->set_internal_counter++;
+                    ++$this->set_internal_counter;
                 }
 
                 break;
@@ -320,7 +324,7 @@ class Lexer extends AbstractLexer
                 }
 
                 if ($this->set_mode === true) {
-                    $this->set_internal_counter++;
+                    ++$this->set_internal_counter;
                 }
 
                 $this->escape_mode = false;
@@ -334,7 +338,7 @@ class Lexer extends AbstractLexer
      *
      * @param string $input a query string
      */
-    protected function scan($input)
+    protected function scan($input): void
     {
         // reset default for scan
         $this->group_set = 0;
@@ -343,7 +347,7 @@ class Lexer extends AbstractLexer
 
         static $regex;
 
-        if (!isset($regex)) {
+        if (! isset($regex)) {
             $regex = '/(' . implode(')|(', $this->getCatchablePatterns()) . ')|'
                    . implode('|', $this->getNonCatchablePatterns()) . '/ui';
         }

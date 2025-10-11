@@ -7,31 +7,33 @@ use ReverseRegex\Exception as ReverseRegexException;
 /**
  *  Simple Random.
  *
- *  @link http://www.sitepoint.com/php-random-number-generator/
+ *  @see http://www.sitepoint.com/php-random-number-generator/
+ *
  *  @author Craig Buckler
  */
 class SimpleRandom implements GeneratorInterface
 {
     /**
-     *  @var int the seed value to use
+     * @var int the seed value to use
      */
     protected $seed = 0;
 
     /**
-     *  @var int the max
+     * @var int the max
      */
     protected $max;
 
     /**
-     *  @var int the min
+     * @var int the min
      */
     protected $min;
 
     /**
      *  Constructor.
      *
-     *  @return void
-     *  @param int $seed
+     * @param int $seed
+     *
+     * @return void
      */
     public function __construct($seed = null)
     {
@@ -45,7 +47,7 @@ class SimpleRandom implements GeneratorInterface
     public function max($value = null)
     {
         if ($value === null && $this->max === null) {
-            $max = 2147483647;
+            $max = 2_147_483_647;
         } elseif ($value === null) {
             $max = $this->max;
         } else {
@@ -71,7 +73,7 @@ class SimpleRandom implements GeneratorInterface
     /**
      *  Set the seed to use for generator.
      *
-     *  @param int $seed the seed to use
+     * @param int $seed the seed to use
      */
     public function seed($seed = null)
     {
@@ -79,22 +81,22 @@ class SimpleRandom implements GeneratorInterface
             $seed = 0;
         }
 
-        return $this->seed = abs(intval($seed)) % 9999999 + 1;
+        return $this->seed = abs((int) $seed) % 9_999_999 + 1;
     }
 
     /**
      *  Generate a random numer.
      *
-     *  @param int $max
-     *  @param int $max 2,796,203 largest possible max
+     * @param int $max
+     * @param int $max 2,796,203 largest possible max
      */
     public function generate($min = 0, $max = null)
     {
         if ($max === null) {
-            $max = 2796203;
+            $max = 2_796_203;
         }
 
-        if ($max > 2796203) {
+        if ($max > 2_796_203) {
             throw new ReverseRegexException('Max param has exceeded the maxium 2796203');
         }
 
@@ -102,7 +104,7 @@ class SimpleRandom implements GeneratorInterface
             $this->seed(mt_rand());
         }
 
-        $this->seed = ($this->seed * 125) % 2796203;
+        $this->seed = ($this->seed * 125) % 2_796_203;
 
         return $this->seed % ($max - $min + 1) + $min;
     }

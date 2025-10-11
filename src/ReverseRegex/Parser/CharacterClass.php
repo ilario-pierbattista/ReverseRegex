@@ -10,6 +10,7 @@ use ReverseRegex\Lexer;
  *  Parse a character class [0-9][a-z].
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class CharacterClass implements StrategyInterface
@@ -17,17 +18,18 @@ class CharacterClass implements StrategyInterface
     /**
      *  Will return a normalized ie unicode sequences been evaluated.
      *
-     *  @return string a normalized character class string
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $set
-     *  @param Lexer $lexer the lexer to normalize
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $set
+     * @param Lexer $lexer the lexer to normalize
+     *
+     * @return string a normalized character class string
      */
     public function normalize(Scope $head, Scope $set, Lexer $lexer)
     {
         $collection = [];
         $unicode = new Unicode();
 
-        while ($lexer->moveNext() && !$lexer->isNextToken(Lexer::T_SET_CLOSE)) {
+        while ($lexer->moveNext() && ! $lexer->isNextToken(Lexer::T_SET_CLOSE)) {
             $value = null;
 
             switch (true) {
@@ -59,10 +61,11 @@ class CharacterClass implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
-     *  @return ReverseRegex\Generator\Scope a new head
-     *  @param ReverseRegex\Generator\Scope $head
-     *  @param ReverseRegex\Generator\Scope $set
-     *  @param ReverseRegex\Lexer $lexer
+     * @param ReverseRegex\Generator\Scope $head
+     * @param ReverseRegex\Generator\Scope $set
+     * @param ReverseRegex\Lexer $lexer
+     *
+     * @return ReverseRegex\Generator\Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
     {
@@ -77,11 +80,11 @@ class CharacterClass implements StrategyInterface
 
         $normal_lexer = new Lexer($this->normalize($head, $set, $lexer));
 
-        while ($normal_lexer->moveNext() && !$normal_lexer->isNextToken(Lexer::T_SET_CLOSE)) {
+        while ($normal_lexer->moveNext() && ! $normal_lexer->isNextToken(Lexer::T_SET_CLOSE)) {
             $glimpse = $normal_lexer->glimpse();
 
             if ($glimpse['type'] === Lexer::T_SET_RANGE) {
-                continue; //value be included in range when `-` character is passed
+                continue; // value be included in range when `-` character is passed
             }
 
             switch (true) {
@@ -115,18 +118,18 @@ class CharacterClass implements StrategyInterface
     /**
      *  Fill a range given starting and ending character.
      *
-     *  @return void
+     * @return void
      */
-    public function fillRange(Scope $head, $start, $end)
+    public function fillRange(Scope $head, $start, $end): void
     {
         $start_index = mb_ord($start);
         $ending_index = mb_ord($end);
 
         if ($ending_index < $start_index) {
-            throw new ParserException(sprintf('Character class range %s - %s is out of order', $start, $end));
+            throw new ParserException(\sprintf('Character class range %s - %s is out of order', $start, $end));
         }
 
-        for ($i = $start_index; $i <= $ending_index; $i++) {
+        for ($i = $start_index; $i <= $ending_index; ++$i) {
             $head->setLiteral($i, mb_chr($i));
         }
     }

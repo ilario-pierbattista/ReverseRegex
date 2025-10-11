@@ -6,6 +6,7 @@ namespace ReverseRegex\Generator;
  *  Allows a scope to select children using alternating strategy.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 interface AlternateInterface
@@ -13,14 +14,14 @@ interface AlternateInterface
     /**
      *  Tell the scope to select childing use alternating strategy.
      *
-     *  @return void
+     * @return void
      */
-    public function useAlternatingStrategy();
+    public function useAlternatingStrategy(): void;
 
     /**
      *  Return true if setting been activated.
      *
-     *  @return bool true
+     * @return bool true
      */
     public function usingAlternatingStrategy();
 }

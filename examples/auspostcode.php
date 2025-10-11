@@ -16,10 +16,10 @@ $generator = $parser->parse()->getResult();
 // run the generator
 $random = new MersenneRandom(777);
 
-for ($i = 20; $i > 0; $i--) {
+for ($i = 20; $i > 0; --$i) {
     $result = '';
     $generator->generate($result, $random);
 
     echo $result;
-    echo PHP_EOL;
+    echo \PHP_EOL;
 }

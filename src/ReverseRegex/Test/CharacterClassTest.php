@@ -10,7 +10,7 @@ use ReverseRegex\Parser\CharacterClass;
 
 class CharacterClassTest extends Basic
 {
-    public function testNormalizeNoUnicode()
+    public function testNormalizeNoUnicode(): void
     {
         $lexer = new Lexer('[a-mnop]');
         $scope = new Scope();
@@ -22,7 +22,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals('[a-mnop]', $result);
     }
 
-    public function testNormalizeWithUnicodeValue()
+    public function testNormalizeWithUnicodeValue(): void
     {
         $lexer = new Lexer('[\X{00ff}nop]');
         $scope = new Scope();
@@ -34,7 +34,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals('[\\ÿnop]', $result);
     }
 
-    public function testNormalizeWithUnicodeRange()
+    public function testNormalizeWithUnicodeRange(): void
     {
         $lexer = new Lexer('[\X{00FF}-\X{00FF}mnop]');
         $scope = new Scope();
@@ -46,7 +46,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals('[\\ÿ-\\ÿmnop]', $result);
     }
 
-    public function testFillRangeAscii()
+    public function testFillRangeAscii(): void
     {
         $start = '!';
         $end = '&';
@@ -59,7 +59,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals($range, implode('', $scope->getLiterals()->toArray()));
     }
 
-    public function testFillRangeUnicode()
+    public function testFillRangeUnicode(): void
     {
         $start = 'Ꭰ';
         $end = 'Ꭵ';
@@ -72,7 +72,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals($range, implode('', $scope->getLiterals()->toArray()));
     }
 
-    public function testFillRangeOutofOrder()
+    public function testFillRangeOutofOrder(): void
     {
         $start = 'z';
         $end = 'a';
@@ -85,7 +85,7 @@ class CharacterClassTest extends Basic
         $parser->fillRange($scope, $start, $end);
     }
 
-    public function testParseNoRanges()
+    public function testParseNoRanges(): void
     {
         $lexer = new Lexer('[amnop]');
         $scope = new Scope();
@@ -100,7 +100,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'm', 'n', 'o', 'p'], array_values($values));
     }
 
-    public function testParseNoUnicodeShorts()
+    public function testParseNoUnicodeShorts(): void
     {
         $lexer = new Lexer('[a-k]');
         $scope = new Scope();
@@ -115,7 +115,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'], array_values($values));
     }
 
-    public function testParseNoUnicodeShortsMultiRange()
+    public function testParseNoUnicodeShortsMultiRange(): void
     {
         $lexer = new Lexer('[a-k-n]');
         $scope = new Scope();
@@ -130,7 +130,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], array_values($values));
     }
 
-    public function testParseUnicodeShort()
+    public function testParseUnicodeShort(): void
     {
         $lexer = new Lexer('[\X{0061}-\X{006B}]');
         $scope = new Scope();
@@ -145,7 +145,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'], array_values($values));
     }
 
-    public function testParseHexShort()
+    public function testParseHexShort(): void
     {
         $lexer = new Lexer('[\x61-\x6B]');
         $scope = new Scope();
@@ -160,7 +160,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'], array_values($values));
     }
 
-    public function testParseHexShortMultirange()
+    public function testParseHexShortMultirange(): void
     {
         $lexer = new Lexer('[z\x61-\x6B-\x6E]');
         $scope = new Scope();
@@ -174,7 +174,7 @@ class CharacterClassTest extends Basic
         $this->assertEquals(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'z'], $values);
     }
 
-    public function testParseHexShortBraceError()
+    public function testParseHexShortBraceError(): void
     {
         $lexer = new Lexer('[\x{61}-\x6B-\x6E]');
         $scope = new Scope();

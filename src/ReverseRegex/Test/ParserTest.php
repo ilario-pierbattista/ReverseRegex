@@ -10,7 +10,7 @@ use ReverseRegex\Random\MersenneRandom;
 
 class ParserTest extends Basic
 {
-    public function testParserExampleA()
+    public function testParserExampleA(): void
     {
         $lexer = new Lexer('ex1{5,5}');
         $container = new Scope();
@@ -25,9 +25,9 @@ class ParserTest extends Basic
         $this->assertEquals('ex11111', $result);
     }
 
-    public function testParserExampleB()
+    public function testParserExampleB(): void
     {
-        //$lexer = new Lexer('\(0[23478]\)-[0-9]{4} [0-9]{4}');
+        // $lexer = new Lexer('\(0[23478]\)-[0-9]{4} [0-9]{4}');
 
         $lexer = new Lexer('(\(0[23478]\)){4}');
 
@@ -43,7 +43,7 @@ class ParserTest extends Basic
         $this->assertEquals('(02)(04)(02)(08)', $result);
     }
 
-    public function testExampleC()
+    public function testExampleC(): void
     {
         $lexer = new Lexer('509[0-9][A-K]');
         $container = new Scope();
@@ -58,7 +58,7 @@ class ParserTest extends Basic
         $this->assertEquals('5090J', $result);
     }
 
-    public function testExampleD()
+    public function testExampleD(): void
     {
         $lexer = new Lexer('\d\d\d');
         $container = new Scope();
@@ -73,7 +73,7 @@ class ParserTest extends Basic
         $this->assertMatchesRegularExpression('/\d\d\d/', $result);
     }
 
-    public function testExampleE()
+    public function testExampleE(): void
     {
         $lexer = new Lexer('\d\d\d([a-zA-Z])\w.');
         $container = new Scope();
@@ -82,13 +82,13 @@ class ParserTest extends Basic
         $generator = $parser->parse()->getResult();
 
         $result = '';
-        $random = new MersenneRandom(10034343);
+        $random = new MersenneRandom(10_034_343);
 
         $generator->generate($result, $random);
         $this->assertMatchesRegularExpression('/\d\d\d([a-zA-Z])\w./', $result);
     }
 
-    public function testParserExamplePhoneNumber()
+    public function testParserExamplePhoneNumber(): void
     {
         $lexer = new Lexer('\(0[23478]\)[0-9]{4}-[0-9]{4}');
 
@@ -104,7 +104,7 @@ class ParserTest extends Basic
         $this->assertEquals('(02)2595-1288', $result);
     }
 
-    public function testParserExamplePostCode()
+    public function testParserExamplePostCode(): void
     {
         // Australian Post Codes.
 
@@ -123,9 +123,9 @@ class ParserTest extends Basic
         $parser = new Parser($lexer, $container, $head);
         $generator = $parser->parse()->getResult();
 
-        $random = new MersenneRandom(10789);
+        $random = new MersenneRandom(10_789);
 
-        for ($i = 100; $i > 0; $i--) {
+        for ($i = 100; $i > 0; --$i) {
             $result = '';
             $generator->generate($result, $random);
             $this->assertMatchesRegularExpression('/^(0[289][0-9]{2})|([1345689][0-9]{3})|(2[0-8][0-9]{2})|(290[0-9])|(291[0-4])|(7[0-4][0-9]{2})|(7[8-9][0-9]{2})$/', $result);
@@ -166,7 +166,7 @@ class ParserTest extends Basic
         $this->assertEquals('0210', $result);
     }
 
-    public function testHellowWorld()
+    public function testHellowWorld(): void
     {
         $lexer = new Lexer('Hello|World|Is|Good');
         $container = new Scope();
@@ -174,16 +174,16 @@ class ParserTest extends Basic
         $parser = new Parser($lexer, $container, $head);
         $generator = $parser->parse()->getResult();
 
-        $random = new MersenneRandom(10789);
+        $random = new MersenneRandom(10_789);
 
-        for ($i = 10; $i > 0; $i--) {
+        for ($i = 10; $i > 0; --$i) {
             $result = '';
             $generator->generate($result, $random);
             $this->assertMatchesRegularExpression('/^Hello|World|Is|Good$/', $result);
         }
     }
 
-    public function testLimitingQuantifer()
+    public function testLimitingQuantifer(): void
     {
         $lexer = new Lexer('(Hello){5,9}');
         $container = new Scope();
@@ -191,9 +191,9 @@ class ParserTest extends Basic
         $parser = new Parser($lexer, $container, $head);
         $generator = $parser->parse()->getResult();
 
-        $random = new MersenneRandom(10789);
+        $random = new MersenneRandom(10_789);
 
-        for ($i = 10; $i > 0; $i--) {
+        for ($i = 10; $i > 0; --$i) {
             $result = '';
             $generator->generate($result, $random);
             $this->assertMatchesRegularExpression('/(Hello){5,9}/', $result);
@@ -205,14 +205,14 @@ class ParserTest extends Basic
         $parser = new Parser($lexer, $container, $head);
         $generator = $parser->parse()->getResult();
 
-        $random = new MersenneRandom(107559);
+        $random = new MersenneRandom(107_559);
 
         $result = '';
         $generator->generate($result, $random);
         $this->assertMatchesRegularExpression('/(Hello)?/', $result);
     }
 
-    public function testParserLexerError()
+    public function testParserLexerError(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage("Error found STARTING at position 3 after `\(0[` with msg Negated Character Set ranges not supported at this time");
@@ -225,7 +225,7 @@ class ParserTest extends Basic
         $generator = $parser->parse()->getResult();
     }
 
-    public function testParserLexerErrorB()
+    public function testParserLexerErrorB(): void
     {
         $lexer = new Lexer('\(0[23478]\)[9-4]{4}-[0-9]{4}');
 

@@ -9,14 +9,18 @@ class ArrayCollection extends BaseCollection
     /**
      *  Sort the values using a ksort.
      *
-     *  @return ArrayCollection
+     * @return ArrayCollection
      */
     public function sort()
     {
-        $values = $this->toArray();
-        ksort($values);
+        $values = $this
 
-        $this->clear();
+            -> toArray();
+        ksort(
+            $values
+        );
+
+                    $this->clear();
 
         foreach ($values as $index => $value) {
             $this->set($index, $value);
@@ -28,8 +32,9 @@ class ArrayCollection extends BaseCollection
     /**
      *  Fetch a value using ones based position.
      *
-     *  @param int $position
-     *  @return mixed | null if bad position
+     * @param int $position
+     *
+     * @return mixed | null if bad position
      */
     public function getAt($position)
     {
@@ -41,7 +46,7 @@ class ArrayCollection extends BaseCollection
 
         while ($position > 1) {
             $this->next();
-            $position--;
+            --$position;
         }
 
         return $this->current();

@@ -10,34 +10,33 @@ use ReverseRegex\Generator\Scope;
  *  Parser to convert regex into Group.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class Parser
 {
     /**
-     *  @var Lexer
+     * @var Lexer
      */
     protected $lexer;
 
     /**
-     *  @var  ReverseRegex\Generator\Scope
+     * @var ReverseRegex\Generator\Scope
      */
     protected $result;
 
     /**
-     *  @var ReverseRegex\Generator\Scope the current head
+     * @var ReverseRegex\Generator\Scope the current head
      */
     protected $head;
 
     /**
-     *  @var  ReverseRegex\Generator\Scope Last attached scope
+     * @var ReverseRegex\Generator\Scope Last attached scope
      */
     protected $left;
 
     /**
      *  Class Constructor.
-     *
-     *  @param Lexer $lexer
      */
     public function __construct(Lexer $lexer, Scope $result, ?Scope $head = null)
     {
@@ -58,7 +57,7 @@ class Parser
     /**
      *  Fetch the regex lexer.
      *
-     *  @return Lexer
+     * @return Lexer
      */
     public function getLexer()
     {
@@ -67,8 +66,6 @@ class Parser
 
     /**
      *  Will parse the regex into generator.
-     *
-     *  @return
      */
     public function parse($sub = false)
     {
@@ -82,9 +79,9 @@ class Parser
                     case $this->lexer->isNextToken(Lexer::T_GROUP_OPEN) :
 
                         // is the group character the first token? is the regex wrapped in brackets.
-                        //if($this->lexer->token === null) {
+                        // if($this->lexer->token === null) {
                         //  continue;
-                        //}
+                        // }
 
                         // note this is a new group create new parser instance.
                         $parser = new self($this->lexer, new Scope(), new Scope());
@@ -115,13 +112,13 @@ class Parser
 
                         break;
                     case $this->lexer->isNextTokenAny([
-                                                             Lexer::T_DOT,
-                                                             Lexer::T_SHORT_D,
-                                                             Lexer::T_SHORT_NOT_D,
-                                                             Lexer::T_SHORT_W,
-                                                             Lexer::T_SHORT_NOT_W,
-                                                             Lexer::T_SHORT_S,
-                                                             Lexer::T_SHORT_NOT_S]):
+                        Lexer::T_DOT,
+                        Lexer::T_SHORT_D,
+                        Lexer::T_SHORT_NOT_D,
+                        Lexer::T_SHORT_W,
+                        Lexer::T_SHORT_NOT_W,
+                        Lexer::T_SHORT_S,
+                        Lexer::T_SHORT_NOT_S]):
 
                         // match short (. \d \D \w \W \s \S)
                         $this->left = new LiteralScope();
@@ -130,9 +127,9 @@ class Parser
 
                         break;
                     case $this->lexer->isNextTokenAny([
-                                                             Lexer::T_SHORT_P,
-                                                             Lexer::T_SHORT_UNICODE_X,
-                                                             Lexer::T_SHORT_X]):
+                        Lexer::T_SHORT_P,
+                        Lexer::T_SHORT_UNICODE_X,
+                        Lexer::T_SHORT_X]):
 
                         // match short (\p{L} \x \X  )
                         $this->left = new LiteralScope();
@@ -141,12 +138,12 @@ class Parser
 
                         break;
                     case $this->lexer->isNextTokenAny([
-                                                             Lexer::T_QUANTIFIER_OPEN,
-                                                             Lexer::T_QUANTIFIER_PLUS,
-                                                             Lexer::T_QUANTIFIER_QUESTION,
-                                                             Lexer::T_QUANTIFIER_STAR,
-                                                             Lexer::T_QUANTIFIER_OPEN,
-                                                             ]):
+                        Lexer::T_QUANTIFIER_OPEN,
+                        Lexer::T_QUANTIFIER_PLUS,
+                        Lexer::T_QUANTIFIER_QUESTION,
+                        Lexer::T_QUANTIFIER_STAR,
+                        Lexer::T_QUANTIFIER_OPEN,
+                    ]):
 
                         // match quantifiers
                         self::createSubParser('quantifer')->parse($this->left, $this->head, $this->lexer);
@@ -170,7 +167,7 @@ class Parser
             $pos = $this->lexer->lookahead['position'];
             $compressed = $this->compress();
 
-            throw new ParserException(sprintf('Error found STARTING at position %s after `%s` with msg %s ', $pos, $compressed, $e->getMessage()));
+            throw new ParserException(\sprintf('Error found STARTING at position %s after `%s` with msg %s ', $pos, $compressed, $e->getMessage()));
         }
 
         return $this;
@@ -179,7 +176,7 @@ class Parser
     /**
      *  Compress the lexer into value string until current lookahead.
      *
-     *  @return string the compressed value string
+     * @return string the compressed value string
      */
     public function compress()
     {
@@ -203,18 +200,20 @@ class Parser
     }
 
     public static $sub_parsers = [
-      'character' => '\\ReverseRegex\\Parser\\CharacterClass',
-       'unicode' => '\\ReverseRegex\\Parser\\Unicode',
-       'quantifer' => '\\ReverseRegex\\Parser\\Quantifier',
-       'short' => '\\ReverseRegex\\Parser\\Short',
+        'character' => \ReverseRegex\Parser\CharacterClass::class,
+        'unicode' => \ReverseRegex\Parser\Unicode::class,
+        'quantifer' => \ReverseRegex\Parser\Quantifier::class,
+        'short' => \ReverseRegex\Parser\Short::class,
     ];
 
     /**
      *  Return an instance os subparser.
      *
      *  @static
-     *  @return ReverseRegex\Parser\StrategyInterface
-     *  @param string $name the short name
+     *
+     * @param string $name the short name
+     *
+     * @return ReverseRegex\Parser\StrategyInterface
      */
     public static function createSubParser($name)
     {
@@ -222,7 +221,7 @@ class Parser
             throw new ParserException('Unknown subparser at ' . $name);
         }
 
-        if (is_object(self::$sub_parsers[$name]) === false) {
+        if (\is_object(self::$sub_parsers[$name]) === false) {
             self::$sub_parsers[$name] = new self::$sub_parsers[$name]();
         }
 

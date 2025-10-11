@@ -13,29 +13,30 @@ use SplObjectStorage;
  *  Base to all Generator Scopes.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class Node implements ArrayAccess, Countable, Iterator
 {
     /**
-     *  @var string name of the node
+     * @var string name of the node
      */
     protected $label;
 
     /**
-     *  @var ArrayObject container for node metadata
+     * @var ArrayObject container for node metadata
      */
     protected $attrs;
 
     /**
-     *  @var SplObjectStorage container for node relationships
+     * @var SplObjectStorage container for node relationships
      */
     protected $links;
 
     /**
      *  Class Constructor.
      *
-     *  @param string $label
+     * @param string $label
      */
     public function __construct($label = 'node')
     {
@@ -48,7 +49,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Fetch the nodes label.
      *
-     *  @return string the nodes label
+     * @return string the nodes label
      */
     public function getLabel()
     {
@@ -58,11 +59,11 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Sets the node label.
      *
-     *  @param string $label the nodes label
+     * @param string $label the nodes label
      */
     public function setLabel($label)
     {
-        if (!(is_scalar($label) || is_null($label))) {
+        if (! (\is_scalar($label) || null === $label)) {
             return false;
         }
 
@@ -72,8 +73,9 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Attach a node.
      *
-     *  @param Node $node the node to attach
-     *  @return Node
+     * @param Node $node the node to attach
+     *
+     * @return Node
      */
     public function &attach(self $node)
     {
@@ -85,8 +87,9 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Detach a node.
      *
-     *  @return Node
-     *  @param Node $node the node to remove
+     * @param Node $node the node to remove
+     *
+     * @return Node
      */
     public function &detach(self $node)
     {
@@ -102,8 +105,9 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Search for node in its relations.
      *
-     *  @return bool true if found
-     *  @param Node $node the node to search for
+     * @param Node $node the node to search for
+     *
+     * @return bool true if found
      */
     public function contains(self $node)
     {
@@ -119,24 +123,24 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Apply a closure to all relations.
      *
-     *  @param Closure $function the function to apply
+     * @param Closure $function the function to apply
      */
-    public function map(Closure $function)
+    public function map(Closure $function): void
     {
         foreach ($this->links as $node) {
             $function($node);
         }
     }
 
-    //------------------------------------------------------------------
+    // ------------------------------------------------------------------
     // Countable
 
     public function count(): int
     {
-        return count($this->links);
+        return \count($this->links);
     }
 
-    //------------------------------------------------------------------
+    // ------------------------------------------------------------------
     // Iterator
 
     #[\ReturnTypeWillChange]
@@ -166,7 +170,7 @@ class Node implements ArrayAccess, Countable, Iterator
         return $this->links->valid();
     }
 
-    //------------------------------------------------------------------
+    // ------------------------------------------------------------------
     // ArrayAccess Implementation
 
     #[\ReturnTypeWillChange]

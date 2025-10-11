@@ -8,13 +8,13 @@ use ReverseRegex\Lexer;
 
 class LexerTest extends Basic
 {
-    public function testInheritsDoctrineLexer()
+    public function testInheritsDoctrineLexer(): void
     {
         $lexer = new Lexer('[a-z]');
         $this->assertInstanceOf(AbstractLexer::class, $lexer);
     }
 
-    public function testLexerPatternA()
+    public function testLexerPatternA(): void
     {
         $lexer = new Lexer('[a-z]');
 
@@ -38,11 +38,11 @@ class LexerTest extends Basic
         $this->assertEquals(']', $lexer->lookahead['value']);
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
 
-        //$lexer->moveNext();
-        //$this->assertEquals(null,$lexer->lookahead['value']);
+        // $lexer->moveNext();
+        // $this->assertEquals(null,$lexer->lookahead['value']);
     }
 
-    public function testLexerPatternB()
+    public function testLexerPatternB(): void
     {
         $lexer = new Lexer('\[a-z\]');
 
@@ -75,11 +75,11 @@ class LexerTest extends Basic
         $this->assertEquals(']', $lexer->lookahead['value']);
         $this->assertEquals(Lexer::T_LITERAL_CHAR, $lexer->lookahead['type']);
 
-        //$lexer->moveNext();
-        //$this->assertEquals(null,$lexer->lookahead['value']);
+        // $lexer->moveNext();
+        // $this->assertEquals(null,$lexer->lookahead['value']);
     }
 
-    public function testLexerPatternC()
+    public function testLexerPatternC(): void
     {
         $lexer = new Lexer('[1-9]');
 
@@ -103,11 +103,11 @@ class LexerTest extends Basic
         $this->assertEquals(']', $lexer->lookahead['value']);
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
 
-        //$lexer->moveNext();
-        //$this->assertEquals(null,$lexer->lookahead['value']);
+        // $lexer->moveNext();
+        // $this->assertEquals(null,$lexer->lookahead['value']);
     }
 
-    public function testLexerPatternD()
+    public function testLexerPatternD(): void
     {
         $lexer = new Lexer('[1-9\x{56}]');
 
@@ -155,11 +155,11 @@ class LexerTest extends Basic
         $this->assertEquals(']', $lexer->lookahead['value']);
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
 
-        //$lexer->moveNext();
-        //$this->assertEquals(null,$lexer->lookahead['value']);
+        // $lexer->moveNext();
+        // $this->assertEquals(null,$lexer->lookahead['value']);
     }
 
-    public function testLexerPatternE()
+    public function testLexerPatternE(): void
     {
         $lexer = new Lexer('([^1-8\[]){0,9}*?+');
 
@@ -235,11 +235,11 @@ class LexerTest extends Basic
         $this->assertEquals('+', $lexer->lookahead['value']);
         $this->assertEquals(Lexer::T_QUANTIFIER_PLUS, $lexer->lookahead['type']);
 
-        //$lexer->moveNext();
-        //$this->assertEquals(null,$lexer->lookahead['value']);
+        // $lexer->moveNext();
+        // $this->assertEquals(null,$lexer->lookahead['value']);
     }
 
-    public function testParrentShortCodes()
+    public function testParrentShortCodes(): void
     {
         $lexer = new Lexer('\W');
 
@@ -302,7 +302,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SHORT_D, $lexer->lookahead['type']);
     }
 
-    public function testLexerPatternF()
+    public function testLexerPatternF(): void
     {
         $lexer = new Lexer('[\']');
 
@@ -321,7 +321,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testLexerEscapedBlackslash()
+    public function testLexerEscapedBlackslash(): void
     {
         $lexer = new Lexer('\\\\');
 
@@ -334,7 +334,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_LITERAL_CHAR, $lexer->lookahead['type']);
     }
 
-    public function testLexerBrackets()
+    public function testLexerBrackets(): void
     {
         $lexer = new Lexer('[\p{}]');
 
@@ -381,7 +381,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_QUANTIFIER_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testAlternation()
+    public function testAlternation(): void
     {
         $lexer = new Lexer('A|a');
 
@@ -422,7 +422,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testDotCharacter()
+    public function testDotCharacter(): void
     {
         $lexer = new Lexer('.');
 
@@ -456,7 +456,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testLexerPatternG()
+    public function testLexerPatternG(): void
     {
         $lexer = new Lexer('abcd&\*\(\)');
 
@@ -505,7 +505,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_LITERAL_CHAR, $lexer->lookahead['type']);
     }
 
-    public function testUnicodePropertyinCharacterClass()
+    public function testUnicodePropertyinCharacterClass(): void
     {
         $lexer = new Lexer('[np\p{L}]');
 
@@ -546,7 +546,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testUnicodeReferencePropertyinCharacterClass()
+    public function testUnicodeReferencePropertyinCharacterClass(): void
     {
         $lexer = new Lexer('[no\X{00FF}]');
 
@@ -599,7 +599,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testCarretAndDollar()
+    public function testCarretAndDollar(): void
     {
         $lexer = new Lexer('^$');
 
@@ -634,7 +634,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_SET_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testLexerPatternHGroupNesting()
+    public function testLexerPatternHGroupNesting(): void
     {
         $lexer = new Lexer('(())');
 
@@ -655,7 +655,7 @@ class LexerTest extends Basic
         $this->assertEquals(Lexer::T_GROUP_CLOSE, $lexer->lookahead['type']);
     }
 
-    public function testGroupNestingErrorStillOpen()
+    public function testGroupNestingErrorStillOpen(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage('Opening group char "(" has no matching closing character');
@@ -663,7 +663,7 @@ class LexerTest extends Basic
         $lexer = new Lexer('(()');
     }
 
-    public function testGroupNestingErrorClosedNotOpened()
+    public function testGroupNestingErrorClosedNotOpened(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage('Closing group char "(" has no matching opening character');
@@ -671,7 +671,7 @@ class LexerTest extends Basic
         $lexer = new Lexer('())');
     }
 
-    public function testCharSetNestingError()
+    public function testCharSetNestingError(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage("Can't have a second character class while first remains open");
@@ -679,7 +679,7 @@ class LexerTest extends Basic
         $lexer = new Lexer('[[]]');
     }
 
-    public function testCharSetOpenError()
+    public function testCharSetOpenError(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage("Can't close a character class while none is open");
@@ -687,7 +687,7 @@ class LexerTest extends Basic
         $lexer = new Lexer(']');
     }
 
-    public function testCharSetOpenNotClosed()
+    public function testCharSetOpenNotClosed(): void
     {
         $this->expectException(RegexException::class);
         $this->expectExceptionMessage('Character Class that been closed');

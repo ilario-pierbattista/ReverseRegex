@@ -10,20 +10,20 @@ use ReverseRegex\Exception as GeneratorException;
  *  Scope for Literal Values.
  *
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
  *  @since 0.0.1
  */
 class LiteralScope extends Scope
 {
     /**
-     *  @var ReverseRegex\ArrayCollection container for literals values
+     * @var ReverseRegex\ArrayCollection container for literals values
      */
     protected $literals;
 
     /**
      *  Class Constructor.
      *
-     *  @param string $label
-     *  @param Node $parent
+     * @param string $label
      */
     public function __construct($label = 'label')
     {
@@ -35,9 +35,9 @@ class LiteralScope extends Scope
     /**
      *  Adds a literal value to internal collection.
      *
-     *  @param mixed $literal
+     * @param mixed $literal
      */
-    public function addLiteral($literal)
+    public function addLiteral($literal): void
     {
         $this->literals->add($literal);
     }
@@ -45,10 +45,10 @@ class LiteralScope extends Scope
     /**
      *  Sets a value on the internal collection using a key.
      *
-     *  @param string $hex a hexidecimal number
-     *  @param string $literal the literal to store
+     * @param string $hex a hexidecimal number
+     * @param string $literal the literal to store
      */
-    public function setLiteral($hex, $literal)
+    public function setLiteral($hex, $literal): void
     {
         $this->literals->set($hex, $literal);
     }
@@ -56,7 +56,7 @@ class LiteralScope extends Scope
     /**
      *  Return the literal ArrayCollection.
      *
-     *  @return Doctrine\Common\Collections\ArrayCollection
+     * @return Doctrine\Common\Collections\ArrayCollection
      */
     public function getLiterals()
     {
@@ -66,8 +66,7 @@ class LiteralScope extends Scope
     /**
      *  Generate a text string appending to the result argument.
      *
-     *  @param string $result
-     *  @param GeneratorInterface $generator
+     * @param string $result
      */
     public function generate(&$result, GeneratorInterface $generator)
     {
@@ -81,12 +80,12 @@ class LiteralScope extends Scope
             $randomIndex = 0;
 
             if ($this->literals->count() > 1) {
-                $randomIndex = \round($generator->generate(1, ($this->literals->count())));
+                $randomIndex = round($generator->generate(1, ($this->literals->count())));
             }
 
             $result .= $this->literals->getAt($randomIndex);
 
-            $repeat_x--;
+            --$repeat_x;
         }
 
         return $result;

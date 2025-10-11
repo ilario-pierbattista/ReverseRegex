@@ -10,7 +10,7 @@ use ReverseRegex\Parser\Unicode;
 
 class UnicodeTest extends Basic
 {
-    public function testUnsupportedShortProperty()
+    public function testUnsupportedShortProperty(): void
     {
         $lexer = new Lexer('\p');
         $scope = new Scope();
@@ -25,7 +25,7 @@ class UnicodeTest extends Basic
         $parser->parse($scope, $scope, $lexer);
     }
 
-    public function testErrorNoOpeningBrace()
+    public function testErrorNoOpeningBrace(): void
     {
         $lexer = new Lexer('\Xaaaaa');
         $scope = new Scope();
@@ -40,7 +40,7 @@ class UnicodeTest extends Basic
         $parser->parse($scope, $scope, $lexer);
     }
 
-    public function testErrorNested()
+    public function testErrorNested(): void
     {
         $lexer = new Lexer('\X{aa{aa}');
         $scope = new Scope();
@@ -55,7 +55,7 @@ class UnicodeTest extends Basic
         $parser->parse($scope, $scope, $lexer);
     }
 
-    public function testErrorUnclosed()
+    public function testErrorUnclosed(): void
     {
         $lexer = new Lexer('\X{aaaa');
         $scope = new Scope();
@@ -70,7 +70,7 @@ class UnicodeTest extends Basic
         $parser->parse($scope, $scope, $lexer);
     }
 
-    public function testErrorEmptyToken()
+    public function testErrorEmptyToken(): void
     {
         $lexer = new Lexer('\X{}');
         $scope = new Scope();
@@ -85,7 +85,7 @@ class UnicodeTest extends Basic
         $parser->parse($scope, $scope, $lexer);
     }
 
-    public function testsExampleA()
+    public function testsExampleA(): void
     {
         $lexer = new Lexer('\X{FA24}');
         $scope = new Scope();
@@ -102,7 +102,7 @@ class UnicodeTest extends Basic
         $this->assertEquals('﨤', $result[0]);
     }
 
-    public function testShortErrorWhenBraces()
+    public function testShortErrorWhenBraces(): void
     {
         $lexer = new Lexer('\x{64');
         $scope = new Scope();
@@ -118,7 +118,7 @@ class UnicodeTest extends Basic
         $parser->parse($head, $scope, $lexer);
     }
 
-    public function testShortX()
+    public function testShortX(): void
     {
         $lexer = new Lexer('\x64');
         $scope = new Scope();

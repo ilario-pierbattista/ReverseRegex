@@ -9,7 +9,7 @@ use ReverseRegex\Parser\Short;
 
 class ShortTest extends Basic
 {
-    public function testDigit()
+    public function testDigit(): void
     {
         $lexer = new Lexer('\d');
         $scope = new Scope();
@@ -28,7 +28,7 @@ class ShortTest extends Basic
         }
     }
 
-    public function testNotDigit()
+    public function testNotDigit(): void
     {
         $lexer = new Lexer('\D');
         $scope = new Scope();
@@ -47,7 +47,7 @@ class ShortTest extends Basic
         }
     }
 
-    public function testWhitespace()
+    public function testWhitespace(): void
     {
         $lexer = new Lexer('\s');
         $scope = new Scope();
@@ -62,11 +62,11 @@ class ShortTest extends Basic
         $result = $head->getLiterals();
 
         foreach ($result as $value) {
-            $this->assertTrue(!empty($value));
+            $this->assertTrue(! empty($value));
         }
     }
 
-    public function testNonWhitespace()
+    public function testNonWhitespace(): void
     {
         $lexer = new Lexer('\S');
         $scope = new Scope();
@@ -81,11 +81,11 @@ class ShortTest extends Basic
         $result = $head->getLiterals();
 
         foreach ($result as $value) {
-            $this->assertTrue(!empty($value));
+            $this->assertTrue(! empty($value));
         }
     }
 
-    public function testWord()
+    public function testWord(): void
     {
         $lexer = new Lexer('\w');
         $scope = new Scope();
@@ -104,7 +104,7 @@ class ShortTest extends Basic
         }
     }
 
-    public function testNonWord()
+    public function testNonWord(): void
     {
         $lexer = new Lexer('\W');
         $scope = new Scope();
@@ -123,7 +123,7 @@ class ShortTest extends Basic
         }
     }
 
-    public function testDotRange()
+    public function testDotRange(): void
     {
         $lexer = new Lexer('.');
         $scope = new Scope();

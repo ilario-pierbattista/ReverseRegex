@@ -12,14 +12,14 @@ use ReverseRegex\Exception as ReverseRegexException;
 class GeneratorFactory
 {
     /**
-     *  @var string[] list of Generators
+     * @var string[] list of Generators
      *
      *  Each Generator must implement the ReverseRegex\RandomInterface
      */
     protected static $types = [
-        'srand' => '\\ReverseRegex\\Random\\SrandRandom',
-        'mersenne' => '\\ReverseRegex\\Random\\MersenneRandom',
-        'simple' => '\\ReverseRegex\\Random\\SimpleRandom',
+        'srand' => \ReverseRegex\Random\SrandRandom::class,
+        'mersenne' => \ReverseRegex\Random\MersenneRandom::class,
+        'simple' => \ReverseRegex\Random\SimpleRandom::class,
     ];
 
     public static function registerExtension($index, $namespace)
@@ -29,7 +29,7 @@ class GeneratorFactory
         return self::$types[$index] = $namespace;
     }
 
-    public static function registerExtensions(array $extension)
+    public static function registerExtensions(array $extension): void
     {
         foreach ($extension as $key => $ns) {
             self::registerExtension($key, $ns);
@@ -42,8 +42,10 @@ class GeneratorFactory
      *  Resolve a Dcotrine DataType Class.
      *
      *  @param string the random generator type name
-     *  @return ReverseRegex\RandomInterface
-     *  @throws PHPStats\Exception
+     *
+     * @throws PHPStats\Exception
+     *
+     * @return ReverseRegex\RandomInterface
      */
     public function create($type, $seed = null)
     {

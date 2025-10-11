@@ -9,7 +9,7 @@ use ReverseRegex\Parser\Quantifier;
 
 class QuantifierParserTest extends Basic
 {
-    public function testQuantifierParserPatternA()
+    public function testQuantifierParserPatternA(): void
     {
         $pattern = '{1,5}';
         $lexer = new Lexer($pattern);
@@ -23,7 +23,7 @@ class QuantifierParserTest extends Basic
         $this->assertEquals(5, $scope->getMaxOccurances());
     }
 
-    public function testQuantiferSingleValue()
+    public function testQuantiferSingleValue(): void
     {
         $pattern = '{5}';
         $lexer = new Lexer($pattern);
@@ -37,7 +37,7 @@ class QuantifierParserTest extends Basic
         $this->assertEquals(5, $scope->getMaxOccurances());
     }
 
-    public function testQuantiferSpacesIncluded()
+    public function testQuantiferSpacesIncluded(): void
     {
         $pattern = '{ 1 , 5 }';
         $lexer = new Lexer($pattern);
@@ -51,7 +51,7 @@ class QuantifierParserTest extends Basic
         $this->assertEquals(5, $scope->getMaxOccurances());
     }
 
-    public function testFailerAlphaCaracters()
+    public function testFailerAlphaCaracters(): void
     {
         $pattern = '{ 1 , 5a }';
         $lexer = new Lexer($pattern);
@@ -66,7 +66,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
     }
 
-    public function testFailerMissingMaximumCaracters()
+    public function testFailerMissingMaximumCaracters(): void
     {
         $pattern = '{ 1 ,}';
         $lexer = new Lexer($pattern);
@@ -81,7 +81,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
     }
 
-    public function testFailerMissingMinimumCaracters()
+    public function testFailerMissingMinimumCaracters(): void
     {
         $pattern = '{,1}';
         $lexer = new Lexer($pattern);
@@ -96,7 +96,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
     }
 
-    public function testMissingClosureCharacter()
+    public function testMissingClosureCharacter(): void
     {
         $pattern = '{1,1';
         $lexer = new Lexer($pattern);
@@ -111,7 +111,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
     }
 
-    public function testNestingQuantifiers()
+    public function testNestingQuantifiers(): void
     {
         $pattern = '{1,1{1,1}';
         $lexer = new Lexer($pattern);
@@ -126,7 +126,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
     }
 
-    public function testStarQuantifier()
+    public function testStarQuantifier(): void
     {
         $pattern = 'az*';
         $lexer = new Lexer($pattern);
@@ -140,10 +140,10 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
 
         $this->assertEquals(0, $scope->getMinOccurances());
-        $this->assertEquals(PHP_INT_MAX, $scope->getMaxOccurances());
+        $this->assertEquals(\PHP_INT_MAX, $scope->getMaxOccurances());
     }
 
-    public function testCrossQuantifier()
+    public function testCrossQuantifier(): void
     {
         $pattern = 'az+';
         $lexer = new Lexer($pattern);
@@ -156,10 +156,10 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
 
         $this->assertEquals(1, $scope->getMinOccurances());
-        $this->assertEquals(PHP_INT_MAX, $scope->getMaxOccurances());
+        $this->assertEquals(\PHP_INT_MAX, $scope->getMaxOccurances());
     }
 
-    public function testQuestionQuantifier()
+    public function testQuestionQuantifier(): void
     {
         $pattern = 'az?';
         $lexer = new Lexer($pattern);
