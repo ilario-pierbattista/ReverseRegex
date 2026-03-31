@@ -7,6 +7,7 @@ use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\Parser;
 use ReverseRegex\Random\MersenneRandom;
+use ReverseRegex\Random\SimpleRandom;
 
 class ParserTest extends Basic
 {
@@ -237,6 +238,36 @@ class ParserTest extends Basic
         $this->expectExceptionMessage("Error found STARTING at position 16 after `\(0[23478]\)[9-4]` with msg Character class range 9 - 4 is out of order");
 
         $generator = $parser->parse()->getResult();
+    }
+
+    public function testSimpleRandomWithStarQuantifier(): void
+    {
+        $lexer = new Lexer('[a-z]*');
+        $container = new Scope();
+        $head = new Scope();
+        $parser = new Parser($lexer, $container, $head);
+        $generator = $parser->parse()->getResult();
+
+        $result = '';
+        $random = new SimpleRandom(777);
+
+        $generator->generate($result, $random);
+        $this->assertMatchesRegularExpression('/^[a-z]*$/', $result);
+    }
+
+    public function testSimpleRandomWithPlusQuantifier(): void
+    {
+        $lexer = new Lexer('[a-z]+');
+        $container = new Scope();
+        $head = new Scope();
+        $parser = new Parser($lexer, $container, $head);
+        $generator = $parser->parse()->getResult();
+
+        $result = '';
+        $random = new SimpleRandom(777);
+
+        $generator->generate($result, $random);
+        $this->assertMatchesRegularExpression('/^[a-z]+$/', $result);
     }
 }
 // End of File
