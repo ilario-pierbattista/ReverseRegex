@@ -2,8 +2,6 @@
 
 namespace ReverseRegex\Random;
 
-use ReverseRegex\Exception as ReverseRegexException;
-
 /**
  *  Simple Random.
  *
@@ -96,8 +94,10 @@ class SimpleRandom implements GeneratorInterface
             $max = 2_796_203;
         }
 
+        // Cap extremely large values (e.g., PHP_INT_MAX from unbounded quantifiers like * or +)
+        // to a reasonable maximum to prevent memory exhaustion
         if ($max > 2_796_203) {
-            throw new ReverseRegexException('Max param has exceeded the maxium 2796203');
+            $max = 2_796_203;
         }
 
         if ($this->seed == 0) {

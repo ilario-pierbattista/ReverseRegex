@@ -13,3 +13,16 @@ run-php-8.3:
 .PHONY: run-php-8.4
 run-php-8.4:
 	docker compose run --remove-orphans php84 sh
+
+DK:=docker compose run --rm php81
+.PHONY: setup cs-fix test phpstan phpstan-update-baseline
+setup:
+	$(DK) composer install
+test:
+	$(DK) composer test
+cs-fix:
+	$(DK) composer cs-fix
+phpstan:
+	$(DK) composer phpstan
+phpstan-update-baseline:
+	$(DK) composer phpstan-baseline
