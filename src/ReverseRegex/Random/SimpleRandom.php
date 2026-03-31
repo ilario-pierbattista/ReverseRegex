@@ -2,8 +2,6 @@
 
 namespace ReverseRegex\Random;
 
-use ReverseRegex\Exception as ReverseRegexException;
-
 /**
  *  Simple Random.
  *
