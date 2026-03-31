@@ -11,9 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Composer scripts: `cs-check`, `cs-fix`, `phpstan`, `phpstan-baseline`
 - GitHub Actions workflows for code style and static analysis (PHP 8.1-8.4)
 - PHPStan baseline for incremental code quality improvements
-
+### Fixed
+- Allow SimpleRandom to handle unbounded quantifiers (#13)
 ### Removed
 - Support for PHP 7.4 and 8.0 (minimum required version is now PHP 8.1)
+
 ## [0.5.0] - 2024-12-07
 ### Added
 - Compatibility with PHP 8.2, 8.3, 8.4
