@@ -17,12 +17,7 @@ $config->setRules($rulesProvider->getRules());
 $config->setRiskyAllowed(true);
 
 $finder = new PhpCsFixer\Finder();
-
-/*
- * You can set manually these paths:
- */
-$autoloadPathProvider = new Facile\CodingStandards\AutoloadPathProvider();
-$finder->in([...$autoloadPathProvider->getPaths(), 'examples']);
+$finder->in(__DIR__ . '/src/Trust');
 
 $config->setFinder($finder);
 

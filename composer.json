@@ -7,7 +7,7 @@
     "test data",
     "generator"
   ],
-  "homepage": "https://github.com/ilario-pierbattista/ReverseRegex",
+  "homepage": "https://github.com/trust-psp/reverse-regex",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -19,8 +19,8 @@
   ],
   "require-dev": {
     "phpunit/phpunit": "^9",
-    "facile-it/facile-coding-standard": "1.3.1",
-    "friendsofphp/php-cs-fixer": "3.88.2",
+    "facile-it/facile-coding-standard": "^1.5",
+    "friendsofphp/php-cs-fixer": "^3.95.4",
     "phpstan/phpstan": "^2.0"
   },
   "require": {
@@ -37,10 +37,7 @@
     }
   },
   "scripts": {
-    "test": [
-      "composer install",
-      "vendor/bin/phpunit"
-    ],
+    "test": "vendor/bin/phpunit",
     "cs-fix": "php-cs-fixer fix --diff",
     "cs-check": "php-cs-fixer fix --dry-run --diff",
     "phpstan": "vendor/bin/phpstan analyse",

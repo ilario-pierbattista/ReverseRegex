@@ -1,94 +1,47 @@
-ReverseRegex
-============
+# ReverseRegex
 
-[![PHP unit](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml)
+[![Tests](https://github.com/trust-psp/reverse-regex/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/trust-psp/reverse-regex/actions/workflows/ci.yaml)
 
-> This is a fork of https://github.com/ilario-pierbattista/ReverseRegex which is fork of https://github.com/icomefromthenet/ReverseRegex
-> These libraries are very old, `ilario-pierbattista/ReverseRegex` is not maintained since 2020, so it was forked to avoid original library deprecation.
+Generate strings matching a supported regular-expression pattern.
 
-Use Regular Expressions to generate text strings can be used in the following situations:
+This package requires PHP 8.5 or newer. It is a maintained wrapper around the
+legacy `ilario-pierbattista/reverse-regex` implementation.
 
-1. Writing test data for web forms.
-2. Writing test data for databases.
-3. Generating test data for regular expressions. 
+## Installation
 
-## Example (simplified for Trust PSP)
+```shell
+composer require trust-psp/reverse-regex
+```
+
+## Usage
+
+`Trust\ReverseRegex` is the only public API. Classes in the `ReverseRegex` and
+`PHPStats` namespaces are internal implementation details.
 
 ```php
 use Trust\ReverseRegex;
 
-public function __construct(private ReverseRegex $regex)
-{
-}
-
-public fucntion example(): void
-{
-    // Results `TA2C3D4E5F`
-    $example = $this->regex->generate('/^T[2345679ACDEFGHJKLMNPQRSTUVWXYZ]{9}$/');
-    ...
-}
-``` 
-
-
-## Example (original)
-
-```php
-
-use ReverseRegex\Lexer;
-use ReverseRegex\Random\SimpleRandom;
-use ReverseRegex\Parser;
-use ReverseRegex\Generator\Scope;
-
-# load composer
-require "vendor/autoload.php";
-
-$lexer = new  Lexer('[a-z]{10}');
-$gen   = new SimpleRandom(10007);
-$result = '';
-
-$parser = new Parser($lexer,new Scope(),new Scope());
-$parser->parse()->getResult()->generate($result,$gen);
-
-echo $result;
-
+$generator = new ReverseRegex();
+$identifier = $generator->generate('T[2345679ACDEFGHJKLMNPQRSTUVWXYZ]{9}');
 ```
 
-***Produces***
+Patterns must not include delimiters such as `/.../`. Generated values are
+limited to 40 characters. Patterns that can exceed this limit, including `*`
+and `+` quantifiers, throw `LengthException`. Invalid or unsupported patterns
+throw `InvalidArgumentException`.
 
-```
-jmceohykoa
-aclohnotga
-jqegzuklcv
-ixdbpbgpkl
-kcyrxqqfyw
-jcxsjrtrqb
-kvaczmawlz
-itwrowxfxh
-auinmymonl
-dujyzuhoag
-vaygybwkfm
-```
-#### Other examples
+Generation uses PHP's cryptographically secure `random_int()`. Randomness alone
+does not guarantee uniqueness, so persisted identifiers must also have a unique
+database constraint and collision retry.
 
-1. [Australian phone numbers](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/ausphone.php)
-2. [Australian postcodes](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/auspostcode.php)
-3. [Mobile numbers](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/mobilenumbers.php)
+## Writing A Regex
 
-
-##Installing
-
-To install use composer
-
-    composer require ilario-pierbattista/reverse-regex
-
-## Writing a Regex
-
-1. Escape all meta-characters i.e. if you need to escape the character in a regex you will need to escape here.
-2. Not all meta-characters are suppported see list below.
-3. Use `\X{####}` to specify unicode value use `[\X{####}-\X{####}]` to specify range.
-4. Unicdoe `\p` not supported, I could not find a port of [UCD](http://www.unicode.org/ucd/) to php, maybe in the future support be added.
-5. Quantifiers are applied to left most group, literal or character class.
-6. Beware of the `+` and `*` quantifers they apply a possible maxium number of occurances up to `PHP_INT_MAX`.
+1. Escape regex metacharacters that should be generated literally.
+2. Not all regex features are supported; see the table below.
+3. Use `\X{####}` for Unicode values and `[\X{####}-\X{####}]` for ranges.
+4. Unicode properties such as `\p` are not supported.
+5. Quantifiers apply to the preceding group, literal, or character class.
+6. The maximum possible generated length must not exceed 40 characters.
 
 ### Regex Support
 
@@ -155,6 +108,5 @@ To install use composer
     <td> \xFF[\xFF-\xFF] </td><td> Hex ranges</td> <td> </td>  
   </tr>
  </table>
-
 
 

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Trust\Test;
 
+use InvalidArgumentException;
+use LengthException;
 use PHPUnit\Framework\TestCase;
-use ReverseRegex\Exception;
 use Trust\ReverseRegex;
 
 final class ReverseRegexTest extends TestCase
@@ -38,10 +39,17 @@ final class ReverseRegexTest extends TestCase
      */
     public function testRejectsRegexThatCanGenerateMoreThanFortyCharacters(string $regex): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(LengthException::class);
         $this->expectExceptionMessage('Generated value cannot exceed 40 characters');
 
         new ReverseRegex()->generate($regex);
+    }
+
+    public function testDoesNotExposeLegacyExceptions(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ReverseRegex()->generate('[z-a]');
     }
 
     /**

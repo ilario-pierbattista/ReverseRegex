@@ -1,12 +1,7 @@
 parameters:
     level: 5
-    phpVersion: 80100 # PHP 8.1.0 - minimum supported version
+    phpVersion: 80500
     paths:
-        - src
+        - src/Trust
     excludePaths:
-        - src/ReverseRegex/Test
-        - src/PHPStats/Generator
-    reportUnmatchedIgnoredErrors: false
-
-includes:
-    - phpstan-baseline.neon
+        - src/Trust/Test

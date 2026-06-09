@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Trust;
 
 use PHPStats\Generator\GeneratorInterface;
-use ReverseRegex\Exception;
+use InvalidArgumentException;
+use LengthException;
+use ReverseRegex\Exception as LegacyException;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
@@ -19,33 +21,38 @@ final class ReverseRegex
     private const int MAX_RESULT_LENGTH = 40;
 
     /**
-     * @throws Exception
+     * @throws InvalidArgumentException
+     * @throws LengthException
      */
     public function generate(string $regex): string
     {
-        $result = '';
+        try {
+            $result = '';
 
-        $parser = new Parser(
-            new Lexer($regex),
-            new Scope(),
-            new Scope()
-        );
+            $parser = new Parser(
+                new Lexer($regex),
+                new Scope(),
+                new Scope(),
+            );
 
-        $scope = $parser->parse()->getResult();
-        $this->validateRegexScope($scope);
+            $scope = $parser->parse()->getResult();
+            $this->validateRegexScope($scope);
 
-        $result = $scope->generate($result, $this->secureRandomGenerator());
-        $this->validateResult($result);
+            $result = $scope->generate($result, $this->secureRandomGenerator());
+            $this->validateResult($result);
 
-        return $result;
+            return $result;
+        } catch (LegacyException $exception) {
+            throw new InvalidArgumentException($exception->getMessage(), 0, $exception);
+        }
     }
 
     private function validateRegexScope(Scope $scope): void
     {
         if ($this->maximumLength($scope) > self::MAX_RESULT_LENGTH) {
-            throw new Exception(\sprintf(
+            throw new LengthException(\sprintf(
                 'Generated value cannot exceed %d characters',
-                self::MAX_RESULT_LENGTH
+                self::MAX_RESULT_LENGTH,
             ));
         }
     }
@@ -53,9 +60,9 @@ final class ReverseRegex
     private function validateResult(string $result): void
     {
         if (mb_strlen($result) > self::MAX_RESULT_LENGTH) {
-            throw new Exception(\sprintf(
+            throw new LengthException(\sprintf(
                 'Generated value cannot exceed %d characters',
-                self::MAX_RESULT_LENGTH
+                self::MAX_RESULT_LENGTH,
             ));
         }
     }
@@ -83,15 +90,15 @@ final class ReverseRegex
         }
 
         $contentLength = 0;
-        
+
         if ($scope->usingAlternatingStrategy() === true) {
             foreach ($scope as $child) {
                 $contentLength = max($contentLength, $this->maximumLength($child));
             }
-            
+
             return $contentLength;
         }
-        
+
         foreach ($scope as $child) {
             $contentLength += $this->maximumLength($child);
 
@@ -99,7 +106,7 @@ final class ReverseRegex
                 return self::MAX_RESULT_LENGTH + 1;
             }
         }
-        
+
         return $contentLength;
     }
 
@@ -108,14 +115,14 @@ final class ReverseRegex
         return new class implements GeneratorInterface {
             public function generate($min = 0, $max = null): int
             {
-                return random_int((int) $min, (int) ($max ?? PHP_INT_MAX));
+                return random_int((int) $min, (int) ($max ?? \PHP_INT_MAX));
             }
 
             public function seed($seed = null): void {}
 
             public function max(): float
             {
-                return (float) PHP_INT_MAX;
+                return (float) \PHP_INT_MAX;
             }
         };
     }

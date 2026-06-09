@@ -1,4 +1,4 @@
-name: PHP unit
+name: Tests
 
 on:
   push:
@@ -11,35 +11,26 @@ permissions:
 
 jobs:
   test:
-
-    name: Tests (PHP ${{ matrix.php }})
+    name: Tests (PHP 8.5)
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ["8.1", "8.2", "8.3", "8.4"]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
-      - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: "8.5"
+          coverage: none
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
-
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-lock
 
       - name: Install dependencies
-        run: composer install
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Audit dependencies
+        run: composer audit
 
       - name: Run test suite
-        run: vendor/bin/phpunit
+        run: composer test
