@@ -1,30 +1,17 @@
 services:
-  php81: &common
-    build: &build
-      dockerfile: php.Dockerfile
-      context: .docker
-      args:
-        - BASE=php:8.1-cli-alpine
+  reverse-regex:
+    image: ghcr.io/trust-psp/base-php-local:8.5
     tty: true
+    user: ${UID:-1000}
+    restart: "no"
     volumes:
-      - .:/usr/app
-    user: "1000:1000"
-    working_dir: /usr/app
-  php82:
-    <<: *common
-    build:
-      <<: *build
-      args:
-        - BASE=php:8.2-cli-alpine
-  php83:
-    <<: *common
-    build:
-      <<: *build
-      args:
-        - BASE=php:8.3-cli-alpine
-  php84:
-    <<: *common
-    build:
-      <<: *build
-      args:
-        - BASE=php:8.4-cli-alpine
+      - .:/app:rw
+    working_dir: /app
+    command: >
+      sh -c "
+        php /build/scripts/LoadGithubAuth.php &&
+        php /build/scripts/LoadGitHooks.php &&
+        php /usr/bin/composer install &&
+        tail -f /dev/null
+      "
+    container_name: ${CONTAINER_NAME:-reverse-regex}

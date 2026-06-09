@@ -3,7 +3,8 @@ ReverseRegex
 
 [![PHP unit](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml)
 
-> This is a fork of https://github.com/icomefromthenet/ReverseRegex (that provides `icomefromthenet/reverse-regex`).
+> This is a fork of https://github.com/ilario-pierbattista/ReverseRegex which is fork of https://github.com/icomefromthenet/ReverseRegex
+> These libraries are very old, `ilario-pierbattista/ReverseRegex` is not maintained since 2020, so it was forked to avoid original library deprecation.
 
 Use Regular Expressions to generate text strings can be used in the following situations:
 
@@ -11,8 +12,25 @@ Use Regular Expressions to generate text strings can be used in the following si
 2. Writing test data for databases.
 3. Generating test data for regular expressions. 
 
+## Example (simplified for Trust PSP)
 
-##Example
+```php
+use Trust\ReverseRegex;
+
+public function __construct(private ReverseRegex $regex)
+{
+}
+
+public fucntion example(): void
+{
+    // Results `TA2C3D4E5F`
+    $example = $this->regex->generate('/^T[2345679ACDEFGHJKLMNPQRSTUVWXYZ]{9}$/');
+    ...
+}
+``` 
+
+
+## Example (original)
 
 ```php
 

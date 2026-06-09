@@ -1,28 +1,41 @@
-.PHONY: run-php-8.1
-run-php-8.1:
-	docker compose run --remove-orphans php81 sh
+up start:
+	docker compose up -d
 
-.PHONY: run-php-8.2
-run-php-8.2:
-	docker compose run --remove-orphans php82 sh
+down:
+	docker compose down
 
-.PHONY: run-php-8.3
-run-php-8.3:
-	docker compose run --remove-orphans php83 sh
+restart re:
+	make stop
+	make start
 
-.PHONY: run-php-8.4
-run-php-8.4:
-	docker compose run --remove-orphans php84 sh
+shell enter:
+	docker compose exec reverse-regex bash
 
-DK:=docker compose run --rm php81
-.PHONY: setup cs-fix test phpstan phpstan-update-baseline
-setup:
-	$(DK) composer install
+log logs:
+	docker-compose logs reverse-regex
+
+tail follow:
+	docker-compose logs --follow reverse-regex
+
+composer-install:
+	docker compose exec reverse-regex composer install
+
+composer-dump:
+	docker compose exec reverse-regex composer dump-autoload -o
+
+lint:
+	docker compose exec reverse-regex composer lint
+
+lint-fix:
+	docker compose exec reverse-regex composer lint:fix
+
+stan:
+	docker compose exec reverse-regex composer stan
+
 test:
-	$(DK) composer test
-cs-fix:
-	$(DK) composer cs-fix
-phpstan:
-	$(DK) composer phpstan
-phpstan-update-baseline:
-	$(DK) composer phpstan-baseline
+	docker compose exec reverse-regex composer test
+
+all:
+	docker compose exec reverse-regex composer lint
+	docker compose exec reverse-regex composer stan
+	docker compose exec reverse-regex composer test
