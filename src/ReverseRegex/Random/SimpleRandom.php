@@ -8,6 +8,8 @@ namespace ReverseRegex\Random;
  *  @see http://www.sitepoint.com/php-random-number-generator/
  *
  *  @author Craig Buckler
+ *
+ * @internal
  */
 class SimpleRandom implements GeneratorInterface
 {

@@ -12,6 +12,8 @@ use ReverseRegex\Exception as GeneratorException;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @internal
  */
 class LiteralScope extends Scope
 {

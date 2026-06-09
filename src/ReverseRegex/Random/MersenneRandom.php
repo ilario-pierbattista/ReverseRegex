@@ -8,6 +8,8 @@ namespace ReverseRegex\Random;
  *   @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *   @see http://boxrefuge.com/?tag=random-number
+ *
+ * @internal
  */
 class MersenneRandom implements GeneratorInterface
 {

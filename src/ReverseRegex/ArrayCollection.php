@@ -4,6 +4,9 @@ namespace ReverseRegex;
 
 use Doctrine\Common\Collections\ArrayCollection as BaseCollection;
 
+/**
+ * @internal
+ */
 class ArrayCollection extends BaseCollection
 {
     /**

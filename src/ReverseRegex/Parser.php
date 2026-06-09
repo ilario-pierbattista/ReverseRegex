@@ -13,6 +13,8 @@ use ReverseRegex\Parser\StrategyInterface;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @internal
  */
 class Parser
 {

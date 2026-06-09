@@ -15,6 +15,8 @@ use SplObjectStorage;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @internal
  */
 class Node implements ArrayAccess, Countable, Iterator
 {
@@ -79,7 +81,7 @@ class Node implements ArrayAccess, Countable, Iterator
      */
     public function &attach(self $node)
     {
-        $this->links->attach($node);
+        $this->links->offsetSet($node);
 
         return $this;
     }
@@ -95,7 +97,7 @@ class Node implements ArrayAccess, Countable, Iterator
     {
         foreach ($this->links as $linked_node) {
             if ($linked_node == $node) {
-                $this->links->detach($node);
+                $this->links->offsetUnset($node);
             }
         }
 

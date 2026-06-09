@@ -8,6 +8,8 @@ use ReverseRegex\Exception as ReverseRegexException;
  *   Generator Factory.
  *
  *   @author Lewis Dyer <getintouch@icomefromthenet.com>
+ *
+ * @internal
  */
 class GeneratorFactory
 {

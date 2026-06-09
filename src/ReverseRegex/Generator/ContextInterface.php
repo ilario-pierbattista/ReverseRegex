@@ -10,6 +10,8 @@ use PHPStats\Generator\GeneratorInterface;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @internal
  */
 interface ContextInterface
 {

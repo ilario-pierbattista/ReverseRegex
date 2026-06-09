@@ -6,6 +6,8 @@ use PHPStats\Generator\GeneratorInterface as CommonInterface;
 
 /**
  *  Interface that all generators should implement.
+ *
+ * @internal
  */
 interface GeneratorInterface extends CommonInterface
 {

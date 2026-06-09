@@ -12,6 +12,8 @@ use ReverseRegex\Lexer;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @internal
  */
 class Quantifier implements StrategyInterface
 {

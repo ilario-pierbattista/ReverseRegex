@@ -4,6 +4,8 @@ namespace PHPStats\Generator;
 
 /**
  *  Interface that all generators should implement.
+ *
+ * @internal
  */
 interface GeneratorInterface
 {
