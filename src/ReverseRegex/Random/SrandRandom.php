@@ -12,6 +12,7 @@ namespace ReverseRegex\Random;
  *
  * @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
+ * @internal
  */
 class SrandRandom implements GeneratorInterface
 {
