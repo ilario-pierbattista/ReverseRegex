@@ -15,6 +15,16 @@
       "name": "Lewis Dyer",
       "email": "getintouch@icomefromthenet.com",
       "homepage": "http://www.icomefromthenet.com"
+    },
+    {
+      "name": "Trust PSP",
+      "email": "info@psptrust.com",
+      "homepage": "https://sptrust.com"
+    },
+    {
+      "name": "Vitalij Vladimirov",
+      "email": "vitalij@psptrust.com",
+      "homepage": "https://cto4sale.com"
     }
   ],
   "require-dev": {
@@ -38,10 +48,10 @@
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
-    "cs-fix": "php-cs-fixer fix --diff",
-    "cs-check": "php-cs-fixer fix --dry-run --diff",
-    "phpstan": "vendor/bin/phpstan analyse",
-    "phpstan-baseline": "vendor/bin/phpstan analyse --generate-baseline"
+    "lint:fix": "php-cs-fixer fix --diff",
+    "lint": "php-cs-fixer fix --dry-run --diff",
+    "stan": "vendor/bin/phpstan analyse",
+    "stan:baseline": "vendor/bin/phpstan analyse --generate-baseline"
   },
   "conflict": {
     "icomefromthenet/reverse-regex": "*"
