@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.0.0] - 2026-06-09
+
+### Added
+- Added `Trust\ReverseRegex` as the sole public API for generating strings from supported regex patterns.
+- Added focused tests for secure random generation, regex conformance, output limits, and public exception types.
+- Added PHP 8.5 Docker Compose and Makefile commands for local development.
+- Added dependency auditing to CI.
+
+### Changed
+- Renamed the Composer package to `trust-psp/reverse-regex`.
+- Raised the minimum supported PHP version from 8.1 to 8.5.
+- Marked the legacy `ReverseRegex` and `PHPStats` APIs as internal implementation details.
+- Changed generation to use PHP's cryptographically secure `random_int()` source.
+- Changed invalid or unsupported patterns to throw `InvalidArgumentException`.
+- Updated Composer scripts to `lint`, `lint:fix`, `stan`, and `stan:baseline`.
+- Updated PHPUnit, PHPStan, code-style configuration, documentation, and development tooling for the maintained `Trust` API.
+- Updated GitHub Actions workflows to run on PHP 8.5 and pinned third-party actions to immutable commit SHAs.
+
+### Security
+- Limited generated values to a maximum of 40 characters.
+- Rejects patterns whose maximum possible output exceeds 40 characters, including unbounded `*` and `+` quantifiers.
+- Added a post-generation length check as a secondary safeguard.
+
+### Fixed
+- Replaced deprecated `SplObjectStorage::attach()` and `detach()` calls for PHP 8.5 compatibility.
+
 ## [0.6.0] - 2026-03-31
 ### Added
 - Code quality tools: Facile.it coding standard and PHPStan 2 (level 5)
@@ -43,7 +70,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See https://github.com/icomefromthenet/ReverseRegex
 
-[Unreleased]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.6.0..HEAD
+[Unreleased]: https://github.com/trust-psp/reverse-regex/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/trust-psp/reverse-regex/releases/tag/v1.0.0
 [0.6.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.5.0..0.6.0
 [0.5.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.4.0..0.5.0
 [0.4.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.3.1..0.4.0
