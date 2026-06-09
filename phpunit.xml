@@ -3,6 +3,7 @@
      <testsuites>
          <testsuite name="UnitTests For ReverseRegex">
             <directory>./src/ReverseRegex/Test/</directory>
+            <directory>./src/Trust/Test/</directory>
         </testsuite>
   </testsuites>  
     
