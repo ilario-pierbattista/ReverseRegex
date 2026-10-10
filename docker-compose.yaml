@@ -28,3 +28,9 @@ services:
       <<: *build
       args:
         - BASE=php:8.4-cli-alpine
+  php85:
+    <<: *common
+    build:
+      <<: *build
+      args:
+        - BASE=php:8.5-cli-alpine

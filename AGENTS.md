@@ -13,7 +13,7 @@ PHP library (`ilario-pierbattista/reverse-regex`) that generates random strings 
 
 ## Requirements
 
-- PHP `^8.1` (CI runs 8.1–8.4). Do not use syntax or APIs newer than 8.1.
+- PHP `^8.1` (CI tests 8.1 and 8.5; the versions in between are expected to behave the same). Do not use syntax or APIs newer than 8.1.
 - Docker is optional: the `Makefile` wraps commands in `docker compose` (PHP 8.1 image).
 
 ## Commands
@@ -36,7 +36,7 @@ Run directly with a local PHP, or via `make <target>` (Docker):
 - Keep the public API backward compatible; this is a published library following SemVer.
 - Do not add new entries to `phpstan-baseline.neon` to hide errors; fix them. Only shrink the baseline.
 - Do not commit `vendor/`; `composer.lock` is not tracked.
-- Update `CHANGELOG.md` for user-visible changes.
+- Update `CHANGELOG.md` under `[Unreleased]` for every user-visible change (features, fixes, supported PHP versions, CI/tooling changes affecting contributors). Do this in the same commit/PR as the change.
 
 ## Skills
 

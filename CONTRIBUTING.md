@@ -31,7 +31,7 @@ make setup      # composer install
 make test       # run the test suite
 make cs-fix     # fix code style
 make phpstan    # static analysis
-make run-php-8.4  # open a shell in a PHP 8.1/8.2/8.3/8.4 container
+make run-php-8.5  # open a shell in a PHP 8.1/8.2/8.3/8.4/8.5 container
 ```
 
 ## Project layout
@@ -55,7 +55,7 @@ make run-php-8.4  # open a shell in a PHP 8.1/8.2/8.3/8.4 container
 4. Add an entry under `[Unreleased]` in [CHANGELOG.md](CHANGELOG.md) for any user-visible change.
 5. Open a pull request against `master` with a clear description of what and why.
 
-CI runs the tests on PHP 8.1–8.4, plus the code style and static analysis checks; all must be green before merging.
+CI runs the tests on the oldest (8.1) and newest (8.5) supported PHP versions, plus the code style and static analysis checks; all must be green before merging.
 
 ## Guidelines
 
