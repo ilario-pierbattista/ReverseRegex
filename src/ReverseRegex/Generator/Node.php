@@ -79,7 +79,7 @@ class Node implements ArrayAccess, Countable, Iterator
      */
     public function &attach(self $node)
     {
-        $this->links->attach($node);
+        $this->links->offsetSet($node);
 
         return $this;
     }

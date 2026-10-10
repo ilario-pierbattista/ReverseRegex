@@ -9,6 +9,25 @@ use ReverseRegex\Random\MersenneRandom;
 
 class ScopeTest extends Basic
 {
+    public function testAttachDoesNotTriggerDeprecations(): void
+    {
+        $deprecations = [];
+        set_error_handler(static function (int $errno, string $errstr) use (&$deprecations): bool {
+            $deprecations[] = $errstr;
+
+            return true;
+        }, E_DEPRECATED | E_USER_DEPRECATED);
+
+        try {
+            $scope = new Scope('scope1');
+            $scope->attach(new Scope('child'));
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertSame([], $deprecations);
+    }
+
     public function testScopeImplementsRepeatInterface(): void
     {
         $scope = new Scope('scope1');
