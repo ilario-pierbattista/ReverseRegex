@@ -16,7 +16,7 @@ class ScopeTest extends Basic
             $deprecations[] = $errstr;
 
             return true;
-        }, E_DEPRECATED | E_USER_DEPRECATED);
+        }, \E_DEPRECATED | \E_USER_DEPRECATED);
 
         try {
             $scope = new Scope('scope1');
