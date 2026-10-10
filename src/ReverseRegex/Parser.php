@@ -37,6 +37,11 @@ class Parser
     protected $left;
 
     /**
+     * @var int maximum number of occurances applied to the `*` and `+` quantifiers
+     */
+    protected $unboundedMax = \ReverseRegex\Parser\Quantifier::DEFAULT_UNBOUNDED_MAX;
+
+    /**
      *  Class Constructor.
      */
     public function __construct(Lexer $lexer, Scope $result, ?Scope $head = null)
@@ -53,6 +58,27 @@ class Parser
         $this->result->attach($head);
 
         $this->left = $head;
+    }
+
+    /**
+     *  Sets the maximum number of occurances generated for `*` and `+`.
+     *
+     * @return $this
+     */
+    public function setUnboundedMax(int $max)
+    {
+        if ($max < 1) {
+            throw new ParserException('The maximum of unbounded quantifiers must be at least 1');
+        }
+
+        $this->unboundedMax = $max;
+
+        return $this;
+    }
+
+    public function getUnboundedMax(): int
+    {
+        return $this->unboundedMax;
     }
 
     /**
@@ -147,7 +173,13 @@ class Parser
                     ]):
 
                         // match quantifiers
-                        self::createSubParser('quantifer')->parse($this->left, $this->head, $this->lexer);
+                        $quantifier = self::createSubParser('quantifer');
+
+                        if ($quantifier instanceof \ReverseRegex\Parser\Quantifier) {
+                            $quantifier->setUnboundedMax($this->unboundedMax);
+                        }
+
+                        $quantifier->parse($this->left, $this->head, $this->lexer);
 
                         break;
                     case $this->lexer->isNextToken(Lexer::T_CHOICE_BAR):

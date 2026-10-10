@@ -70,7 +70,7 @@ To install use composer
 3. Use `\X{####}` to specify unicode value use `[\X{####}-\X{####}]` to specify range.
 4. Unicdoe `\p` not supported, I could not find a port of [UCD](http://www.unicode.org/ucd/) to php, maybe in the future support be added.
 5. Quantifiers are applied to left most group, literal or character class.
-6. Beware of the `+` and `*` quantifers they apply a possible maxium number of occurances up to `PHP_INT_MAX`.
+6. The `+` and `*` quantifiers repeat at most 100 times by default; change it with `$parser->setUnboundedMax($n)`.
 
 ### Regex Support
 
