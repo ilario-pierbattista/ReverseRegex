@@ -140,7 +140,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
 
         $this->assertEquals(0, $scope->getMinOccurances());
-        $this->assertEquals(\PHP_INT_MAX, $scope->getMaxOccurances());
+        $this->assertEquals(Quantifier::DEFAULT_UNBOUNDED_MAX, $scope->getMaxOccurances());
     }
 
     public function testCrossQuantifier(): void
@@ -156,7 +156,7 @@ class QuantifierParserTest extends Basic
         $qual->parse($scope, $scope, $lexer);
 
         $this->assertEquals(1, $scope->getMinOccurances());
-        $this->assertEquals(\PHP_INT_MAX, $scope->getMaxOccurances());
+        $this->assertEquals(Quantifier::DEFAULT_UNBOUNDED_MAX, $scope->getMaxOccurances());
     }
 
     public function testQuestionQuantifier(): void
@@ -174,5 +174,43 @@ class QuantifierParserTest extends Basic
         $this->assertEquals(0, $scope->getMinOccurances());
         $this->assertEquals(1, $scope->getMaxOccurances());
     }
+
+    public function testUnboundedMaxIsConfigurable(): void
+    {
+        $lexer = new Lexer('az*');
+        $scope = new Scope();
+        $qual = new Quantifier(7);
+
+        $lexer->moveNext();
+        $lexer->moveNext();
+        $lexer->moveNext();
+
+        $qual->parse($scope, $scope, $lexer);
+
+        $this->assertEquals(7, $scope->getMaxOccurances());
+    }
+
+    public function testUnboundedMaxMustBePositive(): void
+    {
+        $this->expectException(RegexException::class);
+
+        new Quantifier(0);
+    }
+
+    public function testParserLimitsGeneratedRepetitions(): void
+    {
+        $parser = new \ReverseRegex\Parser(new Lexer('a*'), new Scope(), new Scope());
+        $parser->setUnboundedMax(3);
+        $result = $parser->parse()->getResult();
+
+        $generator = new \ReverseRegex\Random\SimpleRandom(42);
+
+        for ($i = 0; $i < 50; ++$i) {
+            $out = '';
+            $result->generate($out, $generator);
+            $this->assertLessThanOrEqual(3, \strlen($out));
+        }
+    }
 }
+
 // End of File

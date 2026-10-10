@@ -16,6 +16,43 @@ use ReverseRegex\Lexer;
 class Quantifier implements StrategyInterface
 {
     /**
+     * Default upper bound used for the unbounded quantifiers `*` and `+`.
+     */
+    public const DEFAULT_UNBOUNDED_MAX = 100;
+
+    /**
+     * @var int maximum number of occurances applied to `*` and `+`
+     */
+    protected $unboundedMax;
+
+    /**
+     * @param int $unboundedMax maximum number of occurances applied to `*` and `+`
+     */
+    public function __construct(int $unboundedMax = self::DEFAULT_UNBOUNDED_MAX)
+    {
+        $this->setUnboundedMax($unboundedMax);
+    }
+
+    public function getUnboundedMax(): int
+    {
+        return $this->unboundedMax;
+    }
+
+    /**
+     * Sets the maximum number of occurances applied to `*` and `+`.
+     *
+     * @throws ParserException when the value is lower than 1
+     */
+    public function setUnboundedMax(int $unboundedMax): void
+    {
+        if ($unboundedMax < 1) {
+            throw new ParserException('The maximum of unbounded quantifiers must be at least 1');
+        }
+
+        $this->unboundedMax = $unboundedMax;
+    }
+
+    /**
      *  Parse the current token for new Quantifiers.
      *
      * @return Scope a new head
@@ -50,7 +87,7 @@ class Quantifier implements StrategyInterface
     public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer)
     {
         $min = 1;
-        $max = \PHP_INT_MAX;
+        $max = $this->unboundedMax;
 
         $head->setMaxOccurances($max);
         $head->setMinOccurances($min);
@@ -66,7 +103,7 @@ class Quantifier implements StrategyInterface
     public function quantifyStar(Scope $head, Scope $result, Lexer $lexer)
     {
         $min = 0;
-        $max = \PHP_INT_MAX;
+        $max = $this->unboundedMax;
 
         $head->setMaxOccurances($max);
         $head->setMinOccurances($min);
