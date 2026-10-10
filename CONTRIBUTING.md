@@ -31,7 +31,10 @@ make setup      # composer install
 make test       # run the test suite
 make cs-fix     # fix code style
 make phpstan    # static analysis
-make run-php-8.5  # open a shell in a PHP 8.1/8.2/8.3/8.4/8.5 container
+make test PHP=8.4    # any target on another version (8.1-8.5, default 8.1)
+make test-php-8.3    # per-version shortcuts: setup-, test-, cs-check-, phpstan-, run-php-X.Y
+make test-all        # run the tests on every supported version (8.1-8.5)
+make run-php-8.5     # open a shell in a PHP 8.5 container
 ```
 
 ## Project layout
