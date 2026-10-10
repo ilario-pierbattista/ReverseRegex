@@ -4,7 +4,7 @@ services:
       dockerfile: php.Dockerfile
       context: .docker
       args:
-        - BASE=php:8.1-cli-alpine
+        - BASE=${PHP_REGISTRY:-}php:8.1-cli-alpine
     tty: true
     volumes:
       - .:/usr/app
@@ -15,22 +15,22 @@ services:
     build:
       <<: *build
       args:
-        - BASE=php:8.2-cli-alpine
+        - BASE=${PHP_REGISTRY:-}php:8.2-cli-alpine
   php83:
     <<: *common
     build:
       <<: *build
       args:
-        - BASE=php:8.3-cli-alpine
+        - BASE=${PHP_REGISTRY:-}php:8.3-cli-alpine
   php84:
     <<: *common
     build:
       <<: *build
       args:
-        - BASE=php:8.4-cli-alpine
+        - BASE=${PHP_REGISTRY:-}php:8.4-cli-alpine
   php85:
     <<: *common
     build:
       <<: *build
       args:
-        - BASE=php:8.5-cli-alpine
+        - BASE=${PHP_REGISTRY:-}php:8.5-cli-alpine

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Compatibility with PHP 8.5 (no deprecations found in the sources; tests added to the CI matrix)
 - Makefile: run any target on PHP 8.1-8.5 via Docker (`PHP=8.x`, `test-php-8.x`, `test-all`, `cs-check`)
 ### Changed
+- `docker-compose.yaml`: optional `PHP_REGISTRY` variable to pull PHP images from a registry mirror
 - CI: tests now run only on the oldest (8.1) and newest (8.5) supported PHP versions; PHPStan runs on PHP 8.1 only
 
 ## [0.6.0] - 2026-03-31

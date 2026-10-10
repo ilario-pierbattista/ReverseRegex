@@ -29,6 +29,23 @@ Run directly with a local PHP, or via `make <target>` (Docker):
 | Static analysis | `composer phpstan` (`make phpstan`) |
 | Regenerate PHPStan baseline | `composer phpstan-baseline` (`make phpstan-update-baseline`) |
 
+## Testing on multiple PHP versions (Docker)
+
+The `Makefile` runs every command in a container for any PHP 8.1–8.5 (`php81`…`php85` services in `docker-compose.yaml`):
+
+- `make test PHP=8.5` (also `cs-check`, `phpstan`, `setup`, `shell`); default is 8.1.
+- `make test-php-8.5`, `make test-all` (tests on all five versions).
+- `make setup PHP=8.x` first if `vendor/` is missing. All versions share the same `vendor/`.
+- Docker Hub may answer `429`: set `PHP_REGISTRY=mirror.gcr.io/library/` (e.g. `PHP_REGISTRY=mirror.gcr.io/library/ make test-php-8.5`).
+
+Cloud-sandbox caveats (checked on 2026-10-10):
+
+- The Docker daemon is not running; start it with `(dockerd >/tmp/dockerd.log 2>&1 &)` and wait ~10s.
+- Inside the sandbox the proxy blocks `docker build` network access (`apk add` fails) and blocks GitHub downloads for repos other than this one, so `composer install` cannot fetch dependencies. `make` targets therefore cannot work there; do not try to bypass the proxy.
+- Fallback that does work: a syntax/deprecation lint with the stock image, e.g.
+  `docker run --rm -v "$PWD":/app -w /app mirror.gcr.io/library/php:8.5-cli-alpine sh -c 'for f in $(find src examples -name "*.php"); do php -d error_reporting=-1 -l $f; done'`.
+- Full test runs on other versions rely on CI (or on a local machine with working Docker/network).
+
 ## Rules
 
 - Before finishing, tests, `cs-check` and `phpstan` must pass (all enforced by CI in `.github/workflows/`).
