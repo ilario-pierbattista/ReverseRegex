@@ -4,10 +4,10 @@ PHP library (`ilario-pierbattista/reverse-regex`) that generates random strings 
 
 ## Layout
 
-- `src/ReverseRegex/` – library code (PSR-0 autoload: `ReverseRegex\`, `PHPStats\`).
+- `src/ReverseRegex/` – library code (PSR-4 autoload: `ReverseRegex\`, `PHPStats\`).
   - `Lexer`, `Parser` (+ `Parser/*` strategies) turn a regex into a tree of `Generator/Scope` nodes.
   - `Random/*` – random number generators.
-- `src/ReverseRegex/Test/` – PHPUnit tests (live next to the sources, not in `tests/`).
+- `tests/` – PHPUnit tests (namespace `ReverseRegex\Test\`, PSR-4 `autoload-dev`).
 - `examples/` – runnable usage examples.
 - `CHANGELOG.md` – Keep a Changelog format; add entries under `[Unreleased]`.
 

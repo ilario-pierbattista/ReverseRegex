@@ -9,16 +9,13 @@
          beStrictAboutOutputDuringTests="true">
     <testsuites>
         <testsuite name="UnitTests For ReverseRegex">
-            <directory>./src/ReverseRegex/Test/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
             <directory>./src/ReverseRegex/</directory>
         </include>
-        <exclude>
-            <directory>./src/ReverseRegex/Test/</directory>
-        </exclude>
     </source>
     <php>
         <ini name="error_reporting" value="-1"/>

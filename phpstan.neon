@@ -4,7 +4,6 @@ parameters:
     paths:
         - src
     excludePaths:
-        - src/ReverseRegex/Test
         - src/PHPStats/Generator
     reportUnmatchedIgnoredErrors: false
 
