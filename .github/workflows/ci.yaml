@@ -47,6 +47,8 @@ jobs:
 
     name: Coverage (PHP 8.5)
     runs-on: ubuntu-latest
+    # The CODECOV_TOKEN secret is stored in this environment.
+    environment: ci
     env:
       # Minimum line coverage (%) below which the job fails.
       MIN_LINE_COVERAGE: 90
