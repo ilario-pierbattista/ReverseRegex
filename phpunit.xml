@@ -2,10 +2,8 @@
 <phpunit colors="true"
          bootstrap="vendor/autoload.php"
          stopOnFailure="false"
-         convertDeprecationsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         convertErrorsToExceptions="true"
+         failOnDeprecation="true"
+         failOnNotice="true"
          failOnWarning="true"
          failOnRisky="true"
          beStrictAboutOutputDuringTests="true">

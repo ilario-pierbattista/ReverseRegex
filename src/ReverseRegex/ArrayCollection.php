@@ -30,7 +30,7 @@ class ArrayCollection extends BaseCollection
      *
      * @param int $position
      *
-     * @return mixed | null if bad position
+     * @return mixed|null if bad position
      */
     public function getAt($position)
     {
