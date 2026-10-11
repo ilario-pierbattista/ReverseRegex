@@ -34,7 +34,7 @@ class ArrayCollection extends BaseCollection
      */
     public function getAt($position)
     {
-        if ($position < $this->count() && $position < 0) {
+        if ($position < 1 || $position > $this->count()) {
             return null;
         }
 

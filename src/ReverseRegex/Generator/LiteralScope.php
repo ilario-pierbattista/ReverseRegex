@@ -77,7 +77,7 @@ class LiteralScope extends Scope
         $repeat_x = $this->calculateRepeatQuota($generator);
 
         while ($repeat_x > 0) {
-            $randomIndex = 0;
+            $randomIndex = 1;
 
             if ($this->literals->count() > 1) {
                 $randomIndex = round($generator->generate(1, ($this->literals->count())));

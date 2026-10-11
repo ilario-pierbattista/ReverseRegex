@@ -2,12 +2,13 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\Parser\Quantifier;
 
-class QuantifierParserTest extends Basic
+class QuantifierParserTest extends TestCase
 {
     public function testQuantifierParserPatternA(): void
     {

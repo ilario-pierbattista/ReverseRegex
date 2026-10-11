@@ -2,12 +2,13 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Random\MersenneRandom;
 
-class ScopeTest extends Basic
+class ScopeTest extends TestCase
 {
     public function testAttachDoesNotTriggerDeprecations(): void
     {

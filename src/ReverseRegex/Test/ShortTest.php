@@ -2,12 +2,13 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\Parser\Short;
 
-class ShortTest extends Basic
+class ShortTest extends TestCase
 {
     public function testDigit(): void
     {

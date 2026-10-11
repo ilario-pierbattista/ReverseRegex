@@ -2,9 +2,10 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Generator\LiteralScope;
 
-class LiteralScopeTest extends Basic
+class LiteralScopeTest extends TestCase
 {
     public function testExtendsScope(): void
     {
@@ -60,7 +61,7 @@ class LiteralScopeTest extends Basic
         $generator_mock->expects($this->exactly(2))
             ->method('generate')
             ->with($this->equalTo(1), $this->equalTo(2))
-            ->willReturn(0);
+            ->willReturn(1);
 
         $result = '';
 
