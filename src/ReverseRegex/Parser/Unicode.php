@@ -23,7 +23,7 @@ class Unicode implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function parse(Scope $head, Scope $set, Lexer $lexer)
+    public function parse(Scope $head, Scope $set, Lexer $lexer): Scope
     {
         $character = $this->evaluate($lexer);
         $head->addLiteral($character);

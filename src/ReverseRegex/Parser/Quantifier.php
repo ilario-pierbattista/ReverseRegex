@@ -26,7 +26,7 @@ class Quantifier implements StrategyInterface
     /**
      * @var int maximum number of occurances applied to `*` and `+`
      */
-    protected $unboundedMax;
+    protected int $unboundedMax;
 
     /**
      * @param int $unboundedMax maximum number of occurances applied to `*` and `+`
@@ -60,7 +60,7 @@ class Quantifier implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function parse(Scope $head, Scope $set, Lexer $lexer)
+    public function parse(Scope $head, Scope $set, Lexer $lexer): Scope
     {
         switch (true) {
             case $lexer->isNextToken(Lexer::T_QUANTIFIER_PLUS):
@@ -87,7 +87,7 @@ class Quantifier implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer)
+    public function quantifyPlus(Scope $head, Scope $result, Lexer $lexer): Scope
     {
         $min = 1;
         $max = $this->unboundedMax;
@@ -103,7 +103,7 @@ class Quantifier implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function quantifyStar(Scope $head, Scope $result, Lexer $lexer)
+    public function quantifyStar(Scope $head, Scope $result, Lexer $lexer): Scope
     {
         $min = 0;
         $max = $this->unboundedMax;
@@ -119,7 +119,7 @@ class Quantifier implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function quantifyQuestion(Scope $head, Scope $result, Lexer $lexer)
+    public function quantifyQuestion(Scope $head, Scope $result, Lexer $lexer): Scope
     {
         $min = 0;
         $max = 1;
@@ -135,7 +135,7 @@ class Quantifier implements StrategyInterface
      *
      * @return Scope a new head
      */
-    public function quantifyClosure(Scope $head, Scope $result, Lexer $lexer)
+    public function quantifyClosure(Scope $head, Scope $result, Lexer $lexer): Scope
     {
         $tokens = [];
         $min = $head->getMinOccurances();
@@ -194,7 +194,7 @@ class Quantifier implements StrategyInterface
      *
      * @return int the size
      */
-    protected function convertInteger(array $tokens)
+    protected function convertInteger(array $tokens): int
     {
         $number_string = array_map(function ($item) {
             return TokenHelper::value($item);

@@ -21,17 +21,17 @@ class Parser
     /**
      * @var Lexer
      */
-    protected $lexer;
+    protected Lexer $lexer;
 
     /**
      * @var Scope
      */
-    protected $result;
+    protected Scope $result;
 
     /**
      * @var Scope the current head
      */
-    protected $head;
+    protected Scope $head;
 
     /**
      * @var Scope Last attached scope
@@ -41,7 +41,7 @@ class Parser
     /**
      * @var int maximum number of occurances applied to the `*` and `+` quantifiers
      */
-    protected $unboundedMax = \ReverseRegex\Parser\Quantifier::DEFAULT_UNBOUNDED_MAX;
+    protected int $unboundedMax = \ReverseRegex\Parser\Quantifier::DEFAULT_UNBOUNDED_MAX;
 
     /**
      *  Class Constructor.
@@ -88,7 +88,7 @@ class Parser
      *
      * @return Lexer
      */
-    public function getLexer()
+    public function getLexer(): Lexer
     {
         return $this->lexer;
     }
@@ -213,7 +213,7 @@ class Parser
      *
      * @return string the compressed value string
      */
-    public function compress()
+    public function compress(): string
     {
         $current = TokenHelper::position($this->lexer->lookahead);
         $this->lexer->reset();
@@ -229,7 +229,7 @@ class Parser
     /**
      *  Return the result of the parse.
      */
-    public function getResult()
+    public function getResult(): Scope
     {
         return $this->result;
     }
@@ -250,7 +250,7 @@ class Parser
      *
      * @return StrategyInterface
      */
-    public static function createSubParser($name)
+    public static function createSubParser(string $name): StrategyInterface
     {
         if (isset(self::$sub_parsers[$name]) === false) {
             throw new ParserException('Unknown subparser at ' . $name);

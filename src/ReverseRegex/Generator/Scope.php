@@ -97,7 +97,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @return int the maximum number of occurances
      */
-    public function getMaxOccurances()
+    public function getMaxOccurances(): int
     {
         return $this[self::REPEAT_MAX_INDEX];
     }
@@ -121,7 +121,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @return int
      */
-    public function getMinOccurances()
+    public function getMinOccurances(): int
     {
         return $this[self::REPEAT_MIN_INDEX];
     }
@@ -145,7 +145,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @return int the range
      */
-    public function getOccuranceRange()
+    public function getOccuranceRange(): int
     {
         return (int) ($this->getMaxOccurances() - $this->getMinOccurances());
     }
@@ -155,7 +155,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @return int
      */
-    public function calculateRepeatQuota(GeneratorInterface $generator)
+    public function calculateRepeatQuota(GeneratorInterface $generator): int
     {
         $repeat_x = $this->getMinOccurances();
 
@@ -182,7 +182,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @return bool true
      */
-    public function usingAlternatingStrategy()
+    public function usingAlternatingStrategy(): bool
     {
         return (bool) $this[self::USE_ALTERNATING_INDEX];
     }
