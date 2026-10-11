@@ -70,8 +70,6 @@ class LiteralScope extends Scope
      *
      * @param string|null $result Initial value; `null` is treated as an empty string
      *
-     * @param-out string $result
-     *
      * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
