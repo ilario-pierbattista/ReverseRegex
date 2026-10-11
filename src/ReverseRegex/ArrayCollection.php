@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ReverseRegex;
 
 use Doctrine\Common\Collections\ArrayCollection as BaseCollection;

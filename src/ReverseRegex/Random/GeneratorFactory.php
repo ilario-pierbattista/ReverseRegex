@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ReverseRegex\Random;
 
 use ReverseRegex\Exception as ReverseRegexException;
