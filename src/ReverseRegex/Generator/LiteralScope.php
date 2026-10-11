@@ -70,10 +70,14 @@ class LiteralScope extends Scope
      *
      * @param string|null $result Initial value; `null` is treated as an empty string
      *
+     * @psalm-param-out string $result
+     *
      * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {
+        $result ??= '';
+
         if ($this->literals->count() === 0) {
             throw new GeneratorException('There are no literals to choose from');
         }
