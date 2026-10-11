@@ -10,7 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/tooling: the coverage report is uploaded to Codecov (needs the `CODECOV_TOKEN` repository secret) and the `Coverage` job fails when line coverage drops below 90%
 - CI/tooling: a `Coverage` job measures code coverage with pcov, prints the report in the job summary and uploads the clover report as an artifact
 ### Fixed
+- `ArrayCollection::getAt()` now returns `null` for positions outside `1..count()` as documented, instead of a wrong element
 - `Node::detach()` no longer triggers the PHP 8.5 `SplObjectStorage::detach()` deprecation
+### Removed
+- Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency)
 ### Changed
 - CI/tooling: GitHub Actions `checkout`, `cache` and `upload-artifact` updated to Node 24 versions, removing the Node.js 20 deprecation warnings
 - CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
