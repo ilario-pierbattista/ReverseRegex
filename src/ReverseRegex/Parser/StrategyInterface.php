@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ReverseRegex\Parser;
 
 use ReverseRegex\Generator\Scope;
