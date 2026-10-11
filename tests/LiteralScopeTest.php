@@ -131,5 +131,16 @@ class LiteralScopeTest extends TestCase
         $this->expectException(\ReverseRegex\Exception::class);
         $literal->generate($result, new \ReverseRegex\Random\SimpleRandom(1));
     }
+
+    public function testGenerateAcceptsNullInitialResult(): void
+    {
+        $literal = new LiteralScope('scope1');
+        $literal->addLiteral('a');
+
+        $result = null;
+        $returned = $literal->generate($result, new \ReverseRegex\Random\SimpleRandom(1));
+
+        $this->assertSame('a', $result);
+        $this->assertSame('a', $returned);
+    }
 }
-// End of File
