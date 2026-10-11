@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/tooling: the coverage report is uploaded to Codecov (needs the `CODECOV_TOKEN` repository secret) and the `Coverage` job fails when line coverage drops below 90%
 - CI/tooling: a `Coverage` job measures code coverage with pcov, prints the report in the job summary and uploads the clover report as an artifact
 ### Fixed
+- `Parser` no longer attaches a `null` scope to the result when constructed without an explicit head
 - `Parser\Short::parse()` now returns the head scope as documented
 - `ArrayCollection::getAt()` now returns `null` for positions outside `1..count()` as documented, instead of a wrong element
 - `Node::detach()` no longer triggers the PHP 8.5 `SplObjectStorage::detach()` deprecation

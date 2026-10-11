@@ -29,6 +29,16 @@ class ParserTest extends TestCase
         $this->assertEquals('ex11111', $result);
     }
 
+    public function testParserWithoutExplicitHead(): void
+    {
+        $parser = new Parser(new Lexer('ab{2}'), new Scope());
+
+        $result = '';
+        $parser->parse()->getResult()->generate($result, new MersenneRandom(100));
+
+        $this->assertSame('abb', $result);
+    }
+
     public function testParserExampleB(): void
     {
         // $lexer = new Lexer('\(0[23478]\)-[0-9]{4} [0-9]{4}');

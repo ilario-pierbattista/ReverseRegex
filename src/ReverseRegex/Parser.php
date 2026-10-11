@@ -51,9 +51,9 @@ class Parser
             $this->head = $head;
         }
 
-        $this->result->attach($head);
+        $this->result->attach($this->head);
 
-        $this->left = $head;
+        $this->left = $this->head;
     }
 
     /**
