@@ -19,6 +19,7 @@ interface ContextInterface
      *  Generate a text string appending to result arguments.
      *
      * @param string|null $result Initial value; `null` is treated as an empty string
+     *
      * @param-out string $result
      *
      * @return string
