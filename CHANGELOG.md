@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - CI/tooling: pushing a version tag (e.g. `0.7.1`) creates the GitHub release, using the matching `CHANGELOG.md` section as notes
+- CI/tooling: Dependabot checks GitHub Actions and composer dependencies monthly
 - CI/tooling: the test job runs every script in `examples/` (output shown in the log), so they cannot silently break
 - CI/tooling: the coverage report is uploaded to Codecov (needs the `CODECOV_TOKEN` repository secret) and the `Coverage` job fails when line coverage drops below 90%
 - CI/tooling: a `Coverage` job measures code coverage with pcov, prints the report in the job summary and uploads the clover report as an artifact
