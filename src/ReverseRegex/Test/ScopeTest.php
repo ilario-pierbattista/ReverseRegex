@@ -118,11 +118,11 @@ class ScopeTest extends Basic
         $scope->setMinOccurances(6);
         $scope->setMaxOccurances(6);
 
-        $child = $this->getMockBuilder(\ReverseRegex\Generator\Scope::class)->setMethods(['generate'])->getMock();
+        $child = $this->getMockBuilder(\ReverseRegex\Generator\Scope::class)->onlyMethods(['generate'])->getMock();
 
         $child->expects($this->exactly(6))
             ->method('generate')
-            ->with($this->isType('string'), $this->equalTo($gen))
+            ->with($this->isString(), $this->equalTo($gen))
             ->willReturnCallback(function (&$sResult) {
                 return $sResult .= 'a';
             });
