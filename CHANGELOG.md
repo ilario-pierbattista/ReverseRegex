@@ -6,33 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- CI/tooling: pushing a version tag (e.g. `0.7.1`) creates the GitHub release, using the matching `CHANGELOG.md` section as notes
-- CI/tooling: Dependabot checks GitHub Actions and composer dependencies monthly
-- CI/tooling: the test job runs every script in `examples/` (output shown in the log), so they cannot silently break
-- CI/tooling: the coverage report is uploaded to Codecov (needs the `CODECOV_TOKEN` repository secret) and the `Coverage` job fails when line coverage drops below 90%
-- CI/tooling: a `Coverage` job measures code coverage with pcov, prints the report in the job summary and uploads the clover report as an artifact
+
+## [0.8.0] - 2026-10-11
+### Changed
+- **Possibly breaking for subclasses**: native return types were added to `Scope`, `Node::contains()`, `Parser` and the `Parser\Quantifier`/`Parser\Unicode` strategies, and the `Parser` and `Quantifier` properties are now typed; classes extending them must use compatible signatures (public interfaces are unchanged)
+- **Autoloading**: PSR-0 replaced by PSR-4 (same namespaces and class names); tests moved from `src/ReverseRegex/Test/` to `tests/` and are no longer shipped in the package archive
+- `Scope::generate()` (and `LiteralScope`) now normalise a `null` result to an empty string; `ContextInterface::generate()` docblocks declare the by-reference `$result` as `string|null` on input and `string` on output, so static analysers such as Psalm no longer complain
+- All source files declare `strict_types=1`
+- Wider runtime dependency ranges: `doctrine/lexer` accepts `^3` and `doctrine/collections` accepts `^2` and `^3` (previously supported versions still work)
 ### Fixed
-- `generate()` docblocks (`ContextInterface`, `Scope`, `LiteralScope`) declare the by-reference `$result` as `string|null` on input and, via `@psalm-param-out`, as `string` on output, so static analysers such as Psalm no longer flag callers that start from `null`; `generate()` now normalises a `null` result to an empty string up front (it previously stayed `null` only when nothing was generated)
+- `ArrayCollection::getAt()` returns `null` for positions outside `1..count()` as documented, instead of a wrong element
 - `Parser` no longer attaches a `null` scope to the result when constructed without an explicit head
-- `Parser\Short::parse()` now returns the head scope as documented
-- `ArrayCollection::getAt()` now returns `null` for positions outside `1..count()` as documented, instead of a wrong element
+- `Parser\Short::parse()` returns the head scope as documented
 - `Node::detach()` no longer triggers the PHP 8.5 `SplObjectStorage::detach()` deprecation
 ### Removed
-- Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency); tests now extend PHPUnit `TestCase` directly
-### Changed
-- PHPStan now runs at level 6 (was 5) with PHPDoc types on the previously untyped signatures and generics; no signatures changed
-- Removed the PHPStan baseline: the code now passes analysis without ignored errors (`Parser\Short::convert*()` and `Parser\CharacterClass::fillRange()` now declare the `LiteralScope` they always required)
-- Added native return types to `Scope`, `Node::contains()`, `Parser` and the `Parser\Quantifier`/`Parser\Unicode` strategies, and typed the `Parser` and `Quantifier` properties; the public interfaces are untouched to stay backward compatible
-- All source, test and example files now declare `strict_types=1`
-- Autoloading switched from PSR-0 to PSR-4 (same namespaces and class names); tests moved from `src/ReverseRegex/Test/` to `tests/` (`autoload-dev`) and are no longer shipped in the package archive
-- CI/tooling: GitHub Actions `checkout`, `cache` and `upload-artifact` updated to Node 24 versions, removing the Node.js 20 deprecation warnings
-- CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
-- CI/tooling: the test job runs on PHP 8.1 and 8.5 with both lowest and highest dependencies
-- Updated development dependencies: PHPUnit 10.5, PHP-CS-Fixer 3.95, Facile.it coding standard 1.5, PHPStan 2.3
-- Widened runtime dependency constraints: `doctrine/lexer` now accepts `^3` and `doctrine/collections` now accepts `^2` and `^3` (previously supported versions are still accepted)
-- Lexer tokens are now read through the internal `TokenHelper`, as `doctrine/lexer` 3 no longer allows array access on tokens
-- README: fixed headings, duplicated table row and typos; documented unsupported syntax (negated character classes, `\p`, `\P`)
+- Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency)
+### Internal
+- CI/tooling only: coverage reporting (Codecov, 90% minimum), PHPStan level 6 with no baseline, stricter PHPUnit, PHP 8.1/8.5 lowest/highest matrix, Dependabot, examples run in CI, GitHub release created from version tags, updated dev dependencies, README fixes
 
 ## [0.7.0] - 2026-10-10
 ### Added
@@ -87,7 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 See https://github.com/icomefromthenet/ReverseRegex
 
-[Unreleased]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.7.0..HEAD
+[Unreleased]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.8.0..HEAD
+[0.8.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.7.0..0.8.0
 [0.7.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.6.1..0.7.0
 [0.6.1]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.6.0..0.6.1
 [0.6.0]: https://github.com/ilario-pierbattista/ReverseRegex/compare/0.5.0..0.6.0
