@@ -227,10 +227,8 @@ class Lexer extends AbstractLexer
                 // Charset
             case $value === '[' && $this->escape_mode === false && $this->set_mode === true:
                 throw new LexerException("Can't have a second character class while first remains open");
-                break;
             case $value === ']' && $this->escape_mode === false && $this->set_mode === false:
                 throw new LexerException("Can't close a character class while none is open");
-                break;
             case $value === '[' && $this->escape_mode === false && $this->set_mode === false:
                 $this->set_mode = true;
                 $type = self::T_SET_OPEN;
@@ -245,12 +243,10 @@ class Lexer extends AbstractLexer
                 $this->set_internal_counter++;
 
                 return self::T_SET_RANGE;
-                break;
             case $value === '^' && $this->escape_mode === false && $this->set_mode === true && $this->set_internal_counter === 1:
                 $this->set_internal_counter++;
 
                 return self::T_SET_NEGATED;
-                break;
                 // Quantifers
             case $value === '{' && $this->escape_mode === false && $this->set_mode === false: return self::T_QUANTIFIER_OPEN;
             case $value === '}' && $this->escape_mode === false && $this->set_mode === false: return self::T_QUANTIFIER_CLOSE;

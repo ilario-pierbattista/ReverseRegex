@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ReverseRegex\Parser;
 
 use ReverseRegex\Exception as ParserException;
+use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\TokenHelper;
@@ -20,6 +21,8 @@ class Unicode implements StrategyInterface
 {
     /**
      *  Parse the current token for new Quantifiers.
+     *
+     * @param LiteralScope $head
      *
      * @return Scope a new head
      */
@@ -39,7 +42,6 @@ class Unicode implements StrategyInterface
         switch (true) {
             case $lexer->isNextToken(Lexer::T_SHORT_P):
                 throw new ParserException('Property \p (Unicode Property) not supported use \x to specify unicode character or range');
-                break;
             case $lexer->isNextToken(Lexer::T_SHORT_UNICODE_X):
 
                 $lexer->moveNext();
@@ -73,8 +75,6 @@ class Unicode implements StrategyInterface
                 $number = trim(implode('', $tokens));
 
                 return mb_chr(hexdec($number));
-
-                break;
             case $lexer->isNextToken(Lexer::T_SHORT_X):
                 // only allow another 2 hex characters
                 $glimpse = $lexer->glimpse();
@@ -92,7 +92,6 @@ class Unicode implements StrategyInterface
                 $value = trim(implode('', $tokens));
 
                 return mb_chr(hexdec($value));
-                break;
             default:
                 throw new ParserException('No Unicode expression to evaluate');
         }

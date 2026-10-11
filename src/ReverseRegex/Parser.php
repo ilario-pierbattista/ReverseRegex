@@ -115,7 +115,6 @@ class Parser
 
                         // group is finished don't want to contine this loop break = 2
                         break 2;
-                        break;
                     case $this->lexer->isNextTokenAny([Lexer::T_LITERAL_CHAR, Lexer::T_LITERAL_NUMERIC]):
 
                         // test for literal characters (abcd)

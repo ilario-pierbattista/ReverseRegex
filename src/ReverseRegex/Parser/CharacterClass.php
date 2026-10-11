@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ReverseRegex\Parser;
 
 use ReverseRegex\Exception as ParserException;
+use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\TokenHelper;
@@ -62,6 +63,8 @@ class CharacterClass implements StrategyInterface
     /**
      *  Parse the current token for new Quantifiers.
      *
+     * @param LiteralScope $head
+     *
      * @return Scope a new head
      */
     public function parse(Scope $head, Scope $set, Lexer $lexer)
@@ -115,7 +118,7 @@ class CharacterClass implements StrategyInterface
     /**
      *  Fill a range given starting and ending character.
      */
-    public function fillRange(Scope $head, $start, $end): void
+    public function fillRange(LiteralScope $head, $start, $end): void
     {
         $start_index = mb_ord($start);
         $ending_index = mb_ord($end);

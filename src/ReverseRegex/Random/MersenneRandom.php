@@ -24,17 +24,17 @@ class MersenneRandom implements GeneratorInterface
     protected $seed;
 
     /**
-     * @var int previous seed value used
+     * @var int|null previous seed value used
      */
     protected $ps;
 
     /**
-     * @var int the max
+     * @var int|null the max
      */
     protected $max;
 
     /**
-     * @var int the min
+     * @var int|null the min
      */
     protected $min;
 

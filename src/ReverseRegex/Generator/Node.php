@@ -21,7 +21,7 @@ use SplObjectStorage;
 class Node implements ArrayAccess, Countable, Iterator
 {
     /**
-     * @var string name of the node
+     * @var scalar|null name of the node
      */
     protected $label;
 
@@ -38,7 +38,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Class Constructor.
      *
-     * @param string $label
+     * @param scalar|null $label
      */
     public function __construct($label = 'node')
     {
@@ -51,7 +51,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Fetch the nodes label.
      *
-     * @return string the nodes label
+     * @return scalar|null the nodes label
      */
     public function getLabel()
     {
@@ -61,7 +61,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Sets the node label.
      *
-     * @param string $label the nodes label
+     * @param scalar|null $label the nodes label
      */
     public function setLabel($label)
     {

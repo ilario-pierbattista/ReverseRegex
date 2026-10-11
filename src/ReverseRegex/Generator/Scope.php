@@ -105,7 +105,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
     /**
      *  Sets the maximum re-occurances.
      *
-     * @param int $num
+     * @param mixed $num
      */
     public function setMaxOccurances($num): void
     {
@@ -127,7 +127,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
     /**
      *  Sets the Minimum number of re-occurances.
      *
-     * @param int $num
+     * @param mixed $num
      */
     public function setMinOccurances($num): void
     {
