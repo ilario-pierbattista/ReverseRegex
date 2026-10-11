@@ -126,7 +126,7 @@ class Parser
 
                         // test for literal characters (abcd)
                         $this->left = new LiteralScope();
-                        $this->left->addLiteral($this->lexer->lookahead['value']);
+                        $this->left->addLiteral(TokenHelper::value($this->lexer->lookahead));
                         $this->head->attach($this->left);
 
                         break;
@@ -197,7 +197,7 @@ class Parser
                 }
             }
         } catch (ParserException $e) {
-            $pos = $this->lexer->lookahead['position'];
+            $pos = TokenHelper::position($this->lexer->lookahead);
             $compressed = $this->compress();
 
             throw new ParserException(\sprintf('Error found STARTING at position %s after `%s` with msg %s ', $pos, $compressed, $e->getMessage()));
@@ -213,12 +213,12 @@ class Parser
      */
     public function compress()
     {
-        $current = $this->lexer->lookahead['position'];
+        $current = TokenHelper::position($this->lexer->lookahead);
         $this->lexer->reset();
         $string = '';
 
-        while ($this->lexer->moveNext() && $this->lexer->lookahead['position'] <= $current) {
-            $string .= $this->lexer->lookahead['value'];
+        while ($this->lexer->moveNext() && TokenHelper::position($this->lexer->lookahead) <= $current) {
+            $string .= TokenHelper::value($this->lexer->lookahead);
         }
 
         return $string;

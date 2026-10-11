@@ -5,6 +5,7 @@ namespace ReverseRegex\Parser;
 use ReverseRegex\Exception as ParserException;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
+use ReverseRegex\TokenHelper;
 
 /**
  *  Parse a group quantifer e.g (abghb){1,5} , (abghb){5} , (abghb)* , (abghb)? , (abghb)+.
@@ -140,7 +141,7 @@ class Quantifier implements StrategyInterface
 
         // move to the first token inside the quantifer.
         // parse for the minimum , move lookahead until read end of the closure or the `,`
-        while ($lexer->moveNext() === true && ! $lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE) && $lexer->lookahead['value'] !== ',') {
+        while ($lexer->moveNext() === true && ! $lexer->isNextToken(Lexer::T_QUANTIFIER_CLOSE) && TokenHelper::value($lexer->lookahead) !== ',') {
             if ($lexer->isNextToken(Lexer::T_QUANTIFIER_OPEN)) {
                 throw new ParserException('Nesting Quantifiers is not allowed');
             }
@@ -150,7 +151,7 @@ class Quantifier implements StrategyInterface
         $min = $this->convertInteger($tokens);
 
         // do we have a maximum after the comma?
-        if ($lexer->lookahead['value'] === ',') {
+        if (TokenHelper::value($lexer->lookahead) === ',') {
             // make sure we have values to gather ie not {778,}
             $tokens = [];
 
@@ -194,7 +195,7 @@ class Quantifier implements StrategyInterface
     protected function convertInteger(array $tokens)
     {
         $number_string = array_map(function ($item) {
-            return $item['value'];
+            return TokenHelper::value($item);
         }, $tokens);
         $number_string = trim(implode('', $number_string));
 
