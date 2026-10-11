@@ -95,7 +95,7 @@ class Node implements ArrayAccess, Countable, Iterator
     {
         foreach ($this->links as $linked_node) {
             if ($linked_node == $node) {
-                $this->links->detach($node);
+                $this->links->offsetUnset($node);
             }
         }
 

@@ -13,14 +13,14 @@ class RandomTest extends TestCase
     {
         $generator = new SimpleRandom(5);
 
-        $this->assertSame(750, $generator->generate(0, 1000));
-        $this->assertSame(657, $generator->generate(0, 1000));
+        $this->assertSame(750, $generator->generate(0, 1_000));
+        $this->assertSame(657, $generator->generate(0, 1_000));
     }
 
     public function testSimpleRandomSameSeedSameSequence(): void
     {
-        $a = new SimpleRandom(1234);
-        $b = new SimpleRandom(1234);
+        $a = new SimpleRandom(1_234);
+        $b = new SimpleRandom(1_234);
 
         for ($i = 0; $i < 20; ++$i) {
             $this->assertSame($a->generate(0, 50), $b->generate(0, 50));
@@ -82,10 +82,10 @@ class RandomTest extends TestCase
     public function testSrandRandomIsReproducibleAfterReseeding(): void
     {
         $generator = new SrandRandom(42);
-        $first = [$generator->generate(0, 1000), $generator->generate(0, 1000)];
+        $first = [$generator->generate(0, 1_000), $generator->generate(0, 1_000)];
 
         $generator->seed(42);
-        $second = [$generator->generate(0, 1000), $generator->generate(0, 1000)];
+        $second = [$generator->generate(0, 1_000), $generator->generate(0, 1_000)];
 
         $this->assertSame($first, $second);
     }
@@ -134,13 +134,13 @@ class RandomTest extends TestCase
         $a = new MersenneRandom(99);
         $sequenceA = [];
         for ($i = 0; $i < 10; ++$i) {
-            $sequenceA[] = $a->generate(0, 1000);
+            $sequenceA[] = $a->generate(0, 1_000);
         }
 
         $b = new MersenneRandom(99);
         $sequenceB = [];
         for ($i = 0; $i < 10; ++$i) {
-            $sequenceB[] = $b->generate(0, 1000);
+            $sequenceB[] = $b->generate(0, 1_000);
         }
 
         $this->assertSame($sequenceA, $sequenceB);
@@ -149,7 +149,7 @@ class RandomTest extends TestCase
     public function testMersenneRandomMatchesReferenceImplementation(): void
     {
         // First output of MT19937 for the reference seed 5489.
-        $generator = new MersenneRandom(5489);
+        $generator = new MersenneRandom(5_489);
 
         $this->assertSame(3_499_211_612, $generator->generate(0, 4_294_967_295));
     }
