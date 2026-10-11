@@ -112,6 +112,21 @@ class ScopeTest extends TestCase
         $scope->generate($result, $gen);
     }
 
+    public function testGenerateAcceptsNullInitialResult(): void
+    {
+        $literal = new \ReverseRegex\Generator\LiteralScope('literal');
+        $literal->addLiteral('a');
+
+        $scope = new Scope('scope1');
+        $scope->attach($literal);
+
+        $result = null;
+        $returned = $scope->generate($result, new MersenneRandom(700));
+
+        $this->assertSame('a', $result);
+        $this->assertSame('a', $returned);
+    }
+
     public function testGenerate(): void
     {
         $gen = new MersenneRandom(700);

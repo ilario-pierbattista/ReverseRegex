@@ -43,10 +43,14 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *
      * @param string|null $result Initial value; `null` is treated as an empty string
      *
+     * @psalm-param-out string $result
+     *
      * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {
+        $result ??= '';
+
         if ($this->count() === 0) {
             throw new GeneratorException('No child scopes to call must be atleast 1');
         }
