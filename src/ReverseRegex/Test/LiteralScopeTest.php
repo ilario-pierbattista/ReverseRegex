@@ -61,7 +61,7 @@ class LiteralScopeTest extends TestCase
         $generator_mock->expects($this->exactly(2))
             ->method('generate')
             ->with($this->equalTo(1), $this->equalTo(2))
-            ->willReturn(0);
+            ->willReturn(1);
 
         $result = '';
 
