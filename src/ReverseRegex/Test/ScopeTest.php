@@ -122,7 +122,7 @@ class ScopeTest extends Basic
 
         $child->expects($this->exactly(6))
             ->method('generate')
-            ->with($this->isString(), $this->equalTo($gen))
+            ->with($this->callback('is_string'), $this->equalTo($gen))
             ->willReturnCallback(function (&$sResult) {
                 return $sResult .= 'a';
             });
