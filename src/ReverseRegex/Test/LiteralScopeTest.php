@@ -119,5 +119,14 @@ class LiteralScopeTest extends Basic
         $this->assertArrayHasKey('0003', $result);
         $this->assertArrayHasKey('0004', $result);
     }
+
+    public function testGenerateWithoutLiteralsFails(): void
+    {
+        $literal = new LiteralScope('scope1');
+        $result = '';
+
+        $this->expectException(\ReverseRegex\Exception::class);
+        $literal->generate($result, new \ReverseRegex\Random\SimpleRandom(1));
+    }
 }
 // End of File
