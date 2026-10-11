@@ -60,6 +60,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
                 $randomIndex = round($generator->generate(1, ($this->count())));
                 $this->get($randomIndex)->generate($result, $generator);
             } else {
+                /** @var Scope $current */
                 foreach ($this as $current) {
                     $current->generate($result, $generator);
                 }
