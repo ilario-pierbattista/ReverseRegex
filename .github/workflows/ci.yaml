@@ -48,7 +48,7 @@ jobs:
         run: |
           for f in *.php; do
             echo "::group::$f"
-            php "$f" > /dev/null
+            php "$f"
             echo "::endgroup::"
           done
 
