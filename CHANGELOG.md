@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
+- CI/tooling: the test job runs on PHP 8.1 and 8.5 with both lowest and highest dependencies
 
 ## [0.7.0] - 2026-10-10
 ### Added
