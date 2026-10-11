@@ -111,7 +111,7 @@ class Node implements ArrayAccess, Countable, Iterator
      *
      * @return bool true if found
      */
-    public function contains(self $node)
+    public function contains(self $node): bool
     {
         foreach ($this->links as $linked_node) {
             if ($linked_node == $node) {
