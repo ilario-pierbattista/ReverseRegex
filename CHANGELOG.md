@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - `Node::detach()` no longer triggers the PHP 8.5 `SplObjectStorage::detach()` deprecation
 ### Changed
+- CI/tooling: GitHub Actions `checkout`, `cache` and `upload-artifact` updated to Node 24 versions, removing the Node.js 20 deprecation warnings
 - CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
 - CI/tooling: the test job runs on PHP 8.1 and 8.5 with both lowest and highest dependencies
 - Updated development dependencies: PHPUnit 10.5, PHP-CS-Fixer 3.95, Facile.it coding standard 1.5, PHPStan 2.3
