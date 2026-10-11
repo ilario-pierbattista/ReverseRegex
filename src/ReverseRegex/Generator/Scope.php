@@ -70,7 +70,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
     /**
      *  Fetch a node given an `one-based index`.
      *
-     * @return Scope | null if none found
+     * @return Scope|null if none found
      */
     public function get($index)
     {
