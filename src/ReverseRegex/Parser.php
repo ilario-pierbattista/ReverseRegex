@@ -18,14 +18,8 @@ use ReverseRegex\Parser\StrategyInterface;
  */
 class Parser
 {
-    /**
-     * @var Lexer
-     */
     protected Lexer $lexer;
 
-    /**
-     * @var Scope
-     */
     protected Scope $result;
 
     /**
@@ -85,8 +79,6 @@ class Parser
 
     /**
      *  Fetch the regex lexer.
-     *
-     * @return Lexer
      */
     public function getLexer(): Lexer
     {
@@ -247,8 +239,6 @@ class Parser
      *  @static
      *
      * @param string $name the short name
-     *
-     * @return StrategyInterface
      */
     public static function createSubParser(string $name): StrategyInterface
     {

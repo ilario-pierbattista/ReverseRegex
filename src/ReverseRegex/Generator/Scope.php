@@ -118,8 +118,6 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
 
     /**
      *  Fetch the Minimum Occurances.
-     *
-     * @return int
      */
     public function getMinOccurances(): int
     {
@@ -152,8 +150,6 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
 
     /**
      *  Calculate a random numer of repeats given the current min-max range.
-     *
-     * @return int
      */
     public function calculateRepeatQuota(GeneratorInterface $generator): int
     {
