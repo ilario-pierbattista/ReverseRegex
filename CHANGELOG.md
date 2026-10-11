@@ -10,11 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/tooling: the coverage report is uploaded to Codecov (needs the `CODECOV_TOKEN` repository secret) and the `Coverage` job fails when line coverage drops below 90%
 - CI/tooling: a `Coverage` job measures code coverage with pcov, prints the report in the job summary and uploads the clover report as an artifact
 ### Fixed
+- `Parser\Short::parse()` now returns the head scope as documented
 - `ArrayCollection::getAt()` now returns `null` for positions outside `1..count()` as documented, instead of a wrong element
 - `Node::detach()` no longer triggers the PHP 8.5 `SplObjectStorage::detach()` deprecation
 ### Removed
 - Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency); tests now extend PHPUnit `TestCase` directly
 ### Changed
+- PHPStan now runs at level 6 (was 5) with PHPDoc types on the previously untyped signatures and generics; no signatures changed
+- Removed the PHPStan baseline: the code now passes analysis without ignored errors (`Parser\Short::convert*()` and `Parser\CharacterClass::fillRange()` now declare the `LiteralScope` they always required)
 - Added native return types to `Scope`, `Node::contains()`, `Parser` and the `Parser\Quantifier`/`Parser\Unicode` strategies, and typed the `Parser` and `Quantifier` properties; the public interfaces are untouched to stay backward compatible
 - All source, test and example files now declare `strict_types=1`
 - Autoloading switched from PSR-0 to PSR-4 (same namespaces and class names); tests moved from `src/ReverseRegex/Test/` to `tests/` (`autoload-dev`) and are no longer shipped in the package archive

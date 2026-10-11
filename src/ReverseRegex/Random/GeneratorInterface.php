@@ -14,22 +14,26 @@ interface GeneratorInterface extends CommonInterface
     /**
      *  Generate a value between $min - $max.
      *
-     * @param int $max
-     * @param int $max
+     * @param int $min
+     * @param int|null $max
+     *
+     * @return int|float
      */
     public function generate($min = 0, $max = null);
 
     /**
      *  Set the seed to use.
      *
-     * @param $seed integer the seed to use
+     * @param int|null $seed the seed to use
+     *
+     * @return mixed
      */
     public function seed($seed = null);
 
     /**
      *  Return the hights possible random value.
      *
-     * @return float
+     * @return int|float|null
      */
     public function max();
 }

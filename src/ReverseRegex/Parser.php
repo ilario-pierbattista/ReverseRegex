@@ -87,6 +87,10 @@ class Parser
 
     /**
      *  Will parse the regex into generator.
+     *
+     * @param bool $sub
+     *
+     * @return $this
      */
     public function parse($sub = false)
     {
@@ -115,7 +119,6 @@ class Parser
 
                         // group is finished don't want to contine this loop break = 2
                         break 2;
-                        break;
                     case $this->lexer->isNextTokenAny([Lexer::T_LITERAL_CHAR, Lexer::T_LITERAL_NUMERIC]):
 
                         // test for literal characters (abcd)
@@ -226,6 +229,9 @@ class Parser
         return $this->result;
     }
 
+    /**
+     * @var array<string, class-string<StrategyInterface>|StrategyInterface>
+     */
     public static $sub_parsers = [
         'character' => \ReverseRegex\Parser\CharacterClass::class,
         'unicode' => \ReverseRegex\Parser\Unicode::class,

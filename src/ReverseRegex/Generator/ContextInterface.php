@@ -19,6 +19,8 @@ interface ContextInterface
      *  Generate a text string appending to result arguments.
      *
      * @param string $result
+     *
+     * @return string
      */
     public function generate(&$result, GeneratorInterface $generator);
 }

@@ -42,6 +42,8 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *  Generate a text string appending to result arguments.
      *
      * @param string $result
+     *
+     * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {
@@ -58,6 +60,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
                 $randomIndex = round($generator->generate(1, ($this->count())));
                 $this->get($randomIndex)->generate($result, $generator);
             } else {
+                /** @var Scope $current */
                 foreach ($this as $current) {
                     $current->generate($result, $generator);
                 }
@@ -71,6 +74,8 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
 
     /**
      *  Fetch a node given an `one-based index`.
+     *
+     * @param int|float $index
      *
      * @return Scope|null if none found
      */
@@ -86,7 +91,10 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
             $index -= 1;
         }
 
-        return $this->current();
+        /** @var Scope|null $current */
+        $current = $this->current();
+
+        return $current;
     }
 
     //  ----------------------------------------------------------------------------
@@ -105,7 +113,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
     /**
      *  Sets the maximum re-occurances.
      *
-     * @param int $num
+     * @param mixed $num
      */
     public function setMaxOccurances($num): void
     {
@@ -127,7 +135,7 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
     /**
      *  Sets the Minimum number of re-occurances.
      *
-     * @param int $num
+     * @param mixed $num
      */
     public function setMinOccurances($num): void
     {

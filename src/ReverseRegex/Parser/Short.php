@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ReverseRegex\Parser;
 
+use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 
@@ -18,6 +19,8 @@ class Short implements StrategyInterface
 {
     /**
      *  Parse the current token for Short Codes `.` `\d`  `\w`.
+     *
+     * @param LiteralScope $head
      *
      * @return Scope a new head
      */
@@ -42,16 +45,18 @@ class Short implements StrategyInterface
             default:
                 // do nothing no token matches found
         }
+
+        return $head;
     }
 
-    public function convertDotToRange(Scope $head, Scope $result, Lexer $lexer): void
+    public function convertDotToRange(LiteralScope $head, Scope $result, Lexer $lexer): void
     {
         for ($i = 0; $i <= 127; ++$i) {
             $head->addLiteral(\chr($i));
         }
     }
 
-    public function convertDigitToRange(Scope $head, Scope $result, Lexer $lexer): void
+    public function convertDigitToRange(LiteralScope $head, Scope $result, Lexer $lexer): void
     {
         if ($lexer->isNextToken(Lexer::T_SHORT_D)) {
             // digits only (0048 - 0057) digits
@@ -79,7 +84,7 @@ class Short implements StrategyInterface
         }
     }
 
-    public function convertWordToRange(Scope $head, Scope $result, Lexer $lexer): void
+    public function convertWordToRange(LiteralScope $head, Scope $result, Lexer $lexer): void
     {
         if ($lexer->isNextToken(Lexer::T_SHORT_W)) {
             // `[a-zA-Z0-9_]`
@@ -129,7 +134,7 @@ class Short implements StrategyInterface
         }
     }
 
-    public function convertWhiteSpaceToRange(Scope $head, Scope $result, Lexer $lexer): void
+    public function convertWhiteSpaceToRange(LiteralScope $head, Scope $result, Lexer $lexer): void
     {
         if ($lexer->isNextToken(Lexer::T_SHORT_S)) {
             // spaces, tabs, and line breaks

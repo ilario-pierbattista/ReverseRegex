@@ -47,7 +47,7 @@ class LiteralScope extends Scope
     /**
      *  Sets a value on the internal collection using a key.
      *
-     * @param string $hex a hexidecimal number
+     * @param int|string $hex a hexidecimal number or the code point
      * @param string $literal the literal to store
      */
     public function setLiteral($hex, $literal): void
@@ -58,7 +58,7 @@ class LiteralScope extends Scope
     /**
      *  Return the literal ArrayCollection.
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return ArrayCollection
      */
     public function getLiterals()
     {
@@ -69,6 +69,8 @@ class LiteralScope extends Scope
      *  Generate a text string appending to the result argument.
      *
      * @param string $result
+     *
+     * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {

@@ -31,7 +31,7 @@ class SimpleRandom implements GeneratorInterface
     /**
      *  Constructor.
      *
-     * @param int $seed
+     * @param int|null $seed
      *
      * @return void
      */
@@ -44,6 +44,11 @@ class SimpleRandom implements GeneratorInterface
         $this->seed($seed);
     }
 
+    /**
+     * @param int|null $value
+     *
+     * @return int|null
+     */
     public function max($value = null)
     {
         if ($value === null && $this->max === null) {
@@ -57,6 +62,11 @@ class SimpleRandom implements GeneratorInterface
         return $max;
     }
 
+    /**
+     * @param int|null $value
+     *
+     * @return int|null
+     */
     public function min($value = null)
     {
         if ($value === null && $this->max === null) {
@@ -73,7 +83,9 @@ class SimpleRandom implements GeneratorInterface
     /**
      *  Set the seed to use for generator.
      *
-     * @param int $seed the seed to use
+     * @param int|null $seed the seed to use
+     *
+     * @return int
      */
     public function seed($seed = null)
     {
@@ -87,8 +99,10 @@ class SimpleRandom implements GeneratorInterface
     /**
      *  Generate a random numer.
      *
-     * @param int $max
-     * @param int $max 2,796,203 largest possible max
+     * @param int $min
+     * @param int|null $max 2,796,203 largest possible max
+     *
+     * @return int
      */
     public function generate($min = 0, $max = null)
     {
