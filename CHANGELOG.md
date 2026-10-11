@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
 - CI/tooling: the test job runs on PHP 8.1 and 8.5 with both lowest and highest dependencies
 - Updated development dependencies: PHPUnit 10.5, PHP-CS-Fixer 3.95, Facile.it coding standard 1.5, PHPStan 2.3
+- Widened runtime dependency constraints: `doctrine/lexer` now accepts `^3` and `doctrine/collections` now accepts `^2` and `^3` (previously supported versions are still accepted)
+- Lexer tokens are now read through the internal `TokenHelper`, as `doctrine/lexer` 3 no longer allows array access on tokens
 
 ## [0.7.0] - 2026-10-10
 ### Added

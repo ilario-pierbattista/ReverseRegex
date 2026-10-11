@@ -25,8 +25,8 @@
   },
   "require": {
     "php": "^8.1",
-    "doctrine/lexer": "^1.2.1 || ^2",
-    "doctrine/collections": "^1.6.5",
+    "doctrine/lexer": "^1.2.1 || ^2 || ^3",
+    "doctrine/collections": "^1.6.5 || ^2 || ^3",
     "symfony/polyfill-mbstring": "^1.20.0"
   },
   "autoload": {
