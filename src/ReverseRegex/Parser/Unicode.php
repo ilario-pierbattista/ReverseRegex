@@ -47,7 +47,7 @@ class Unicode implements StrategyInterface
                 }
 
                 $tokens = [];
-                while ($lexer->moveNext() && $lexer->lookahead !== null && TokenHelper::value($lexer->lookahead) !== '}') {
+                while ($lexer->moveNext() && TokenHelper::value($lexer->lookahead) !== '}') {
                     // check if we nested eg.{ddd{d}
                     if (TokenHelper::value($lexer->lookahead) === '{') {
                         throw new ParserException('Nesting hex value ranges is not allowed');
