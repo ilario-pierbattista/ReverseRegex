@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency); tests now extend PHPUnit `TestCase` directly
 ### Changed
+- Autoloading switched from PSR-0 to PSR-4 (same namespaces and class names); tests moved from `src/ReverseRegex/Test/` to `tests/` (`autoload-dev`) and are no longer shipped in the package archive
 - CI/tooling: GitHub Actions `checkout`, `cache` and `upload-artifact` updated to Node 24 versions, removing the Node.js 20 deprecation warnings
 - CI/tooling: PHPUnit now fails on deprecations, notices, warnings and risky tests (`error_reporting=-1`)
 - CI/tooling: the test job runs on PHP 8.1 and 8.5 with both lowest and highest dependencies

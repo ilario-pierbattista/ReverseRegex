@@ -40,7 +40,7 @@ make run-php-8.5     # open a shell in a PHP 8.5 container
 ## Project layout
 
 - `src/ReverseRegex/` – library code (lexer, parser, generators, random sources).
-- `src/ReverseRegex/Test/` – PHPUnit tests.
+- `tests/` – PHPUnit tests.
 - `examples/` – usage examples.
 
 ## Making changes
