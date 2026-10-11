@@ -2,6 +2,7 @@ ReverseRegex
 ============
 
 [![PHP unit](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/ilario-pierbattista/ReverseRegex/actions/workflows/ci.yaml)
+[![codecov](https://codecov.io/gh/ilario-pierbattista/ReverseRegex/graph/badge.svg)](https://codecov.io/gh/ilario-pierbattista/ReverseRegex)
 
 > This is a fork of https://github.com/icomefromthenet/ReverseRegex (that provides `icomefromthenet/reverse-regex`).
 
