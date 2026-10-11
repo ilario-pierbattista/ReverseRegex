@@ -38,7 +38,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Class Constructor.
      *
-     * @param scalar|null $label
+     * @param mixed $label
      */
     public function __construct($label = 'node')
     {
@@ -61,7 +61,7 @@ class Node implements ArrayAccess, Countable, Iterator
     /**
      *  Sets the node label.
      *
-     * @param scalar|null $label the nodes label
+     * @param mixed $label the nodes label
      */
     public function setLabel($label)
     {

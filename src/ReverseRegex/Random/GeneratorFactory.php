@@ -43,7 +43,7 @@ class GeneratorFactory
     /**
      *  Resolve a Dcotrine DataType Class.
      *
-     *  @param string $type the random generator type name
+     * @param string $type the random generator type name
      *
      * @throws ReverseRegexException
      *
