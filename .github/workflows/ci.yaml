@@ -43,6 +43,15 @@ jobs:
       - name: Run test suite
         run: vendor/bin/phpunit
 
+      - name: Run examples
+        working-directory: examples
+        run: |
+          for f in *.php; do
+            echo "::group::$f"
+            php "$f" > /dev/null
+            echo "::endgroup::"
+          done
+
   coverage:
 
     name: Coverage (PHP 8.5)
