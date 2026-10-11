@@ -2,13 +2,14 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\Parser\Unicode;
 
-class UnicodeTest extends Basic
+class UnicodeTest extends TestCase
 {
     public function testUnsupportedShortProperty(): void
     {

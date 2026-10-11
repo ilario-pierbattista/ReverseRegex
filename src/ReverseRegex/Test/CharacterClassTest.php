@@ -2,13 +2,14 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Generator\LiteralScope;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
 use ReverseRegex\Parser\CharacterClass;
 
-class CharacterClassTest extends Basic
+class CharacterClassTest extends TestCase
 {
     public function testNormalizeNoUnicode(): void
     {

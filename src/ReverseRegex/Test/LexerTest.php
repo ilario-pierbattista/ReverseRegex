@@ -3,11 +3,12 @@
 namespace ReverseRegex\Test;
 
 use Doctrine\Common\Lexer\AbstractLexer;
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Lexer;
 use ReverseRegex\TokenHelper;
 
-class LexerTest extends Basic
+class LexerTest extends TestCase
 {
     public function testInheritsDoctrineLexer(): void
     {

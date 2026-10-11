@@ -2,9 +2,10 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Generator\LiteralScope;
 
-class LiteralScopeTest extends Basic
+class LiteralScopeTest extends TestCase
 {
     public function testExtendsScope(): void
     {

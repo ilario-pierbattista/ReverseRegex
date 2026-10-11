@@ -2,6 +2,7 @@
 
 namespace ReverseRegex\Test;
 
+use PHPUnit\Framework\TestCase;
 use ReverseRegex\Exception as RegexException;
 use ReverseRegex\Generator\Scope;
 use ReverseRegex\Lexer;
@@ -9,7 +10,7 @@ use ReverseRegex\Parser;
 use ReverseRegex\Random\MersenneRandom;
 use ReverseRegex\Random\SimpleRandom;
 
-class ParserTest extends Basic
+class ParserTest extends TestCase
 {
     public function testParserExampleA(): void
     {
