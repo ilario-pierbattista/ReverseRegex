@@ -69,6 +69,8 @@ class LiteralScope extends Scope
      *  Generate a text string appending to the result argument.
      *
      * @param string $result
+     *
+     * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {

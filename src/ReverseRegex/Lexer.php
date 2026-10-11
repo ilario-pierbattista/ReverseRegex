@@ -13,6 +13,8 @@ use ReverseRegex\Exception as LexerException;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @extends AbstractLexer<int, string>
  */
 class Lexer extends AbstractLexer
 {
@@ -198,6 +200,8 @@ class Lexer extends AbstractLexer
 
     /**
      * @inheritDoc
+     *
+     * @param string $value
      */
     protected function getType(&$value)
     {

@@ -36,6 +36,8 @@ class Unicode implements StrategyInterface
 
     /**
      *  Parse a reference.
+     *
+     * @return string
      */
     public function evaluate(Lexer $lexer)
     {

@@ -32,12 +32,8 @@ class SrandRandom implements GeneratorInterface
      */
     protected $min;
 
-    /*
-     * __construct()
-     *
-     * @param integer $seed the starting seed
-     * @return void
-     * @access public
+    /**
+     * @param int $seed the starting seed
      */
     public function __construct($seed = 0)
     {
@@ -47,7 +43,9 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Return the maxium random number.
      *
-     * @return float
+     * @param int|null $value
+     *
+     * @return int|null
      */
     public function max($value = null)
     {
@@ -62,6 +60,11 @@ class SrandRandom implements GeneratorInterface
         return $max;
     }
 
+    /**
+     * @param int|null $value
+     *
+     * @return int|null
+     */
     public function min($value = null)
     {
         if ($value === null && $this->max === null) {
@@ -78,8 +81,10 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Generate a value between $min - $max.
      *
-     * @param int $max
-     * @param int $max
+     * @param int $min
+     * @param int|null $max
+     *
+     * @return int
      */
     public function generate($min = 0, $max = null)
     {
@@ -97,7 +102,9 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Set the seed to use.
      *
-     * @param $seed integer the seed to use
+     * @param int|null $seed the seed to use
+     *
+     * @return $this
      */
     public function seed($seed = null)
     {

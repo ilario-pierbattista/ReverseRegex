@@ -42,6 +42,8 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
      *  Generate a text string appending to result arguments.
      *
      * @param string $result
+     *
+     * @return string
      */
     public function generate(&$result, GeneratorInterface $generator)
     {
@@ -71,6 +73,8 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
 
     /**
      *  Fetch a node given an `one-based index`.
+     *
+     * @param int|float $index
      *
      * @return Scope|null if none found
      */

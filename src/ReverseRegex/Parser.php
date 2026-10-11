@@ -87,6 +87,10 @@ class Parser
 
     /**
      *  Will parse the regex into generator.
+     *
+     * @param bool $sub
+     *
+     * @return $this
      */
     public function parse($sub = false)
     {
@@ -225,6 +229,9 @@ class Parser
         return $this->result;
     }
 
+    /**
+     * @var array<string, class-string<StrategyInterface>|StrategyInterface>
+     */
     public static $sub_parsers = [
         'character' => \ReverseRegex\Parser\CharacterClass::class,
         'unicode' => \ReverseRegex\Parser\Unicode::class,

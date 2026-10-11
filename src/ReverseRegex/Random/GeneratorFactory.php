@@ -24,6 +24,12 @@ class GeneratorFactory
         'simple' => \ReverseRegex\Random\SimpleRandom::class,
     ];
 
+    /**
+     * @param string $index
+     * @param string $namespace
+     *
+     * @return string
+     */
     public static function registerExtension($index, $namespace)
     {
         $index = strtolower($index);
@@ -31,6 +37,9 @@ class GeneratorFactory
         return self::$types[$index] = $namespace;
     }
 
+    /**
+     * @param array<string, string> $extension
+     */
     public static function registerExtensions(array $extension): void
     {
         foreach ($extension as $key => $ns) {
@@ -44,6 +53,7 @@ class GeneratorFactory
      *  Resolve a Dcotrine DataType Class.
      *
      * @param string $type the random generator type name
+     * @param int|null $seed
      *
      * @throws ReverseRegexException
      *

@@ -38,6 +38,9 @@ class MersenneRandom implements GeneratorInterface
      */
     protected $min;
 
+    /**
+     * @param int|null $seed
+     */
     public function __construct($seed = null)
     {
         $this->seed($seed);
@@ -47,6 +50,11 @@ class MersenneRandom implements GeneratorInterface
         $this->min = null;
     }
 
+    /**
+     * @param int|null $value
+     *
+     * @return int|null
+     */
     public function max($value = null)
     {
         if ($value === null && $this->max === null) {
@@ -60,6 +68,11 @@ class MersenneRandom implements GeneratorInterface
         return $max;
     }
 
+    /**
+     * @param int|null $value
+     *
+     * @return int|null
+     */
     public function min($value = null)
     {
         if ($value === null && $this->max === null) {
@@ -73,6 +86,12 @@ class MersenneRandom implements GeneratorInterface
         return $min;
     }
 
+    /**
+     * @param int|null $min
+     * @param int|null $max
+     *
+     * @return int|float
+     */
     public function generate($min = 0, $max = null)
     {
         if ($max === null) {
@@ -86,6 +105,9 @@ class MersenneRandom implements GeneratorInterface
         return abs($this->mt(++$this->index, $min, $max));
     }
 
+    /**
+     * @param int|null $seed
+     */
     public function seed($seed = null): void
     {
         if ($seed === null) {
@@ -104,9 +126,9 @@ class MersenneRandom implements GeneratorInterface
      *       because it maintains both speed and elegance. Though not a crucial difference under normal use, on 1 million iterations,
      *       re-seeding each time, it will save 5 minutes of time from the orginal algorithm - at least on my system.
      *
-     * @param $index An index indicating the index of the internal array to select the number to generate the random number from
-     * @param $min The minimum number to return
-     * @param $max The maximum number to return
+     * @param int|null $index An index indicating the index of the internal array to select the number to generate the random number from
+     * @param int|null $min The minimum number to return
+     * @param int|null $max The maximum number to return
      *
      * @return float the random number
      *

@@ -17,6 +17,9 @@ use SplObjectStorage;
  *  @author Lewis Dyer <getintouch@icomefromthenet.com>
  *
  *  @since 0.0.1
+ *
+ * @implements ArrayAccess<array-key, mixed>
+ * @implements Iterator<int, Node>
  */
 class Node implements ArrayAccess, Countable, Iterator
 {
@@ -26,12 +29,12 @@ class Node implements ArrayAccess, Countable, Iterator
     protected $label;
 
     /**
-     * @var ArrayObject container for node metadata
+     * @var ArrayObject<array-key, mixed> container for node metadata
      */
     protected $attrs;
 
     /**
-     * @var SplObjectStorage container for node relationships
+     * @var SplObjectStorage<Node, mixed> container for node relationships
      */
     protected $links;
 
@@ -62,6 +65,8 @@ class Node implements ArrayAccess, Countable, Iterator
      *  Sets the node label.
      *
      * @param mixed $label the nodes label
+     *
+     * @return bool|null false when the label is not scalar
      */
     public function setLabel($label)
     {

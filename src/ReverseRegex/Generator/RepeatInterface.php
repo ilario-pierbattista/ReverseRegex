@@ -24,6 +24,8 @@ interface RepeatInterface
      *  Sets the maximum re-occurances.
      *
      * @param int $num
+     *
+     * @return void
      */
     public function setMaxOccurances($num);
 
@@ -38,6 +40,8 @@ interface RepeatInterface
      *  Sets the Minimum number of re-occurances.
      *
      * @param int $num
+     *
+     * @return void
      */
     public function setMinOccurances($num);
 

@@ -6,6 +6,9 @@ namespace ReverseRegex;
 
 use Doctrine\Common\Collections\ArrayCollection as BaseCollection;
 
+/**
+ * @extends BaseCollection<int|string, mixed>
+ */
 class ArrayCollection extends BaseCollection
 {
     /**

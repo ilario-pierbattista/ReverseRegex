@@ -190,7 +190,7 @@ class Quantifier implements StrategyInterface
     /**
      *  Convert a collection of Lexer::T_LITERAL_NUMERIC tokens into integer.
      *
-     * @param array $tokens collection of tokens from lexer
+     * @param array<int, mixed> $tokens collection of tokens from lexer
      *
      * @return int the size
      */
