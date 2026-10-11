@@ -1,5 +1,5 @@
 parameters:
-    level: 5
+    level: 6
     phpVersion: 80100 # PHP 8.1.0 - minimum supported version
     paths:
         - src
