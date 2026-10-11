@@ -6,14 +6,14 @@ ReverseRegex
 
 > This is a fork of https://github.com/icomefromthenet/ReverseRegex (that provides `icomefromthenet/reverse-regex`).
 
-Use Regular Expressions to generate text strings can be used in the following situations:
+Use regular expressions to generate text strings. It can be used in the following situations:
 
 1. Writing test data for web forms.
 2. Writing test data for databases.
 3. Generating test data for regular expressions. 
 
 
-##Example
+## Example
 
 ```php
 
@@ -51,14 +51,14 @@ auinmymonl
 dujyzuhoag
 vaygybwkfm
 ```
-#### Other examples
+### Other examples
 
 1. [Australian phone numbers](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/ausphone.php)
 2. [Australian postcodes](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/auspostcode.php)
 3. [Mobile numbers](https://github.com/ilario-pierbattista/ReverseRegex/blob/master/examples/mobilenumbers.php)
 
 
-##Installing
+## Installing
 
 To install use composer
 
@@ -67,9 +67,9 @@ To install use composer
 ## Writing a Regex
 
 1. Escape all meta-characters i.e. if you need to escape the character in a regex you will need to escape here.
-2. Not all meta-characters are suppported see list below.
+2. Not all meta-characters are supported, see the list below. Negated character classes (`[^a-z]`), `\p` and `\P` are rejected with an exception.
 3. Use `\X{####}` to specify unicode value use `[\X{####}-\X{####}]` to specify range.
-4. Unicdoe `\p` not supported, I could not find a port of [UCD](http://www.unicode.org/ucd/) to php, maybe in the future support be added.
+4. Unicode properties (`\p`, `\P`) are not supported, because there is no PHP port of the [UCD](http://www.unicode.org/ucd/).
 5. Quantifiers are applied to left most group, literal or character class.
 6. The `+` and `*` quantifiers repeat at most 100 times by default; change it with `$parser->setUnboundedMax($n)`.
 
@@ -110,7 +110,6 @@ To install use composer
   <td> a|(y|d){5} </td> <td> Groups supported with alternation and quantifiers </td> <td>`ddddd` or `a` or `yyyyy` </td>  
  </tr>
  <tr>
-  <tr>
     <td> \d </td> <td> Digit shorthand equ [0-9]  </td> <td>`1`</td>  
   </tr>
   <tr>
@@ -129,7 +128,7 @@ To install use composer
     <td> . </td><td>Dot all ASCII characters </td> <td>`$`</td>  
   </tr>
   <tr>
-    <td> * + ? </td><td>Short hand quantifiers, recommend not use them </td> <td> </td>  
+    <td> * + ? </td><td>Short hand quantifiers, not recommended </td> <td> </td>  
   </tr>
   <tr>
     <td> \X{00FF}[\X{00FF}-\X{00FF}] </td><td>Unicode ranges</td> <td> </td>  
