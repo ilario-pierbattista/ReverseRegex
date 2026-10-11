@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Unused `Test\Basic` base class (it depended on Pimple, which is not a dependency); tests now extend PHPUnit `TestCase` directly
 ### Changed
+- PHPStan now runs at level 6 (was 5) with PHPDoc types on the previously untyped signatures and generics; no signatures changed
 - Removed the PHPStan baseline: the code now passes analysis without ignored errors (`Parser\Short::convert*()` and `Parser\CharacterClass::fillRange()` now declare the `LiteralScope` they always required)
 - Added native return types to `Scope`, `Node::contains()`, `Parser` and the `Parser\Quantifier`/`Parser\Unicode` strategies, and typed the `Parser` and `Quantifier` properties; the public interfaces are untouched to stay backward compatible
 - All source, test and example files now declare `strict_types=1`
