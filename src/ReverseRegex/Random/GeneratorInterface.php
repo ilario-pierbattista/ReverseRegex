@@ -33,7 +33,7 @@ interface GeneratorInterface extends CommonInterface
     /**
      *  Return the hights possible random value.
      *
-     * @return float
+     * @return int|float|null
      */
     public function max();
 }

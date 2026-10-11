@@ -90,7 +90,10 @@ class Scope extends Node implements ContextInterface, RepeatInterface, Alternate
             $index -= 1;
         }
 
-        return $this->current();
+        /** @var Scope|null $current */
+        $current = $this->current();
+
+        return $current;
     }
 
     //  ----------------------------------------------------------------------------

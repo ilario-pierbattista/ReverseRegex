@@ -75,6 +75,8 @@ class Node implements ArrayAccess, Countable, Iterator
         }
 
         $this->label = $label;
+
+        return null;
     }
 
     /**

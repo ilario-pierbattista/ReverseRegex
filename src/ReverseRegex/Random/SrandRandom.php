@@ -81,7 +81,7 @@ class SrandRandom implements GeneratorInterface
     /**
      *  Generate a value between $min - $max.
      *
-     * @param int $min
+     * @param int|null $min
      * @param int|null $max
      *
      * @return int

@@ -25,7 +25,7 @@ interface RepeatInterface
      *
      * @param int $num
      *
-     * @return void
+     * @return mixed
      */
     public function setMaxOccurances($num);
 
@@ -41,7 +41,7 @@ interface RepeatInterface
      *
      * @param int $num
      *
-     * @return void
+     * @return mixed
      */
     public function setMinOccurances($num);
 
