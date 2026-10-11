@@ -269,5 +269,71 @@ class ParserTest extends Basic
         $generator->generate($result, $random);
         $this->assertMatchesRegularExpression('/^[a-z]+$/', $result);
     }
+
+    public function testUnboundedMaxDefaultsAndSetter(): void
+    {
+        $parser = new Parser(new Lexer('a'), new Scope(), new Scope());
+
+        $this->assertSame(Parser\Quantifier::DEFAULT_UNBOUNDED_MAX, $parser->getUnboundedMax());
+        $this->assertSame($parser, $parser->setUnboundedMax(5));
+        $this->assertSame(5, $parser->getUnboundedMax());
+    }
+
+    public function testUnboundedMaxMustBePositive(): void
+    {
+        $parser = new Parser(new Lexer('a'), new Scope(), new Scope());
+
+        $this->expectException(RegexException::class);
+        $parser->setUnboundedMax(0);
+    }
+
+    public function testUnboundedMaxLimitsStarQuantifier(): void
+    {
+        $parser = new Parser(new Lexer('a*'), new Scope(), new Scope());
+        $parser->setUnboundedMax(3);
+        $generator = $parser->parse()->getResult();
+
+        for ($seed = 1; $seed <= 20; ++$seed) {
+            $result = '';
+            $generator->generate($result, new MersenneRandom($seed));
+            $this->assertMatchesRegularExpression('/^a{0,3}$/', $result);
+        }
+    }
+
+    public function testGetLexerReturnsTheLexer(): void
+    {
+        $lexer = new Lexer('a');
+        $parser = new Parser($lexer, new Scope(), new Scope());
+
+        $this->assertSame($lexer, $parser->getLexer());
+    }
+
+    public function testGroupsWithAlternation(): void
+    {
+        $parser = new Parser(new Lexer('(ab|cd)e'), new Scope(), new Scope());
+        $generator = $parser->parse()->getResult();
+
+        for ($seed = 1; $seed <= 30; ++$seed) {
+            $result = '';
+            $generator->generate($result, new MersenneRandom($seed));
+            $this->assertMatchesRegularExpression('/^(abe|cde)$/', $result);
+        }
+    }
+
+    public function testCompressReturnsTheRegexUntilTheCurrentToken(): void
+    {
+        $lexer = new Lexer('abc');
+        $parser = new Parser($lexer, new Scope(), new Scope());
+        $lexer->moveNext();
+        $lexer->moveNext();
+
+        $this->assertSame('ab', $parser->compress());
+    }
+
+    public function testCreateSubParserRejectsUnknownNames(): void
+    {
+        $this->expectException(RegexException::class);
+        Parser::createSubParser('unknown');
+    }
 }
 // End of File
